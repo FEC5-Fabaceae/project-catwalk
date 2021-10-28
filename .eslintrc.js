@@ -2,7 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    'jest/globals': true,
+    jest: true,
   },
   extends: [
     'plugin:react/recommended',
@@ -17,8 +17,15 @@ module.exports = {
   },
   plugins: [
     'react',
-    'jest',
+    'testing-library',
   ],
   rules: {
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
   },
+  overrides: [
+    {
+      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+      extends: ['plugin:testing-library/react'],
+    },
+  ],
 };
