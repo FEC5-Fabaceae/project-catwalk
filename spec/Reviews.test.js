@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-expressions */
 import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
-
+import { unmountComponentAtNode } from 'react-dom';
+import { render, screen } from '@testing-library/react';
+import { toBeInTheDocument } from '@testing-library/jest-dom';
 import Reviews from '../client/src/Components/Review/Reviews';
 // import ReviewList from '../client/src/Components/Review/ReviewList';
 // import ProductBreakdown from '../client/src/Components/Review/ProductBreakdown';
@@ -23,5 +25,6 @@ afterEach(() => {
 describe('Reviews component', () => {
   test('renders Reviews component', () => {
     render(<Reviews />, container);
+    expect(screen.getByText('RATINGS AND REVIEWS')).toBeInTheDocument;
   });
 });
