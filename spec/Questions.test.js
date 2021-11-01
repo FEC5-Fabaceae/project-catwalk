@@ -1,8 +1,9 @@
 import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
+import { unmountComponentAtNode } from 'react-dom';
+import { render, screen } from '@testing-library/react';
+import { toBeInTheDocument } from '@testing-library/jest-dom';
 
 import QuestionAndAnswer from '../client/src/Components/Questions/QuestionAndAnswer';
-import QuestionItem from '../client/src/Components/Questions/QuestionItem';
 
 let container = null;
 beforeEach(() => {
@@ -21,5 +22,6 @@ afterEach(() => {
 describe('QuestionAndAnswer component', () => {
   test('render Questions and Answers component', () => {
     render(<QuestionAndAnswer />, container);
+    expect(screen.getByText('Questions and Answers')).toBeInTheDocument();
   });
 });
