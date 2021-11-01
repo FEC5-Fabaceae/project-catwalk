@@ -13,15 +13,17 @@ app.use(express.json());
 axios.defaults.headers.common.Authorization = authorization;
 axios.defaults.baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/';
 
-app.listen(3000);
+app.listen(3000, () => {
+  console.log(`Server listening at port ${3000}`);
+});
 
 // TODO: When ready for development, remove all console.log requests and non-div comments
 // --ATELIER PRODUCTS API--
 // https://bit.ly/3jY8GXr
 /*
-Send a get request to this URL to recieve an array of objects. Each object is a product
+Send a get request to this URL to receive an array of objects. Each object is a product
 Send what page you wish to start on with a 'page' property in the body of your request
-Send how many items you wish to recieve, starting from the top of the page . . .
+Send how many items you wish to receive, starting from the top of the page . . .
  . . . with a 'count' property in the body of your request
 Default value for page: 1; count: 5
 */
