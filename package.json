@@ -1,6 +1,7 @@
 {
   "scripts": {
     "build": "webpack build --mode='production'",
+    "server-dev": "nodemon server/server.js",
     "watch": "webpack --mode='production' --watch",
     "test": "jest"
   },
