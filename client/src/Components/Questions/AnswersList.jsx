@@ -10,7 +10,7 @@ const AnswersList = (props) => {
       <ul>
         {answers.map(
           (answer) => (
-            <AnswerItem answer={answer} />),
+            <AnswerItem key={answer.id} answer={answer} />),
         )}
       </ul>
     </div>

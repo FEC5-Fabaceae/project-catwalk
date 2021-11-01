@@ -8,7 +8,7 @@ const QuestionsList = (props) => {
   return (
     <ul className="questions-list">
       {results.map(
-        (question) => (<QuestionItem question={question} />),
+        (question) => (<QuestionItem key={question.question_id} question={question} />),
       )}
     </ul>
   );
