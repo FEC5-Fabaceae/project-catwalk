@@ -1,8 +1,5 @@
 import React from 'react';
 import QuestionsList from './QuestionsList';
-// import SearchBar from './SearchBar';
-// import MoreQuestions from './MoreQuestions';
-// import AddQuestions from './AddQuestions';
 import sampleData from './sampleData';
 
 const QuestionAndAnswer = () => (
