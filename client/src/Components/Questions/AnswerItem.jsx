@@ -5,6 +5,18 @@ import moment from 'moment';
 const AnswerItem = (props) => {
   const { answer } = props;
   const { body, date, answerer_name, helpfulness, photos } = answer;
+
+  const sellerNameStyle = {
+    fontWeight: 'bold',
+  };
+
+  let sellerName;
+  if (answerer_name === 'Seller') {
+    sellerName = <span style={sellerNameStyle}>{answerer_name}</span>;
+  } else {
+    sellerName = <span>{answerer_name}</span>;
+  }
+
   return (
     <div className="answer-list-item">
       <p className="answer-list-item-bodytext">
@@ -14,7 +26,7 @@ const AnswerItem = (props) => {
         {photos}
       </div>
       <div className="feed-list-item-inline">
-        <span>{answerer_name}</span>
+        {sellerName}
         <span>{moment(date).format('MMMM D, YYYY')}</span>
         <span>Helpful?</span>
         <button type="button">Yes</button>
