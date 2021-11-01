@@ -1,8 +1,9 @@
 {
   "scripts": {
     "build": "webpack build --mode='production'",
-    "test": "jest",
-    "server-dev": "nodemon server/server.js"
+    "server-dev": "nodemon server/server.js",
+    "watch": "webpack --mode='production' --watch",
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
