@@ -35,7 +35,7 @@ QuestionItem.propTypes = {
     asker_name: PropTypes.string.isRequired,
     question_helpfulness: PropTypes.number.isRequired,
     reported: PropTypes.bool,
-    answers: PropTypes.arrayOf(PropTypes.object).isRequired,
+    answers: PropTypes.objectOf(PropTypes.object).isRequired,
   }).isRequired,
 };
 
