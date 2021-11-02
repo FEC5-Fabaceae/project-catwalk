@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
-const Overview = () => {
-  return (
+const Overview = () => (
   <div>
     <div>
       <p>
@@ -24,17 +23,18 @@ const Overview = () => {
         <p>price</p>
         {/* style selector */}
         <div>
-          <b>STYLE &gt</b>
+          <b>
+            STYLE
+            {'>'}
+          </b>
           SELECTED STYLE
         </div>
         <div>thumbnails</div>
-        <div>selct size and quantity</div>
+        <div>select size and quantity</div>
         <div>add to cart and</div>
-
-
       </div>
     </div>
   </div>
-  )
-};
+);
+
 export default Overview;
