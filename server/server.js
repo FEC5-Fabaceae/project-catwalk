@@ -217,8 +217,8 @@ Send a 'product_id' property in the body to get the questions for the given prod
 Send a 'page' property in the body to set a page to start looking at results from
 Send a 'count' property in the body to set how many questions will be returned in the array
 */
-app.get('/qa/questions', (req, res) => {
-  if (req.body.product_id === undefined) {
+app.get('/qa/questions/:product_id', (req, res) => {
+  if (req.params.product_id === undefined) {
     res.status(400).send('Product id required to serve request');
   }
   if (req.body.page === undefined) {
@@ -229,14 +229,14 @@ app.get('/qa/questions', (req, res) => {
   }
   const params = new url.URLSearchParams(
     {
-      product_id: req.body.product_id,
+      product_id: req.params.product_id,
       page: req.body.page,
       count: req.body.count,
     },
   );
   axios.get(`/qa/questions/?${params}`)
     .then((results) => {
-      console.log(results);
+      console.log(results.data);
       res.status(200).send(results.data);
     })
     .catch((err) => {

@@ -1,10 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import axios from 'axios';
 
 const AnswerItem = (props) => {
-  const { answer } = props;
-  const { body, date, answerer_name, helpfulness, photos } = answer;
+  const { answer, questionID, setAnswer } = props;
+  const { id, body, date, answerer_name, helpfulness, photos } = answer;
+
+  let pictures;
+  if (photos.length) {
+    pictures = photos.map((photo, i) => (
+      <img src={photo} alt="" key={i} />
+    ));
+  }
 
   const sellerNameStyle = {
     fontWeight: 'bold',
@@ -17,20 +25,42 @@ const AnswerItem = (props) => {
     sellerName = <span>{answerer_name}</span>;
   }
 
+  const updateCount = () => {
+    axios.put(`qa/answers/${id}/helpful`, {
+      helpfulness,
+    })
+      .then(() => {
+        console.log('sent put request');
+        axios.get(`qa/questions/${questionID}/answers`)
+          .then((res) => {
+            setAnswer(res.data.results);
+          });
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleClick = (e) => {
+    if (e.target.value === 'Yes') {
+      updateCount();
+    }
+  };
+
   return (
     <div className="answer-list-item">
       <p className="answer-list-item-bodytext">
         {body}
       </p>
       <div className="answer-list-item-photos">
-        {photos}
+        {pictures}
       </div>
       <div className="feed-list-item-inline">
         {sellerName}
         <span>{moment(date).format('MMMM D, YYYY')}</span>
         <span>Helpful?</span>
-        <button type="button">Yes</button>
+        <button type="button" onClick={handleClick} value="Yes">Yes</button>
+        (
         {helpfulness}
+        )
         <button type="button">Report</button>
       </div>
     </div>

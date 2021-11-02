@@ -4,7 +4,8 @@ import AnswersList from './AnswersList';
 
 const QuestionItem = (props) => {
   const { question } = props;
-  const { question_body, question_helpfulness, answers } = question;
+  const { question_id, question_body, question_helpfulness, answers } = question;
+
   return (
     <div className="questions-list-item">
       <section className="questions-list-item-questionbody">
@@ -14,13 +15,15 @@ const QuestionItem = (props) => {
       <aside>
         <span>Helpful?</span>
         <button type="button">Yes</button>
+        (
         {question_helpfulness}
+        )
         <button type="button">Add Answer</button>
       </aside>
       <section>
         <span>A:</span>
         <ul>
-          <AnswersList answerlist={answers} />
+          <AnswersList answerlist={answers} questionID={question_id} />
         </ul>
       </section>
     </div>
@@ -35,7 +38,7 @@ QuestionItem.propTypes = {
     asker_name: PropTypes.string.isRequired,
     question_helpfulness: PropTypes.number.isRequired,
     reported: PropTypes.bool,
-    answers: PropTypes.objectOf(PropTypes.object).isRequired,
+    answers: PropTypes.objectOf(PropTypes.object),
   }).isRequired,
 };
 
