@@ -24,8 +24,8 @@ const QuestionsList = (props) => {
 
 QuestionsList.propTypes = {
   list: PropTypes.shape({
-    product_id: PropTypes.number,
-    results: PropTypes.arrayOf(PropTypes.object).isRequired,
+    product_id: PropTypes.string,
+    results: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
 };
 

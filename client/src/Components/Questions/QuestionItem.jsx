@@ -4,6 +4,7 @@ import AnswersList from './AnswersList';
 
 const QuestionItem = (props) => {
   const { question } = props;
+  console.log('question:', question);
   const { question_id, question_body, question_helpfulness, answers } = question;
 
   return (
@@ -15,7 +16,9 @@ const QuestionItem = (props) => {
       <aside>
         <span>Helpful?</span>
         <button type="button">Yes</button>
+        (
         {question_helpfulness}
+        )
         <button type="button">Add Answer</button>
       </aside>
       <section>
@@ -36,7 +39,7 @@ QuestionItem.propTypes = {
     asker_name: PropTypes.string.isRequired,
     question_helpfulness: PropTypes.number.isRequired,
     reported: PropTypes.bool,
-    answers: PropTypes.objectOf(PropTypes.object).isRequired,
+    answers: PropTypes.objectOf(PropTypes.object),
   }).isRequired,
 };
 
