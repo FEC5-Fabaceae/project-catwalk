@@ -18,7 +18,7 @@ app.listen(3000, () => {
 });
 
 // TODO: When ready for development, remove all console.log requests and non-div comments
-// --ATELIER PRODUCTS API--
+// --PRODUCTS API--
 // https://bit.ly/3jY8GXr
 /*
 Send a get request to this URL to recieve an array of objects. Each object is a product
@@ -167,7 +167,7 @@ It allows for the following parameters: product_id, rating, summary, . . .
 . . . body, recommend, name, email, photos, and characteristics
 */
 app.post('/reviews', (req, res) => {
-  axios.post(req.body)
+  axios.post('/reviews', req.body)
     .then((results) => {
       console.log(results);
       res.status(201).send('CREATED');
@@ -202,6 +202,156 @@ app.put('/reviews/:review_id/report', (req, res) => {
     .then((results) => {
       console.log(results);
       res.status(204).send('Review reported!');
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(204).send(err);
+    });
+});
+// --QUESTIONS AND ANSWERS API--
+// https://bit.ly/3w4FFOO
+/*
+Send a get request to this URL to get an array of objects for each question. . .
+Each questions has an answers object, with a unique key for each answer to the question
+Send a 'product_id' property in the body to get the questions for the given product --REQUIRED
+Send a 'page' property in the body to set a page to start looking at results from
+Send a 'count' property in the body to set how many questions will be returned in the array
+*/
+app.get('/qa/questions', (req, res) => {
+  if (req.body.product_id === undefined) {
+    res.status(400).send('Product id required to serve request');
+  }
+  if (req.body.page === undefined) {
+    req.body.page = 1;
+  }
+  if (req.body.count === undefined) {
+    req.body.count = 5;
+  }
+  const params = new url.URLSearchParams(
+    {
+      product_id: req.body.product_id,
+      page: req.body.page,
+      count: req.body.count,
+    },
+  );
+  axios.get(`/qa/questions/?${params}`)
+    .then((results) => {
+      console.log(results);
+      res.status(200).send(results.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send(err);
+    });
+});
+/*
+Send a get request to this URL to get an object containing all answers for a given question. . .
+. . . in a results array
+Send the question's id in the URL --REQUIRED
+Send a 'page' property in the body to set what page to start on, default
+Send a 'count' property in the body to set how many results to send per page
+*/
+app.get('/qa/questions/:question_id/answers', (req, res) => {
+  axios.get(req.url)
+    .then((results) => {
+      console.log(results);
+      res.status(200).send(results.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send(err);
+    });
+});
+/*
+Send a post request to this URL to post a question
+Send a 'body' property with a value of the text of the question being asked
+Send a 'name' property with a value of the text for the Username who is asking the question
+Send a 'email' property with a value of the text for the email address of the asker
+Send a 'product_id' property with the ID of the product in question *badum-tss*
+*/
+app.post('/qa/questions', (req, res) => {
+  axios.post('/qa/questions', req.body)
+    .then((results) => {
+      console.log(results);
+      res.status(201).send('Quesiton created!');
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send(err);
+    });
+});
+/*
+Send a post request to this URL to post an answer
+Send a 'question_id' in the url for the quesiton you wish to post an answer for --REQUIRED
+--NOTE: The api docs make multiple incorrect references to the 'question' being asked . . .
+This is clearly an error. Follow my comments instead.
+Send a 'body' property in the body of your request for the text of your answer
+Send a 'name' property in the body of your request for the name of the answerer
+Send a 'email' property in the body of your request for the email of the answerer
+Send a 'photos' property in the body of your request to send corresponding images for your answer
+--NOTE, the 'photos' property is the only one that is optional it seems, but I could be wrong
+*/
+app.post('/qa/questions/:question_id/answers', (req, res) => {
+  axios.post(req.url, req.body)
+    .then((results) => {
+      console.log(results);
+      res.status(201).send('Answer created!');
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send(err);
+    });
+});
+/*
+Send a put request to this URL with the quesiton id in the URL to mark a question as helpful
+*/
+app.put('/qa/questions/:question_id/helpful', (req, res) => {
+  axios.put(req.url)
+    .then((results) => {
+      console.log(results);
+      res.status(204).send('Question marked as helpful');
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send(err);
+    });
+});
+/*
+Send a put request to this URL with the question id in the URL to report it
+*/
+app.put('/qa/questions/:question_id/report', (req, res) => {
+  axios.put(req.url)
+    .then((results) => {
+      console.log(results);
+      res.status(204).send('Question reported!');
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(204).send(err);
+    });
+});
+/*
+Send a put request to this URL with the answer id in the URL to mark it as helpful
+*/
+app.put('/qa/answers/:answer_id/helpful', (req, res) => {
+  axios.put(req.url)
+    .then((results) => {
+      console.log(results);
+      res.status(204).send('Answer marked as helpful');
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send(err);
+    });
+});
+/*
+Send put request to this URL with the answer_id in the URL to report an answer
+*/
+app.put('/qa/answers/:answer_id/report', (req, res) => {
+  axios.put(req.url)
+    .then((results) => {
+      console.log(results);
+      res.status(204).send('Answer reported!');
     })
     .catch((err) => {
       console.log(err);
