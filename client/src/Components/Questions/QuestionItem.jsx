@@ -4,7 +4,8 @@ import AnswersList from './AnswersList';
 
 const QuestionItem = (props) => {
   const { question } = props;
-  const { question_body, question_helpfulness, answers } = question;
+  const { question_id, question_body, question_helpfulness, answers } = question;
+
   return (
     <div className="questions-list-item">
       <section className="questions-list-item-questionbody">
@@ -20,7 +21,7 @@ const QuestionItem = (props) => {
       <section>
         <span>A:</span>
         <ul>
-          <AnswersList answerlist={answers} />
+          <AnswersList answerlist={answers} questionID={question_id} />
         </ul>
       </section>
     </div>
