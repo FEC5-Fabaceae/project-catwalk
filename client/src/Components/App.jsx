@@ -1,8 +1,7 @@
 import React from 'react';
-import Overview from './Overview/Overview';
+import Reviews from './Review/Reviews';
 
-const App = (props) => (<div>Hello World from App
-<Overview/>
-</div>);
+// please add your components here in the order they appear
+const App = (props) => (<div><Reviews /></div>);
 
 export default App;
