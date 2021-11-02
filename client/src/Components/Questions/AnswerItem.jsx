@@ -7,6 +7,13 @@ const AnswerItem = (props) => {
   const { answer, questionID, setAnswer } = props;
   const { id, body, date, answerer_name, helpfulness, photos } = answer;
 
+  let pictures;
+  if (photos.length) {
+    pictures = photos.map((photo, i) => (
+      <img src={photo} alt="" key={i} />
+    ));
+  }
+
   const sellerNameStyle = {
     fontWeight: 'bold',
   };
@@ -44,7 +51,7 @@ const AnswerItem = (props) => {
         {body}
       </p>
       <div className="answer-list-item-photos">
-        {photos}
+        {pictures}
       </div>
       <div className="feed-list-item-inline">
         {sellerName}
