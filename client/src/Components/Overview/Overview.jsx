@@ -1,7 +1,7 @@
-import e from 'express';
 import React, { useState } from 'react';
 
-const Overview = () => (
+const Overview = () => {
+  return (
   <div>
     <div>
       <p>
@@ -23,7 +23,7 @@ const Overview = () => (
         <h1>Expanded Product Name</h1>
         <p>price</p>
         {/* style selector */}
-        <div>git
+        <div>
           <b>STYLE &gt</b>
           SELECTED STYLE
         </div>
@@ -35,6 +35,6 @@ const Overview = () => (
       </div>
     </div>
   </div>
-
-);
+  )
+};
 export default Overview;
