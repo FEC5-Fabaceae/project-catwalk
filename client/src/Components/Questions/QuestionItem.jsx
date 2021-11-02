@@ -4,7 +4,6 @@ import AnswersList from './AnswersList';
 
 const QuestionItem = (props) => {
   const { question } = props;
-  console.log('question:', question);
   const { question_id, question_body, question_helpfulness, answers } = question;
 
   return (
