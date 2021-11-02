@@ -358,3 +358,60 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
       res.status(204).send(err);
     });
 });
+// --CART API--
+// https://bit.ly/3nUxCR3
+/*
+Send a get request to this URL to get an array of each sku object in the cart
+*/
+app.get('/cart', (req, res) => {
+  axios.get('/cart')
+    .then((results) => {
+      console.log(results);
+      res.status(200).send(results.data);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+});
+/*
+Send a post request to this URL with a sku_id property in the body to put that item in the cart
+*/
+app.post('/cart', (req, res) => {
+  axios.post('/cart', req.body)
+    .then((results) => {
+      console.log(results);
+      res.status(201).send('Product added');
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send(err);
+    });
+});
+// --INTERACTIONS API--
+// https://bit.ly/2ZMXtSw
+/*
+Send a post request to this URL to add an interaciton to the database
+Pass in the body the folowing parameters: element(string), widget(string), and time (string)
+--NOTE: it looks like this is a log of user activity, detailing which element was selected,
+what module that selection took place in, and the time it occured
+*/
+app.post('/interactions', (req, res) => {
+  if (req.body.element === undefined) {
+    res.status(422).send('No element property in body');
+  }
+  if (req.body.widget === undefined) {
+    res.status(422).send('No widget property in body');
+  }
+  if (req.body.time === undefined) {
+    res.status(422).send('No time property in body');
+  }
+  axios.post('/interactions', req.body)
+    .then((results) => {
+      console.log(results);
+      res.status(201).send('Created');
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send(err);
+    });
+});
