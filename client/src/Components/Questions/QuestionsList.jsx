@@ -4,7 +4,7 @@ import QuestionItem from './QuestionItem';
 
 const QuestionsList = (props) => {
   const { list } = props;
-  const { results } = list;
+  const { product_id, results } = list;
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
@@ -16,7 +16,14 @@ const QuestionsList = (props) => {
   return (
     <ul className="questions-list">
       {questions.map(
-        (question) => (<QuestionItem key={question.question_id} question={question} />),
+        (question) => (
+          <QuestionItem
+            key={question.question_id}
+            question={question}
+            productID={product_id}
+            setQuestions={setQuestions}
+          />
+        ),
       )}
     </ul>
   );

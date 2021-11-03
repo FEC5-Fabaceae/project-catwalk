@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import AnswersList from './AnswersList';
 
 const QuestionItem = (props) => {
-  const { question } = props;
-  const { question_id, question_body, question_helpfulness, answers } = question;
+  const { question, productID, setQuestions } = props;
+  const { question_body, question_helpfulness, answers } = question;
 
   return (
     <div className="questions-list-item">
@@ -23,7 +23,11 @@ const QuestionItem = (props) => {
       <section>
         <span>A:</span>
         <ul>
-          <AnswersList answerlist={answers} questionID={question_id} />
+          <AnswersList
+            answerlist={answers}
+            productID={productID}
+            setQuestions={setQuestions}
+          />
         </ul>
       </section>
     </div>

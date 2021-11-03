@@ -4,9 +4,10 @@ import moment from 'moment';
 import axios from 'axios';
 
 const AnswerItem = (props) => {
-  const { answer, questionID, setAnswer } = props;
+  const { answer, productID, setQuestions } = props;
   const { id, body, date, answerer_name, helpfulness, photos } = answer;
-  const [disabled, setDisabled] = useState(false);
+  const [disableHelpful, setDisableHelpful] = useState(false);
+  const [disableReport, setDisableReport] = useState(false);
 
   let pictures;
   if (photos.length) {
@@ -29,9 +30,9 @@ const AnswerItem = (props) => {
   const updateCount = () => {
     axios.put(`qa/answers/${id}/helpful`)
       .then(() => {
-        axios.get(`qa/questions/${questionID}/answers`)
+        axios.get(`qa/questions/${productID}`)
           .then((res) => {
-            setAnswer(res.data.results);
+            setQuestions(res.data.results);
           });
       })
       .catch((err) => console.log(err));
@@ -45,16 +46,16 @@ const AnswerItem = (props) => {
   const handleClick = (e, state) => {
     if (e.target.value === 'Yes') {
       if (!state) {
-        console.log('clicked');
+        setDisableHelpful(true);
         updateCount();
       }
     }
     if (e.target.value === 'Report') {
       if (!state) {
+        setDisableReport(true);
         reportAnswer();
       }
     }
-    setDisabled(true);
   };
 
   return (
@@ -69,11 +70,11 @@ const AnswerItem = (props) => {
         {sellerName}
         <span>{moment(date).format('MMMM D, YYYY')}</span>
         <span>Helpful?</span>
-        <button type="button" onClick={(e) => { handleClick(e, disabled); }} value="Yes">Yes</button>
+        <button type="button" onClick={(e) => { handleClick(e, disableHelpful); }} value="Yes">Yes</button>
         (
         {helpfulness}
         )
-        <button type="button" onClick={(e) => { handleClick(e, disabled); }} value="Report">Report</button>
+        <button type="button" onClick={(e) => { handleClick(e, disableReport); }} value="Report">Report</button>
       </div>
     </div>
   );
