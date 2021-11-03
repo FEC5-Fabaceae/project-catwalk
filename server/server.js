@@ -28,16 +28,16 @@ Send how many items you wish to recieve, starting from the top of the page . . .
 Default value for page: 1; count: 5
 */
 app.get('/products', (req, res) => {
-  if (req.body.page === undefined) {
-    req.body.page = 1;
+  if (req.query.page === undefined) {
+    req.query.page = 1;
   }
-  if (req.body.count === undefined) {
-    req.body.count = 5;
+  if (req.query.count === undefined) {
+    req.query.count = 5;
   }
   const params = new url.URLSearchParams(
     {
-      page: req.body.page,
-      count: req.body.count,
+      page: req.query.page,
+      count: req.query.count,
     },
   );
   axios.get(`/products?${params.toString()}`)
@@ -108,24 +108,24 @@ Send how you wish the reviews to be sorted with a 'sort' property, default 'null
 Send what product you wish to see reviews for with a 'product_id' property --REQUIRED
 */
 app.get('/reviews/', (req, res) => {
-  if (req.body.page === undefined) {
-    req.body.page = 1;
+  if (req.query.page === undefined) {
+    req.query.page = 1;
   }
-  if (req.body.count === undefined) {
-    req.body.count = 5;
+  if (req.query.count === undefined) {
+    req.query.count = 5;
   }
-  if (req.body.sort === undefined) {
-    req.body.sort = null;
+  if (req.query.sort === undefined) {
+    req.query.sort = null;
   }
-  if (req.body.product_id === undefined) {
+  if (req.query.product_id === undefined) {
     res.status(400).send('Product ID required to serve request');
   }
   const params = new url.URLSearchParams(
     {
-      page: req.body.page,
-      count: req.body.count,
-      sort: req.body.sort,
-      product_id: req.body.product_id,
+      page: req.query.page,
+      count: req.query.count,
+      sort: req.query.sort,
+      product_id: req.query.product_id,
     },
   );
   axios.get(`/reviews/?${params}`)
@@ -143,12 +143,12 @@ Send a get request to this URL to recieve an object containg all of the review m
 Send a product id in order to specifiy which product you want to recieve metadata for --REQUIRED
 */
 app.get('/reviews/meta', (req, res) => {
-  if (req.body.product_id === undefined) {
+  if (req.query.product_id === undefined) {
     res.status(400).send('Product ID required to serve request');
   }
   const params = new url.URLSearchParams(
     {
-      product_id: req.body.product_id,
+      product_id: req.query.product_id,
     },
   );
   axios.get(`/reviews/meta?${params}`)
@@ -217,32 +217,34 @@ Send a 'product_id' property in the body to get the questions for the given prod
 Send a 'page' property in the body to set a page to start looking at results from
 Send a 'count' property in the body to set how many questions will be returned in the array
 */
-app.get('/qa/questions/:product_id', (req, res) => {
-  if (req.params.product_id === undefined) {
-    res.status(400).send('Product id required to serve request');
+
+app.get('/qa/questions/', (req, res) => {
+  if (req.query.page === undefined) {
+    req.query.page = 1;
   }
-  if (req.body.page === undefined) {
-    req.body.page = 1;
-  }
-  if (req.body.count === undefined) {
-    req.body.count = 5;
+  if (req.query.count === undefined) {
+    req.query.count = 5;
   }
   const params = new url.URLSearchParams(
     {
-      product_id: req.params.product_id,
-      page: req.body.page,
-      count: req.body.count,
+      product_id: req.query.product_id,
+      page: req.query.page,
+      count: req.query.count,
     },
   );
-  axios.get(`/qa/questions/?${params}`)
-    .then((results) => {
-      console.log(results.data);
-      res.status(200).send(results.data);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).send(err);
-    });
+  if (req.query.product_id === undefined) {
+    res.status(400).send('Product id required to serve request');
+  } else {
+    axios.get(`/qa/questions/?${params}`)
+      .then((results) => {
+        console.log(results.data);
+        res.status(200).send(results.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send(err);
+      });
+  }
 });
 /*
 Send a get request to this URL to get an object containing all answers for a given question. . .
