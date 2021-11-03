@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import axios from 'axios';
@@ -26,11 +26,8 @@ const AnswerItem = (props) => {
   }
 
   const updateCount = () => {
-    axios.put(`qa/answers/${id}/helpful`, {
-      helpfulness,
-    })
+    axios.put(`qa/answers/${id}/helpful`)
       .then(() => {
-        console.log('sent put request');
         axios.get(`qa/questions/${questionID}/answers`)
           .then((res) => {
             setAnswer(res.data.results);
@@ -57,11 +54,11 @@ const AnswerItem = (props) => {
         {sellerName}
         <span>{moment(date).format('MMMM D, YYYY')}</span>
         <span>Helpful?</span>
-        <button type="button" onClick={handleClick} value="Yes">Yes</button>
+        <button type="button" onClick={(e) => { handleClick(e); }} value="Yes">Yes</button>
         (
         {helpfulness}
         )
-        <button type="button">Report</button>
+        <button type="button" value="Report">Report</button>
       </div>
     </div>
   );
