@@ -41,7 +41,13 @@ const RelatedProduct = (props) => {
         });
       });
     // get the review metadata and calculate average
-    axios.get('http://localhost:3000/reviews/meta', { data: { product_id: product } })
+    axios({
+      method: 'get',
+      url: 'http://localhost:3000/reviews/meta',
+      params: {
+        product_id: product,
+      },
+    })
       .then((data) => {
         const rating = data.data.ratings;
         const totalRatings = (rating['1'] + rating['2'] + rating['3'] + rating['4'] + rating['5']);
@@ -53,8 +59,8 @@ const RelatedProduct = (props) => {
   return (
 
     <div>
-      <h5> Product Category </h5>
-      <h3>{relatedProductInfo}</h3>
+      <h5>{relatedProductInfo.category}</h5>
+      <h3>{relatedProductInfo.name}</h3>
       <div>
         $
         {stylesInfo.salePrice}
