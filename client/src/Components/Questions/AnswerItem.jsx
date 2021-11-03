@@ -6,6 +6,7 @@ import axios from 'axios';
 const AnswerItem = (props) => {
   const { answer, questionID, setAnswer } = props;
   const { id, body, date, answerer_name, helpfulness, photos } = answer;
+  // const [disabled, setDisabled] = useState(false);
 
   let pictures;
   if (photos.length) {
@@ -36,9 +37,17 @@ const AnswerItem = (props) => {
       .catch((err) => console.log(err));
   };
 
+  const reportAnswer = () => {
+    axios.put(`qa/answers/${id}/report`)
+      .catch((err) => console.log(err));
+  };
+
   const handleClick = (e) => {
     if (e.target.value === 'Yes') {
       updateCount();
+    }
+    if (e.target.value === 'Report') {
+      reportAnswer();
     }
   };
 
@@ -58,7 +67,7 @@ const AnswerItem = (props) => {
         (
         {helpfulness}
         )
-        <button type="button" value="Report">Report</button>
+        <button type="button" onClick={handleClick} value="Report">Report</button>
       </div>
     </div>
   );
