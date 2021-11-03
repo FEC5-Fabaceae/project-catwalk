@@ -17,7 +17,7 @@ const RelatedProduct = (props) => {
         const { name } = relatedProduct;
         const { category } = relatedProduct;
         setProduct({ name, category });
-      });
+      })
     // get the product styles to find the default style and its associated price.
     // also contains the photo we need
     axios.get(`http://localhost:3000/products/${product}/styles`)
@@ -49,10 +49,15 @@ const RelatedProduct = (props) => {
       },
     })
       .then((data) => {
+        console.log(data.data);
+        console.log(data.data.ratings);
         const rating = data.data.ratings;
         const totalRatings = (rating['1'] + rating['2'] + rating['3'] + rating['4'] + rating['5']);
         const totalValues = ((rating['1'] * 1) + (rating['2'] * 2) + (rating['3'] * 3) + (rating['4'] * 4) + (rating['5'] * 5));
         const average = (totalValues / totalRatings);
+        console.log(totalValues);
+        console.log(totalRatings);
+        console.log(average);
         setRatings(average);
       });
   }, [relatedProductInfo]);
