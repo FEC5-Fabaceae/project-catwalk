@@ -11,7 +11,7 @@ const QuestionItem = (props) => {
   const updateCount = () => {
     axios.put(`qa/questions/${question_id}/helpful`)
       .then(() => {
-        axios.get(`qa/questions/${productID}`)
+        axios.get(`qa/questions/?product_id=${productID}`)
           .then((res) => {
             setQuestions(res.data.results);
           });
