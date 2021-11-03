@@ -4,14 +4,7 @@ import AnswerItem from './AnswerItem';
 
 const AnswersList = (props) => {
   const { answerlist, productID, setQuestions } = props;
-  // const [answerListState, setAnswerList] = useState({});
   const answers = Object.values(answerlist);
-
-  // useEffect(() => {
-  //   if (answerlist) {
-  //     setAnswerList(answerlist);
-  //   }
-  // }, [answerlist]);
 
   return (
     <div>
@@ -22,7 +15,6 @@ const AnswersList = (props) => {
               key={answer.id}
               answer={answer}
               productID={productID}
-              // setAnswer={setAnswerList}
               setQuestions={setQuestions}
             />
           ),
