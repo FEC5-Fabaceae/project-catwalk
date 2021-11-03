@@ -6,7 +6,7 @@ import axios from 'axios';
 const AnswerItem = (props) => {
   const { answer, questionID, setAnswer } = props;
   const { id, body, date, answerer_name, helpfulness, photos } = answer;
-  // const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   let pictures;
   if (photos.length) {
@@ -42,13 +42,19 @@ const AnswerItem = (props) => {
       .catch((err) => console.log(err));
   };
 
-  const handleClick = (e) => {
+  const handleClick = (e, state) => {
     if (e.target.value === 'Yes') {
-      updateCount();
+      if (!state) {
+        console.log('clicked');
+        updateCount();
+      }
     }
     if (e.target.value === 'Report') {
-      reportAnswer();
+      if (!state) {
+        reportAnswer();
+      }
     }
+    setDisabled(true);
   };
 
   return (
@@ -63,11 +69,11 @@ const AnswerItem = (props) => {
         {sellerName}
         <span>{moment(date).format('MMMM D, YYYY')}</span>
         <span>Helpful?</span>
-        <button type="button" onClick={(e) => { handleClick(e); }} value="Yes">Yes</button>
+        <button type="button" onClick={(e) => { handleClick(e, disabled); }} value="Yes">Yes</button>
         (
         {helpfulness}
         )
-        <button type="button" onClick={handleClick} value="Report">Report</button>
+        <button type="button" onClick={(e) => { handleClick(e, disabled); }} value="Report">Report</button>
       </div>
     </div>
   );
