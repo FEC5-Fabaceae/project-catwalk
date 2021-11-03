@@ -27,16 +27,19 @@ const AnswersList = (props) => {
   return (
     <div>
       <ul className="answer-list">
-        {answers.map(
-          (answer) => (
-            <AnswerItem
-              key={answer.id}
-              answer={answer}
-              productID={productID}
-              setQuestions={setQuestions}
-            />
-          ),
-        )}
+        {answers.filter(
+          (answer, index) => (index < visible),
+        )
+          .map(
+            (answer) => (
+              <AnswerItem
+                key={answer.id}
+                answer={answer}
+                productID={productID}
+                setQuestions={setQuestions}
+              />
+            ),
+          )}
       </ul>
       <div className="answer-list-button">{AddCollapseButton}</div>
     </div>
