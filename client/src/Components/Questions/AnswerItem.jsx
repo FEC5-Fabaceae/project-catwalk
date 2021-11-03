@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import axios from 'axios';
 
 const AnswerItem = (props) => {
-  const { answer } = props;
-  const { body, date, answerer_name, helpfulness, photos } = answer;
+  const { answer, productID, setQuestions } = props;
+  const { id, body, date, answerer_name, helpfulness, photos } = answer;
+  const [disableHelpful, setDisableHelpful] = useState(false);
+  const [disableReport, setDisableReport] = useState(false);
+
+  let pictures;
+  if (photos.length) {
+    pictures = photos.map((photo, i) => (
+      <img src={photo} alt="" key={i} />
+    ));
+  }
 
   const sellerNameStyle = {
     fontWeight: 'bold',
@@ -17,21 +27,54 @@ const AnswerItem = (props) => {
     sellerName = <span>{answerer_name}</span>;
   }
 
+  const updateCount = () => {
+    axios.put(`qa/answers/${id}/helpful`)
+      .then(() => {
+        axios.get(`qa/questions/${productID}`)
+          .then((res) => {
+            setQuestions(res.data.results);
+          });
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const reportAnswer = () => {
+    axios.put(`qa/answers/${id}/report`)
+      .catch((err) => console.log(err));
+  };
+
+  const handleClick = (e, state) => {
+    if (e.target.value === 'Yes') {
+      if (!state) {
+        setDisableHelpful(true);
+        updateCount();
+      }
+    }
+    if (e.target.value === 'Report') {
+      if (!state) {
+        setDisableReport(true);
+        reportAnswer();
+      }
+    }
+  };
+
   return (
     <div className="answer-list-item">
       <p className="answer-list-item-bodytext">
         {body}
       </p>
       <div className="answer-list-item-photos">
-        {photos}
+        {pictures}
       </div>
       <div className="feed-list-item-inline">
         {sellerName}
         <span>{moment(date).format('MMMM D, YYYY')}</span>
         <span>Helpful?</span>
-        <button type="button">Yes</button>
+        <button type="button" onClick={(e) => { handleClick(e, disableHelpful); }} value="Yes">Yes</button>
+        (
         {helpfulness}
-        <button type="button">Report</button>
+        )
+        <button type="button" onClick={(e) => { handleClick(e, disableReport); }} value="Report">Report</button>
       </div>
     </div>
   );
