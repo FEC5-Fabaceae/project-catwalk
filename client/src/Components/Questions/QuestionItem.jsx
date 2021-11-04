@@ -31,7 +31,7 @@ const QuestionItem = (props) => {
   return (
     <div className="questions-list-item">
       <section className="questions-list-item-questionbody">
-        <span>Q:</span>
+        <span className="Q">Q:</span>
         <p>{question_body}</p>
       </section>
       <aside>
@@ -42,8 +42,8 @@ const QuestionItem = (props) => {
         )
         <button type="button">Add Answer</button>
       </aside>
-      <section>
-        <span>A:</span>
+      <section className="questions-list-item-answer">
+        <span className="A">A:</span>
         <ul>
           <AnswersList
             answerlist={answers}
