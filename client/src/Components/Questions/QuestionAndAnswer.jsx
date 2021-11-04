@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import QuestionsList from './QuestionsList';
-import sampleData from './sampleData';
 
 const QuestionAndAnswer = () => {
   const [questionsState, setQuestionsState] = useState({});
 
   const retrieveQuestions = () => {
     // for now, change ${product_id} to 40350
-    axios.get('/qa/questions/40350')
+    axios.get('/qa/questions/?product_id=40050')
       .then((res) => {
         setQuestionsState(res.data);
       })
@@ -26,8 +25,6 @@ const QuestionAndAnswer = () => {
       <div className="questions-main">
         <QuestionsList list={questionsState} />
       </div>
-      <div className="questions-more" />
-      <div className="questions-add" />
     </section>
   );
 };
