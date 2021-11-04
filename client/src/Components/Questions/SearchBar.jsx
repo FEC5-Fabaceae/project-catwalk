@@ -1,13 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
 const SearchBar = (props) => {
   const { list, changelist } = props;
+  const [text, setText] = useState('');
+
+  // if there are 3 or more characters, filter the list to match the characters
+  // if ()
+
+  // onChange event handler that recognizes the input text
+  const onInputChange = (e) => {
+    setText(e.target.value);
+  };
 
   return (
     <>
-      <input type="text" placeholder="Have a question? Search for answers..." />
-      <button type="button">Search</button>
+      <input type="text" placeholder="Have a question? Search for answers..." value={text} onChange={(e) => { onInputChange(e); }} />
     </>
   );
 };
