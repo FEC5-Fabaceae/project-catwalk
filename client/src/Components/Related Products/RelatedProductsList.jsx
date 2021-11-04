@@ -10,12 +10,10 @@ const axios = require('axios');
 const RelatedProductsList = (props) => {
   const value = useContext(ProductIdContext);
   const [productID, setProductID] = useState(value);
-  // eslint-disable-next-line prefer-const
-  let [arrayOfRelatedProducts, setArray] = useState([]);
+  const [arrayOfRelatedProducts, setArray] = useState([]);
   useEffect(() => {
     axios.get(`http://localhost:3000/products/${productID}/related`)
       .then((data) => {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         setArray(data.data);
       });
   }, [productID]);
