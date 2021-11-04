@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import QuestionsList from './QuestionsList';
+import ProductIdContext from '../Context';
 
 const QuestionAndAnswer = () => {
+  const value = useContext(ProductIdContext);
   const [questionsState, setQuestionsState] = useState({});
 
   const retrieveQuestions = () => {
-    // for now, change ${product_id} to 40350
-    axios.get('/qa/questions/?product_id=40050')
+    axios.get(`/qa/questions/?product_id=${value}`)
       .then((res) => {
         setQuestionsState(res.data);
       })

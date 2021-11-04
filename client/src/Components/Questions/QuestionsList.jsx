@@ -4,7 +4,7 @@ import QuestionItem from './QuestionItem';
 
 const QuestionsList = (props) => {
   const { list } = props;
-  const { product_id, results } = list;
+  const { results } = list;
   const [questions, setQuestions] = useState([]);
   const [visible, setVisible] = useState(4);
 
@@ -36,14 +36,17 @@ const QuestionsList = (props) => {
               <QuestionItem
                 key={question.question_id}
                 question={question}
-                productID={product_id}
                 setQuestions={setQuestions}
               />
             ),
           )}
       </ul>
       <div className="question-list-more-button">{AddButton}</div>
-      <div className="questions-add" />
+      <div className="questions-add">
+        <button type="button">
+          Add a Question
+        </button>
+      </div>
     </>
   );
 };
