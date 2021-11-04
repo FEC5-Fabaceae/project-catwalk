@@ -7,21 +7,20 @@ const AnswersList = (props) => {
   const answers = Object.values(answerlist);
   const [visible, setVisible] = useState(2);
 
-  const clickButton = (e) => {
-    if (e.target.value === 'more') {
-      setVisible(answers.length);
-    }
-    if (e.target.value === 'collapse') {
-      setVisible(2);
-    }
+  const clickButtonMore = () => {
+    setVisible(answers.length);
+  };
+
+  const clickButtonCollapse = () => {
+    setVisible(2);
   };
 
   let AddCollapseButton;
-  if (answers.length > 2 && answers.length !== visible.length) {
-    AddCollapseButton = <button type="button" value="more" onClick={(e) => { clickButton(e); }}>See more answers</button>;
+  if (answers.length > 2 && answers.length !== visible) {
+    AddCollapseButton = <button type="button" onClick={clickButtonMore}>See more answers</button>;
   }
-  if (answers.length === visible.length && answers.length !== 2) {
-    AddCollapseButton = <button type="button" value="collapse" onClick={(e) => { clickButton(e); }}>Collapse answers</button>;
+  if (answers.length === visible && answers.length !== 2) {
+    AddCollapseButton = <button type="button" onClick={clickButtonCollapse}>Collapse answers</button>;
   }
 
   return (
