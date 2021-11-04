@@ -1,40 +1,27 @@
 import React, { useState } from 'react';
+import Gallery from './Gallery';
+import ProductInfo from './ProductInfo';
 
-const Overview = () => {
-  return (
+const Overview = () => (
+  // const []
   <div>
     <div>
       <p>
         <em>SITE-WIDE ANNOUNCEMENT MESSAGE! </em>
-        —— SALE/DISCOUNT
-        <b>OFFER</b>
-        ——
+        — SALE/DISCOUNT
+        <b> OFFER</b>
+        —
         {/* add href  */}
         <a href>NEW PRODUCT HIGHLIGHT</a>
       </p>
-      <div className="left">
-        gallery
-      </div>
-      <div className="right">
-        <div className="star"> Star</div>
-        <a href>Read all reviews </a>
-        {/* add href */}
-        <p>CATEGORY</p>
-        <h1>Expanded Product Name</h1>
-        <p>price</p>
-        {/* style selector */}
-        <div>
-          <b>STYLE &gt</b>
-          SELECTED STYLE
-        </div>
-        <div>thumbnails</div>
-        <div>selct size and quantity</div>
-        <div>add to cart and</div>
 
-
+        <Gallery />
+      </div
+        <ProductInfo />
       </div>
     </div>
   </div>
-  )
-};
+);
+
 export default Overview;
+
