@@ -14,10 +14,9 @@ const Overview = () => (
         {/* add href  */}
         <a href>NEW PRODUCT HIGHLIGHT</a>
       </p>
-      <div className="left">
+
         <Gallery />
-      </div>
-      <div className="right">
+      </div
         <ProductInfo />
       </div>
     </div>
@@ -25,3 +24,4 @@ const Overview = () => (
 );
 
 export default Overview;
+
