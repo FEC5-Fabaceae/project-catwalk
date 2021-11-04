@@ -5,6 +5,7 @@ import QuestionsList from './QuestionsList';
 
 const QuestionAndAnswer = () => {
   const [questionsState, setQuestionsState] = useState({});
+  const [changedState, setChangedState] = useState(questionsState);
 
   const retrieveQuestions = () => {
     // for now, change ${product_id} to 40345
@@ -19,14 +20,18 @@ const QuestionAndAnswer = () => {
     retrieveQuestions();
   }, []);
 
+  useEffect(() => {
+    setChangedState(questionsState);
+  }, [questionsState]);
+
   return (
     <section className="questions-answers-section">
       <h2>Questions and Answers</h2>
       <div className="questions-search">
-        <SearchBar list={questionsState.results} changelist={setQuestionsState} />
+        <SearchBar list={questionsState} changeList={setChangedState} />
       </div>
       <div className="questions-main">
-        <QuestionsList list={questionsState} />
+        <QuestionsList list={changedState} />
       </div>
     </section>
   );

@@ -1,17 +1,24 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const SearchBar = (props) => {
-  const { list, changelist } = props;
+  const { list, changeList } = props;
+  const { product_id, results } = list;
   const [text, setText] = useState('');
 
-  // if there are 3 or more characters, filter the list to match the characters
-  // if ()
-
-  // onChange event handler that recognizes the input text
   const onInputChange = (e) => {
     setText(e.target.value);
   };
+
+  // if there are 3 or more characters, filter the list to match the characters
+  useEffect(() => {
+    if (text.length >= 3 && results) {
+      const filtered = results.filter((question) => question.question_body.includes(text));
+      changeList({ product_id, results: filtered });
+    } else {
+      changeList(list);
+    }
+  }, [text]);
 
   return (
     <>
@@ -22,13 +29,8 @@ const SearchBar = (props) => {
 
 SearchBar.propTypes = {
   list: PropTypes.shape({
-    question_id: PropTypes.number,
-    question_body: PropTypes.string.isRequired,
-    question_date: PropTypes.string.isRequired,
-    asker_name: PropTypes.string.isRequired,
-    question_helpfulness: PropTypes.number.isRequired,
-    reported: PropTypes.bool,
-    answers: PropTypes.objectOf(PropTypes.object),
+    product_id: PropTypes.string,
+    results: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
 };
 
