@@ -1,5 +1,4 @@
 import React from 'react';
-import sampleData from './sampleData';
 import ReviewList from './ReviewList';
 // import ProductBreakdown from './ProductBreakdown';
 // import RatingBreakdown from './RatingBreakdown';
@@ -7,7 +6,7 @@ import ReviewList from './ReviewList';
 const Reviews = () => (
   <section className="reviewSection">
     <h1>RATINGS AND REVIEWS</h1>
-    <ReviewList data={sampleData} />
+    <ReviewList />
   </section>
 );
 
