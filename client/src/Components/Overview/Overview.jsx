@@ -5,8 +5,7 @@ import ProductInfo from './ProductInfo';
 const Overview = () => (
   // const []
   <div>
-    <div>
-      <p>
+     <p>
         <em>SITE-WIDE ANNOUNCEMENT MESSAGE! </em>
         —— SALE/DISCOUNT
         <b> OFFER</b>
@@ -14,10 +13,11 @@ const Overview = () => (
         {/* add href  */}
         <a href>NEW PRODUCT HIGHLIGHT</a>
       </p>
-      <div className="left">
+    <div className="product-overview-container">
+      <div className="product-overview-container-left">
         <Gallery />
       </div>
-      <div className="right">
+      <div className="product-overview-container-right">
         <ProductInfo />
       </div>
     </div>
