@@ -18,8 +18,8 @@ const RelatedProduct = (props) => {
         const { category } = relatedProduct;
         setProduct({ name, category });
         axios.get(`http://localhost:3000/products/${product}/styles`)
-          .then((data) => {
-            const styles = data.data.results;
+          .then((result) => {
+            const styles = result.data.results;
             let defaultStyle = styles[0];
             for (let i = 0; i < styles.length; i += 1) {
               if (styles[i]['default?'] === true) {
@@ -47,14 +47,13 @@ const RelatedProduct = (props) => {
                 const rating = data.data.ratings;
                 let totalRatings = 0;
                 let totalValues = 0;
-                let index = 1;
                 for (let key in rating) {
                   totalRatings = totalRatings + parseInt(rating[key], 10);
                 }
                 for (let key in rating) {
                   totalValues = totalValues + parseInt(rating[key], 10) * parseInt(key, 10);
                 }
-                const average = (totalValues / totalRatings);
+                const average = Math.floor(totalValues / totalRatings);
                 setRatings(average);
               });
           });
@@ -65,9 +64,11 @@ const RelatedProduct = (props) => {
   }, [product]);
   return (
 
-    <div>
+    <li className="carousel-card">
+      <i className="far fa-star" type="button" />
       <h5>{relatedProductInfo.category}</h5>
       <h3>{relatedProductInfo.name}</h3>
+      <img src={stylesInfo.photo} alt={relatedProductInfo.name} className="carousel-card carousel-image" />
       <div>
         $
         {stylesInfo.salePrice}
@@ -76,7 +77,7 @@ const RelatedProduct = (props) => {
         Star Rating:
         {ratings}
       </div>
-    </div>
+    </li>
   );
 };
 
