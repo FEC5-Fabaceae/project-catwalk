@@ -7,7 +7,7 @@ const QuestionAndAnswer = () => {
 
   const retrieveQuestions = () => {
     // for now, change ${product_id} to 40350
-    axios.get('/qa/questions/?product_id=40350')
+    axios.get('/qa/questions/?product_id=40050')
       .then((res) => {
         setQuestionsState(res.data);
       })
@@ -25,8 +25,6 @@ const QuestionAndAnswer = () => {
       <div className="questions-main">
         <QuestionsList list={questionsState} />
       </div>
-      <div className="questions-more" />
-      <div className="questions-add" />
     </section>
   );
 };
