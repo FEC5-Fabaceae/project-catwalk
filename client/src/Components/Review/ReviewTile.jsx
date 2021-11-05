@@ -14,11 +14,11 @@ const ReviewTile = (props) => {
   return (
     <article>
       <h1>{filledStars + emptyStars}</h1>
-      <h2>
+      <h3>
         {reviewer_name}
         {'\t'}
         <time>{moment(date).format('MMMM D, YYYY')}</time>
-      </h2>
+      </h3>
       <h1>{summary}</h1>
       <p>{body}</p>
       <p>

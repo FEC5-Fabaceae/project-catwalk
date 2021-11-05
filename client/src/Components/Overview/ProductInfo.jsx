@@ -5,7 +5,6 @@
 import React from 'react';
 import axios from 'axios';
 
-
 class ProductInfo extends React.Component {
   constructor() {
     super();
