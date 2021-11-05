@@ -53,6 +53,11 @@
   height: 100%;
 
 }
+.spacer{
+  display: flex;
+  flex-direction: column;
+  width: 10px;
+}
 
 .product-overview-container {
   display: flex;

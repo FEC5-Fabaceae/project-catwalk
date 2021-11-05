@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Gallery from './Gallery';
 import ProductInfo from './ProductInfo';
 
@@ -11,16 +11,23 @@ const Overview = () => (
         — SALE/DISCOUNT
         <b> OFFER</b>
         —
-        {/* add href  */}
         <a href>NEW PRODUCT HIGHLIGHT</a>
       </p>
-
-        <Gallery />
-      </div
+    </div>
+    <div className="product-overview-container">
+      <div className="product-overview-container-left">
+        <div className=".galler-wrapper">
+          <Gallery />
+        </div>
+      </div>
+      <div className="spacer" />
+      <div className="product-overview-container-right">
         <ProductInfo />
       </div>
+
     </div>
   </div>
+
 );
 
 export default Overview;
