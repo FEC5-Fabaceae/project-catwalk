@@ -13,8 +13,7 @@ const Outfit = (props) => {
     axios.get(`http://localhost:3000/products/${product}`)
       .then((data) => {
         const relatedProduct = data.data;
-        const { name } = relatedProduct;
-        const { category } = relatedProduct;
+        const { name, category } = relatedProduct;
         setProduct({ name, category });
         axios.get(`http://localhost:3000/products/${product}/styles`)
           .then((result) => {

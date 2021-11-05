@@ -3,9 +3,7 @@ import React, { useState, useEffect } from 'react';
 const axios = require('axios');
 
 const AddOutfit = (props) => {
-  const { product } = props;
-  const { arrayOfOutfits } = props;
-  const { setArray } = props;
+  const { product, arrayOfOutfits, setArray } = props;
   const updateArray = () => {
     let isFound = false;
     for (let i = 0; i < arrayOfOutfits.length; i += 1) {
