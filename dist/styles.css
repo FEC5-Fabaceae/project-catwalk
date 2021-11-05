@@ -1,6 +1,3 @@
-
-
-
 .navbar-wrapper{
   margin-left: 40px;
   margin-right: 40px;
@@ -147,26 +144,6 @@ body {
   background-color: floralwhite;
 
 }
-/* .view-wrapper img{
-  vertical-align: top;
-  border-style: none;
-  pointer-events: none;
-  height: 567px;
-  object-fit: fill;
-}
-.view-wrapper {
-  width: 100%;
-  display:flex;
-  flex-direction: column;
-  -webkit-box-pack:center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-  position: relative;
-  border: 0px solid;
-  height: 567px;
-} */
-
 
 
 .thumbnail-gallery{
@@ -205,16 +182,6 @@ body {
   object-fit: fill;
   padding: 6px;
   border-color: solid black;
-
-}
-.style-icon{
-    display: flex;
-    flex-direction: row;
-    border-radius: 50%;
-    border:1px solid black;
-    margin-right: 10px;
-    margin-bottom: 5px;
-    position:relative;
 
 }
 .spacer{

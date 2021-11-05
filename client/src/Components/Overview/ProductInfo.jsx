@@ -9,7 +9,6 @@ import axios from 'axios';
 const getProducts = (id = 4038) => {
   axios.get(`/products/${id}/styles`)
     .then((res) => {
-      console.log('current', res);
       this.setState({
         currentStyle: res.data.results[0],
         text: res.data.results[0].name,
@@ -22,7 +21,6 @@ const getProducts = (id = 4038) => {
     });
   axios.get('/products')
     .then((res) => {
-      console.log('PRODUCTS', res);
       this.setState({
         product: res.data,
       });
@@ -47,10 +45,6 @@ class ProductInfo extends React.Component {
 
   componentDidMount() {
     getProducts();
-  }
-
-  handleClick(e) {
-    console.log('thumbnail click', e.target);
   }
 
   render() {
