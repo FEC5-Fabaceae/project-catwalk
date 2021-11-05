@@ -1,50 +1,69 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable react/no-unused-state */
+import React from 'react';
 import axios from 'axios';
 
-const Gallery = () => {
-  const [productURL, setProductUrl] = useState('');
+class Gallery extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      display: [],
+      thumbnails: [],
+      currentStyle: [],
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
 
-  const [currentStyle, setCurrentStyle] = useState([]);
-
-  const getProduct = () => {
-    axios.get('/products/40348/styles')
+  componentDidMount(id = 40348) {
+    axios.get(`/products/${id}/styles`)
       .then((res) => {
-        setProductUrl(res.data.results[0].photos[0].url);
+        console.log(res);
+        this.setState({
+          display: res.data.results[0].photos[0].url,
+          currentStyle: res.data.results[0],
+        });
       })
       .catch((err) => {
-        console.log(err);
+        throw (err);
       });
-  };
+  }
 
-  useEffect(() => {
-    axios.get('/products/40348/styles')
-      .then((res) => {
-        setCurrentStyle(res.data.results[0]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  handleClick(e) {
+    console.log('HANDLE GALLERY IMAGE CLICK', e.target.id);
+    this.setState({
+      display: e.target.id,
+    });
+  }
 
-  getProduct();
-
-  return (
-    <div className="gallery-wrapper">
-      <div className="viewer-wrap">
-        <img src={productURL} alt="clothing" className="gallery-image" />
-      </div>
-      <div className="thumbnail-gallery">
-        <div className="thumbnail-images">
-          {currentStyle.photos && currentStyle.photos.map((photo) => (
-            <>
-              <img src={photo.thumbnail_url} style={{ height: '49px', width: '49px' }} alt="clothing" />
-            </>
-          ))}
+  render() {
+    const { display, currentStyle } = this.state;
+    return (
+      <>
+        <div className="gallery-wrapper">
+          <div className="viewer-wrap">
+            <img src={display} alt="clothing" className="gallery-image" />
+          </div>
+          <div className="thumbnail-gallery">
+            <div className="thumbnail-images">
+              {currentStyle.photos && currentStyle.photos.map((photo) => (
+                <>
+                  <img
+                    src={photo.thumbnail_url}
+                    onClick={(e) => { this.handleClick(e); }}
+                    id={photo.url}
+                    style={{ height: '49px', width: '49px' }}
+                    alt="clothing"
+                  />
+                </>
+              ))}
+            </div>
+            gallery
+          </div>
         </div>
-        gallery
-      </div>
-    </div>
-  );
-};
 
+      </>
+    );
+  }
+}
 export default Gallery;

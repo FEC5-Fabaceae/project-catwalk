@@ -6,7 +6,7 @@ const Overview = () => (
   // const []
   <div>
     <div>
-      <p>
+      <p style={{ display: 'flex', flexDirection: 'row' }}>
         <em>SITE-WIDE ANNOUNCEMENT MESSAGE! </em>
         — SALE/DISCOUNT
         <b> OFFER</b>
@@ -16,7 +16,7 @@ const Overview = () => (
     </div>
     <div className="product-overview-container">
       <div className="product-overview-container-left">
-        <div className=".galler-wrapper">
+        <div className=".gallery-wrapper">
           <Gallery />
         </div>
       </div>

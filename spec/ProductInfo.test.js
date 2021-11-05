@@ -3,7 +3,7 @@ import React from 'react';
 import { unmountComponentAtNode } from 'react-dom';
 import { render, screen } from '@testing-library/react';
 // import { toBeInTheDocument } from '@testing-library/jest-dom'
-import Gallery from '../client/src/Components/Overview/Gallery';
+import ProductInfo from '../client/src/Components/Overview/ProductInfo';
 
 let container = null;
 beforeEach(() => {
@@ -19,9 +19,9 @@ afterEach(() => {
   container = null;
 });
 
-describe('Gallery component', () => {
-  test('renders Gallery component', () => {
-    render(<Gallery />, container);
-    expect(screen.getByText('gallery')).toBeInTheDocument;
+describe('ProductInfo component', () => {
+  test('renders ProductInfo component', () => {
+    render(<ProductInfo />, container);
+    expect(screen.getByText('☆☆☆☆☆')).toBeInTheDocument;
   });
 });
