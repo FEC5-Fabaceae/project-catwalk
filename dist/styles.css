@@ -1,3 +1,21 @@
 body {
-  background-color:cornsilk
+  background-color: cornsilk;
 }
+
+#rating-breakdown {
+  background-color: #CFEAFF;
+  color: #29335C;
+}
+
+#review-list {
+  background-color: #FFFDF5;
+}
+
+#review-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+/*# sourceMappingURL=styles.css.map */
