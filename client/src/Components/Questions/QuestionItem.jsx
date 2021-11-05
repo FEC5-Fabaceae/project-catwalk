@@ -6,12 +6,12 @@ import ProductIdContext from '../Context';
 
 const QuestionItem = (props) => {
   const { question, setQuestions } = props;
-  const { question_body, question_helpfulness, answers } = question;
+  const { question_id, question_body, question_helpfulness, answers } = question;
   const value = useContext(ProductIdContext);
   const [disableHelpful, setDisableHelpful] = useState(false);
 
   const updateCount = () => {
-    axios.put(`qa/questions/${value}/helpful`)
+    axios.put(`qa/questions/${question_id}/helpful`)
       .then(() => {
         axios.get(`qa/questions/?product_id=${value}`)
           .then((res) => {
