@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const ProductInfo = () => (
-  <div className="right">PRODUCT INFO</div>
+  <div >PRODUCT INFO</div>
 
 );
 
