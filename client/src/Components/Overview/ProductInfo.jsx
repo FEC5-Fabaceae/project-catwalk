@@ -1,3 +1,4 @@
+
 /* eslint-disable no-lone-blocks */
 /* eslint-disable react/sort-comp */
 /* eslint-disable react/no-unused-state */
@@ -100,4 +101,5 @@ class ProductInfo extends React.Component {
     );
   }
 }
+
 export default ProductInfo;

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Gallery from './Gallery';
 import ProductInfo from './ProductInfo';
@@ -19,6 +20,7 @@ const Overview = () => (
         <div className=".gallery-wrapper">
           <Gallery />
         </div>
+
       </div>
       <div className="spacer" />
       <div className="product-overview-container-right">
@@ -31,3 +33,4 @@ const Overview = () => (
 );
 
 export default Overview;
+
