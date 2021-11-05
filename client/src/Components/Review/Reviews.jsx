@@ -1,11 +1,12 @@
 import React from 'react';
 import ReviewList from './ReviewList';
+import Breakdown from './Breakdown';
 // import ProductBreakdown from './ProductBreakdown';
 // import RatingBreakdown from './RatingBreakdown';
 
 const Reviews = () => (
-  <section className="reviewSection">
-    <h1>RATINGS AND REVIEWS</h1>
+  <section id="review-section">
+    <Breakdown />
     <ReviewList />
   </section>
 );
