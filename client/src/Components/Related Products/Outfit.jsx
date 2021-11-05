@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 const axios = require('axios');
 
-const RelatedProduct = (props) => {
+const Outfit = (props) => {
   const { product } = props;
-  // eslint-disable-next-line prefer-const
-  const [relatedProductInfo, setProduct] = useState({ name: '', category: '' });
+  const [OutfitProductInfo, setProduct] = useState({ name: '', category: '' });
   const [onSale, setSaleStatus] = useState(false);
   const [stylesInfo, setStylesInfo] = useState({});
   const [ratings, setRatings] = useState(1);
@@ -14,8 +13,7 @@ const RelatedProduct = (props) => {
     axios.get(`http://localhost:3000/products/${product}`)
       .then((data) => {
         const relatedProduct = data.data;
-        const { name } = relatedProduct;
-        const { category } = relatedProduct;
+        const { name, category } = relatedProduct;
         setProduct({ name, category });
         axios.get(`http://localhost:3000/products/${product}/styles`)
           .then((result) => {
@@ -66,9 +64,9 @@ const RelatedProduct = (props) => {
 
     <li className="carousel-card">
       <i className="far fa-star" type="button" />
-      <h5>{relatedProductInfo.category}</h5>
-      <h3>{relatedProductInfo.name}</h3>
-      <img src={stylesInfo.photo} alt={relatedProductInfo.name} className="carousel-card carousel-image" />
+      <h5>{OutfitProductInfo.category}</h5>
+      <h3>{OutfitProductInfo.name}</h3>
+      <img src={stylesInfo.photo} alt={OutfitProductInfo.name} className="carousel-card carousel-image" />
       <div>
         $
         {stylesInfo.salePrice}
@@ -81,4 +79,4 @@ const RelatedProduct = (props) => {
   );
 };
 
-export default RelatedProduct;
+export default Outfit;
