@@ -43,9 +43,10 @@ const ReviewList = () => {
   if (isLoaded) {
     return (
       <section id="review-list">
-        <h1>
+        <h1>RATINGS AND REVIEWS</h1>
+        <h2>
           {`${count} reviews, sorted by date`}
-        </h1>
+        </h2>
         <>{reviewTiles}</>
       </section>
     );
