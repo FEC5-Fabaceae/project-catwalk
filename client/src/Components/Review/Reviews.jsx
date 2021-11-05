@@ -6,7 +6,6 @@ import Breakdown from './Breakdown';
 
 const Reviews = () => (
   <section id="review-section">
-    <h1>RATINGS AND REVIEWS</h1>
     <Breakdown />
     <ReviewList />
   </section>

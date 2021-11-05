@@ -3,7 +3,8 @@
     "build": "webpack build --mode='development'",
     "server-dev": "nodemon server/server.js",
     "watch": "webpack --mode='development' --watch",
-    "test": "jest"
+    "test": "jest",
+    "sass": "sass --watch input.scss './dist/styles.css'"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
