@@ -10,7 +10,8 @@ const QuestionAndAnswer = () => {
   const [changedState, setChangedState] = useState(questionsState);
 
   const retrieveQuestions = () => {
-    axios.get(`/qa/questions/?product_id=${value}`)
+    // to get better data for now, switch back to ${value}
+    axios.get(`/qa/questions/?product_id=40050`)
       .then((res) => {
         setQuestionsState(res.data);
       })

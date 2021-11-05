@@ -26,8 +26,8 @@ const AnswersList = (props) => {
   }
 
   return (
-    <div>
-      <ul className="answer-list">
+    <>
+      <ul className="scrollable-answer-list">
         {answers.filter((answer, index) => (index < visible))
           .map((answer) => (
             <AnswerItem
@@ -38,7 +38,7 @@ const AnswersList = (props) => {
           ))}
       </ul>
       <div className="answer-list-button">{AddCollapseButton}</div>
-    </div>
+    </>
   );
 };
 

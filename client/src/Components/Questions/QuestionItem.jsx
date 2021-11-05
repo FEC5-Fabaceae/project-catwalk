@@ -33,10 +33,10 @@ const QuestionItem = (props) => {
   return (
     <div className="questions-list-item">
       <section className="questions-list-item-questionbody">
-        <span className="Q">Q:</span>
-        <p>{question_body}</p>
+        <span className="question-responses">Q:</span>
+        <p className="questionbody">{question_body}</p>
       </section>
-      <aside>
+      <aside className="question-interaction">
         <span>Helpful?</span>
         <button type="button" onClick={(e) => { handleClick(e, disableHelpful); }} value="Yes">Yes</button>
         (
@@ -45,13 +45,11 @@ const QuestionItem = (props) => {
         <button type="button">Add Answer</button>
       </aside>
       <section className="questions-list-item-answer">
-        <span className="A">A:</span>
-        <ul>
-          <AnswersList
-            answerlist={answers}
-            setQuestions={setQuestions}
-          />
-        </ul>
+        <span className="question-responses">A:</span>
+        <AnswersList
+          answerlist={answers}
+          setQuestions={setQuestions}
+        />
       </section>
     </div>
   );
