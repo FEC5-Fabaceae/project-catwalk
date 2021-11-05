@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Gallery from './Gallery';
 import ProductInfo from './ProductInfo';
@@ -31,3 +32,4 @@ const Overview = () => (
 );
 
 export default Overview;
+

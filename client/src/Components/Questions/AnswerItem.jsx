@@ -4,8 +4,19 @@ import moment from 'moment';
 import axios from 'axios';
 
 const AnswerItem = (props) => {
-  const { answer, productID, setQuestions } = props;
-  const { id, body, date, answerer_name, helpfulness, photos } = answer;
+  const {
+    answer,
+    productID,
+    setQuestions,
+  } = props;
+  const {
+    id,
+    body,
+    date,
+    answerer_name,
+    helpfulness,
+    photos,
+  } = answer;
   const [disableHelpful, setDisableHelpful] = useState(false);
   const [disableReport, setDisableReport] = useState(false);
 
@@ -30,7 +41,7 @@ const AnswerItem = (props) => {
   const updateCount = () => {
     axios.put(`qa/answers/${id}/helpful`)
       .then(() => {
-        axios.get(`qa/questions/${productID}`)
+        axios.get(`qa/questions/?product_id=${productID}`)
           .then((res) => {
             setQuestions(res.data.results);
           });
@@ -66,7 +77,7 @@ const AnswerItem = (props) => {
       <div className="answer-list-item-photos">
         {pictures}
       </div>
-      <div className="feed-list-item-inline">
+      <div className="answer-list-item-inline">
         {sellerName}
         <span>{moment(date).format('MMMM D, YYYY')}</span>
         <span>Helpful?</span>

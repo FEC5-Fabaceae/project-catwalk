@@ -1,3 +1,4 @@
+ gallery
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -46,5 +47,6 @@ const Gallery = () => {
     </div>
   );
 };
+ main
 
 export default Gallery;

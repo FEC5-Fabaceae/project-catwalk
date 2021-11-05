@@ -6,6 +6,7 @@ const QuestionsList = (props) => {
   const { list } = props;
   const { product_id, results } = list;
   const [questions, setQuestions] = useState([]);
+  const [visible, setVisible] = useState(4);
 
   useEffect(() => {
     if (results) {
@@ -13,19 +14,37 @@ const QuestionsList = (props) => {
     }
   }, [results]);
 
+  const clickButton = () => {
+    if (visible < questions.length) {
+      setVisible(visible + 2);
+    }
+  };
+
+  let AddButton;
+  if (visible < questions.length) {
+    AddButton = <button type="button" onClick={clickButton}>More answered questions</button>;
+  }
+
   return (
-    <ul className="questions-list">
-      {questions.map(
-        (question) => (
-          <QuestionItem
-            key={question.question_id}
-            question={question}
-            productID={product_id}
-            setQuestions={setQuestions}
-          />
-        ),
-      )}
-    </ul>
+    <>
+      <ul className="questions-list">
+        {questions.filter(
+          (question, index) => (index < visible),
+        )
+          .map(
+            (question) => (
+              <QuestionItem
+                key={question.question_id}
+                question={question}
+                productID={product_id}
+                setQuestions={setQuestions}
+              />
+            ),
+          )}
+      </ul>
+      <div className="question-list-more-button">{AddButton}</div>
+      <div className="questions-add" />
+    </>
   );
 };
 
