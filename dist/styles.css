@@ -1,3 +1,4 @@
+
 *{
   background-color:cornsilk
 }
@@ -94,6 +95,7 @@
 .product-overview-container-right {
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   width: 30%;
 }
 .star-rating-row{
@@ -105,3 +107,7 @@
 .select-style-drop-list{
   width: 64px
 }
+=======
+
+
+>>>>>>> 50ed3ad0537d190219a0f576b3701ee641a8298f

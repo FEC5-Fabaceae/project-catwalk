@@ -1,25 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AnswerItem from './AnswerItem';
 
 const AnswersList = (props) => {
   const { answerlist, productID, setQuestions } = props;
   const answers = Object.values(answerlist);
+  const [visible, setVisible] = useState(2);
+
+  const clickButtonMore = () => {
+    setVisible(answers.length);
+  };
+
+  const clickButtonCollapse = () => {
+    setVisible(2);
+  };
+
+  let AddCollapseButton;
+  if (answers.length > 2 && answers.length !== visible) {
+    AddCollapseButton = <button type="button" onClick={clickButtonMore}>See more answers</button>;
+  }
+  if (answers.length === visible && answers.length !== 2) {
+    AddCollapseButton = <button type="button" onClick={clickButtonCollapse}>Collapse answers</button>;
+  }
 
   return (
     <div>
-      <ul>
-        {answers.map(
-          (answer) => (
-            <AnswerItem
-              key={answer.id}
-              answer={answer}
-              productID={productID}
-              setQuestions={setQuestions}
-            />
-          ),
-        )}
+      <ul className="answer-list">
+        {answers.filter(
+          (answer, index) => (index < visible),
+        )
+          .map(
+            (answer) => (
+              <AnswerItem
+                key={answer.id}
+                answer={answer}
+                productID={productID}
+                setQuestions={setQuestions}
+              />
+            ),
+          )}
       </ul>
+      <div className="answer-list-button">{AddCollapseButton}</div>
     </div>
   );
 };

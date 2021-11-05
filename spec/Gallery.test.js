@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 /* eslint-disable no-unused-expressions */
 import React from 'react';
 import { unmountComponentAtNode } from 'react-dom';
 import { render, screen } from '@testing-library/react';
 // import { toBeInTheDocument } from '@testing-library/jest-dom'
+=======
+import React from 'react';
+import { unmountComponentAtNode } from 'react-dom';
+import { render, screen } from '@testing-library/react';
+import { toBeInTheDocument } from '@testing-library/jest-dom'
+>>>>>>> 50ed3ad0537d190219a0f576b3701ee641a8298f
 import Gallery from '../client/src/Components/Overview/Gallery';
 
 let container = null;
