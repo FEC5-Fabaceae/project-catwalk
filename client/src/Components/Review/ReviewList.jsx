@@ -42,7 +42,7 @@ const ReviewList = () => {
 
   if (isLoaded) {
     return (
-      <section>
+      <section id="review-list">
         <h1>
           {`${count} reviews, sorted by date`}
         </h1>
