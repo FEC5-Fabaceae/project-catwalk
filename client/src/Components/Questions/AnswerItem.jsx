@@ -40,9 +40,9 @@ const AnswerItem = (props) => {
   }
 
   const updateCount = () => {
-    axios.put(`qa/answers/${id}/helpful`)
+    axios.put(`/qa/answers/${id}/helpful`)
       .then(() => {
-        axios.get(`qa/questions/?product_id=${value}`)
+        axios.get(`/qa/questions/?product_id=${value}`)
           .then((res) => {
             setQuestions(res.data.results);
           });
