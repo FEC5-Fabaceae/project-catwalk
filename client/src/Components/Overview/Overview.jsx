@@ -15,8 +15,8 @@ const Overview = () => (
         <a href>NEW PRODUCT HIGHLIGHT</a>
       </p>
 
-        <Gallery />
-      </div
+      <Gallery />
+      <div>
         <ProductInfo />
       </div>
     </div>
