@@ -2,6 +2,7 @@
 const axios = require('axios');
 const path = require('path');
 const express = require('express'); // npm installed
+const cookieParser = require('cookie-parser');
 const url = require('url');
 const authorization = require('./.config');
 
@@ -9,6 +10,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '/../dist')));
 app.use(express.json());
+app.use(cookieParser());
 // other configuration...
 axios.defaults.headers.common.Authorization = authorization;
 axios.defaults.baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/';
@@ -17,7 +19,7 @@ app.listen(3000, () => {
   console.log(`App listening on port ${3000}!`);
 });
 
-// TODO: When ready for development, remove all console.log requests and non-div comments
+// TODO: When ready for development, remove all // console.log requests and non-div comments
 // --PRODUCTS API--
 // https://bit.ly/3jY8GXr
 /*
@@ -42,8 +44,8 @@ app.get('/products', (req, res) => {
   );
   axios.get(`/products?${params.toString()}`)
     .then((results) => {
-      console.log(results);
-      console.log(results.data);
+      // console.log(results);
+      // console.log(results.data);
       res.status(200).send(results.data);
     })
     .catch((err) => {
@@ -56,14 +58,14 @@ Send a get request to this URL to recieve a single object that matches the id gi
 Example of a valid request: http://localhost:3000/products/40348
 */
 app.get('/products/:product_id', (req, res) => {
-  console.log(req);
+  // console.log(req);
   axios.get(req.url)
     .then((results) => {
-      console.log(results);
+      // console.log(results);
       res.status(200).send(results.data);
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).send(err);
     });
 });
@@ -74,11 +76,11 @@ app.get('/products/:product_id', (req, res) => {
 app.get('/products/:product_id/styles', (req, res) => {
   axios.get(req.url)
     .then((results) => {
-      console.log(results);
+      // console.log(results);
       res.status(200).send(results.data);
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).send(err);
     });
 });
@@ -89,11 +91,11 @@ Send a get request to this URL to recieve an array of id's for all related produ
 app.get('/products/:product_id/related', (req, res) => {
   axios.get(req.url)
     .then((results) => {
-      console.log(results);
+      // console.log(results);
       res.status(200).send(results.data);
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).send(err);
     });
 });
@@ -130,11 +132,11 @@ app.get('/reviews/', (req, res) => {
   );
   axios.get(`/reviews/?${params}`)
     .then((result) => {
-      console.log(result);
+      // console.log(result);
       res.status(200).send(result.data);
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).send(err);
     });
 });
@@ -153,11 +155,11 @@ app.get('/reviews/meta', (req, res) => {
   );
   axios.get(`/reviews/meta?${params}`)
     .then((results) => {
-      console.log(results);
+      // console.log(results);
       res.status(200).send(results.data);
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).send(err);
     });
 });
@@ -169,11 +171,11 @@ It allows for the following parameters: product_id, rating, summary, . . .
 app.post('/reviews', (req, res) => {
   axios.post('/reviews', req.body)
     .then((results) => {
-      console.log(results);
+      // console.log(results);
       res.status(201).send('CREATED');
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).send(err);
     });
 });
@@ -184,11 +186,11 @@ Send the id of the review in the url in order to mark the right one
 app.put('/reviews/:review_id/helpful', (req, res) => {
   axios.put(req.url)
     .then((results) => {
-      console.log(results);
+      // console.log(results);
       res.status(204).send('Review marked as helpful');
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).send(err);
     });
 });
@@ -200,11 +202,11 @@ This review will stay in the database, but it will not be returned on get reques
 app.put('/reviews/:review_id/report', (req, res) => {
   axios.put(req.url)
     .then((results) => {
-      console.log(results);
+      // console.log(results);
       res.status(204).send('Review reported!');
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(204).send(err);
     });
 });
@@ -237,11 +239,11 @@ app.get('/qa/questions/', (req, res) => {
   } else {
     axios.get(`/qa/questions/?${params}`)
       .then((results) => {
-        console.log(results.data);
+        // console.log(results.data);
         res.status(200).send(results.data);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         res.status(500).send(err);
       });
   }
@@ -256,11 +258,11 @@ Send a 'count' property in the body to set how many results to send per page
 app.get('/qa/questions/:question_id/answers', (req, res) => {
   axios.get(req.url)
     .then((results) => {
-      console.log(results);
+      // console.log(results);
       res.status(200).send(results.data);
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).send(err);
     });
 });
@@ -310,11 +312,11 @@ Send a put request to this URL with the quesiton id in the URL to mark a questio
 app.put('/qa/questions/:question_id/helpful', (req, res) => {
   axios.put(req.url)
     .then((results) => {
-      console.log(results);
+      // console.log(results);
       res.status(204).send('Question marked as helpful');
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).send(err);
     });
 });
@@ -324,11 +326,11 @@ Send a put request to this URL with the question id in the URL to report it
 app.put('/qa/questions/:question_id/report', (req, res) => {
   axios.put(req.url)
     .then((results) => {
-      console.log(results);
+      // console.log(results);
       res.status(204).send('Question reported!');
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(204).send(err);
     });
 });
@@ -338,11 +340,11 @@ Send a put request to this URL with the answer id in the URL to mark it as helpf
 app.put('/qa/answers/:answer_id/helpful', (req, res) => {
   axios.put(req.url)
     .then((results) => {
-      console.log(results);
+      // console.log(results);
       res.status(204).send('Answer marked as helpful');
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).send(err);
     });
 });
@@ -352,11 +354,11 @@ Send put request to this URL with the answer_id in the URL to report an answer
 app.put('/qa/answers/:answer_id/report', (req, res) => {
   axios.put(req.url)
     .then((results) => {
-      console.log(results);
+      // console.log(results);
       res.status(204).send('Answer reported!');
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(204).send(err);
     });
 });
@@ -368,7 +370,7 @@ Send a get request to this URL to get an array of each sku object in the cart
 app.get('/cart', (req, res) => {
   axios.get('/cart')
     .then((results) => {
-      console.log(results);
+      // console.log(results);
       res.status(200).send(results.data);
     })
     .catch((err) => {
@@ -381,11 +383,11 @@ Send a post request to this URL with a sku_id property in the body to put that i
 app.post('/cart', (req, res) => {
   axios.post('/cart', req.body)
     .then((results) => {
-      console.log(results);
+      // console.log(results);
       res.status(201).send('Product added');
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).send(err);
     });
 });
@@ -409,11 +411,11 @@ app.post('/interactions', (req, res) => {
   }
   axios.post('/interactions', req.body)
     .then((results) => {
-      console.log(results);
+      // console.log(results);
       res.status(201).send('Created');
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       res.status(500).send(err);
     });
 });
