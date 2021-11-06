@@ -57,3 +57,17 @@
   padding-left: 0.2em;
   padding-right: 0.2em;
 }
+
+
+.modal-container {
+  background-color: cornsilk;
+  position: fixed;
+  top: 15em;
+  left: 15em;
+  z-index: 1;
+}
+
+.modal-component {
+  padding: 5em;
+  border: thick, solid, black;
+}
