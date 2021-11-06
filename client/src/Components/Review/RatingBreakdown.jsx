@@ -1,49 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-
+import StackedBar from './StackedBar';
 
 const sumValues = (object) => (
   Object.values(object).reduce((prev, current) => Number(prev) + Number(current))
 );
 
-const getPercentages = (ratingsObject) => {
-  const total = sumValues(ratingsObject);
-  return Object.fromEntries(
-    Object.entries(ratingsObject).map(
-      ([key, value]) => ([key, (value / total).toFixed(2)]),
-    ),
-  );
+const roundToNearestTenPercent = (decimal) => (
+  decimal.toFixed(1).split('.')[1].concat('0')
+);
+
+const addNonExistentScores = (ratingsObject) => {
+  //
 };
 
-const getDisplayPercentage = (decimalString) => (decimalString.split('.')[1].concat('%'));
+const getPercentages = (ratingsObject) => {
+  const total = sumValues(ratingsObject);
 
-const createPercentageStyle = (decimalString) => (
-  { width: getDisplayPercentage(decimalString) }
-);
+  return Object.fromEntries(
+    Object.entries(ratingsObject)
+      .map(
+        ([key, value]) => ([key, roundToNearestTenPercent(value / total)]),
+      ),
+  );
+};
 
 const RatingBreakdown = (props) => {
   const { ratings } = props;
   const percentages = getPercentages(ratings);
-
+  const bars = Object.keys(ratings)
+    .map(([key, value]) => (
+      <StackedBar
+        score={key}
+        percent={percentages[key]}
+        total={value}
+      />
+    ));
   return (
     <dl id="rating-breakdown">
       <dt><h2>Rating Breakdown</h2></dt>
-      <dd className="percentage" style={createPercentageStyle(percentages[5])}>
-        <span className="bar-text">{5}</span>
-      </dd>
-      <dd className="percentage">
-        <span className="bar-text">{`4: ${getDisplayPercentage(percentages[4])}`}</span>
-      </dd>
-      <dd className="percentage">
-        <span className="bar-text">{`3: ${getDisplayPercentage(percentages[3])}`}</span>
-      </dd>
-      <dd className="percentage">
-        <span className="text">{`2: ${getDisplayPercentage(percentages[2])}`}</span>
-      </dd>
-      <dd className="percentage">
-        <span className="text">{`1: ${getDisplayPercentage(percentages[1])}`}</span>
-      </dd>
+      <>{bars}</>
     </dl>
   );
 };
