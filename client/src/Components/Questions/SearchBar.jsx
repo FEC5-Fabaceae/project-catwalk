@@ -22,7 +22,7 @@ const SearchBar = (props) => {
 
   return (
     <>
-      <input type="text" placeholder="Have a question? Search for answers..." value={text} onChange={(e) => { onInputChange(e); }} />
+      <input type="text" className="search-questions" placeholder="Have a question? Search for answers..." value={text} onChange={(e) => { onInputChange(e); }} />
     </>
   );
 };
