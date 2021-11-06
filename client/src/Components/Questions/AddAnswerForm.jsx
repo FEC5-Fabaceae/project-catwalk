@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import TextInput from './TextInput';
 import ProductIdContext from '../Context';
-import GetProductName from './getProductName';
+// import GetProductName from './getProductName';
 
 const AddAnswerForm = (props) => {
   const {setQuestions} = props;
@@ -37,12 +37,12 @@ const AddAnswerForm = (props) => {
             body: values.question,
             name: values.nickName,
             email: values.email,
-            photos: [], // how I am going to retrieve this from the files uploaded
+            // photos: [], // how I am going to retrieve this from the files uploaded
           };
 
           axios.post(`qa/questions/${productID}/answers`, newValues)
             .then(() => {
-              axios.get(`/qa/questions/?product_id=${productID}`)
+              axios.get(`/qa/questions/?product_id=${productID}&count=10`)
                 .then((res) => {
                   setQuestions(res.data.results);
                 });
