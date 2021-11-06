@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import AnswersList from './AnswersList';
 import ProductIdContext from '../Context';
+import AnswersList from './AnswersList';
+import AddAnswerForm from './AddAnswerForm';
 
 const QuestionItem = (props) => {
   const { question, setQuestions } = props;
@@ -42,7 +43,10 @@ const QuestionItem = (props) => {
         (
         {question_helpfulness}
         )
-        <button type="button">Add Answer</button>
+        <button type="button">
+          Add Answer
+          <AddAnswerForm questionID={question_id} setQuestions={setQuestions} />
+          </button>
       </aside>
       <section className="questions-list-item-answer">
         <span className="question-responses">A:</span>

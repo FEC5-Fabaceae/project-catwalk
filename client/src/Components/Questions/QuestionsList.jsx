@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import QuestionItem from './QuestionItem';
+import AddQuestionForm from './AddQuestionForm';
 
 const QuestionsList = (props) => {
   const { list } = props;
@@ -45,6 +46,7 @@ const QuestionsList = (props) => {
       <div className="questions-add">
         <button type="button">
           Add a Question
+          <AddQuestionForm setQuestions={setQuestions} />
         </button>
       </div>
     </>

@@ -11,7 +11,7 @@ const QuestionAndAnswer = () => {
 
   const retrieveQuestions = () => {
     // to get better data for now, switch back to ${value}
-    axios.get(`/qa/questions/?product_id=40050`)
+    axios.get(`/qa/questions/?product_id=${value}&count=100`)
       .then((res) => {
         setQuestionsState(res.data);
       })
