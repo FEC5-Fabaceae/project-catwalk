@@ -4,6 +4,8 @@ import { unmountComponentAtNode } from 'react-dom';
 import { render, screen } from '@testing-library/react';
 import { toBeInTheDocument } from '@testing-library/jest-dom';
 import Reviews from '../client/src/Components/Review/Reviews';
+import RatingBreakdown, { sumValues, getPercentages } from '../client/src/Components/Review/RatingBreakdown';
+import metadata from '../client/src/Components/Review/sampleMetaData';
 // import ReviewList from '../client/src/Components/Review/ReviewList';
 // import ProductBreakdown from '../client/src/Components/Review/ProductBreakdown';
 // import RatingBreakdown from '../client/src/Components/Review/RatingBreakdown';
@@ -56,4 +58,4 @@ describe('Breakdown Section', () => {
     );
   }
 };
-
+           
