@@ -46,15 +46,15 @@ const AddAnswerForm = (props) => {
             photos: [], // how I am going to retrieve this from the files uploaded
           };
 
-        //   axios.post(`qa/questions/${questionID}/answers`, newValues)
-        //     .then(() => {
-        //       axios.get(`/qa/questions/?product_id=${productID}&count=100`)
-        //         .then((res) => {
-        //           setQuestions(res.data.results);
-        //         });
-        //     })
-        //     .catch((err) => console.log(err));
-        //   setSubmitting(false);
+          axios.post(`qa/questions/${questionID}/answers`, newValues)
+            .then(() => {
+              axios.get(`/qa/questions/?product_id=${productID}&count=100`)
+                .then((res) => {
+                  setQuestions(res.data.results);
+                });
+            })
+            .catch((err) => console.log(err));
+          setSubmitting(false);
         }}
       >
         {({ isSubmitting }) => (

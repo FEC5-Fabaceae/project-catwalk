@@ -4,12 +4,14 @@ import axios from 'axios';
 import ProductIdContext from '../Context';
 import AnswersList from './AnswersList';
 import AddAnswerForm from './AddAnswerForm';
+import Modal from './Modal';
 
 const QuestionItem = (props) => {
   const { question, setQuestions } = props;
   const { question_id, question_body, question_helpfulness, answers } = question;
   const value = useContext(ProductIdContext);
   const [disableHelpful, setDisableHelpful] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const updateCount = () => {
     axios.put(`qa/questions/${question_id}/helpful`)
@@ -31,6 +33,10 @@ const QuestionItem = (props) => {
     }
   };
 
+  const clickAddAnswerButton = () => {
+    setModalVisible(true);
+  };
+
   return (
     <div className="questions-list-item">
       <section className="questions-list-item-questionbody">
@@ -43,10 +49,17 @@ const QuestionItem = (props) => {
         (
         {question_helpfulness}
         )
-        <button type="button">
+        <button type="button" onClick={clickAddAnswerButton}>
           Add Answer
-          <AddAnswerForm questionID={question_id} setQuestions={setQuestions} />
-          </button>
+        </button>
+        {modalVisible
+          ? (
+            <Modal
+              setModalVisible={setModalVisible}
+              component={<AddAnswerForm questionID={question_id} setQuestions={setQuestions} />}
+            />
+          )
+          : <></>}
       </aside>
       <section className="questions-list-item-answer">
         <span className="question-responses">A:</span>
