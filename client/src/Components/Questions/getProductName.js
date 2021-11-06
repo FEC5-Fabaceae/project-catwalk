@@ -4,13 +4,9 @@ import ProductIdContext from '../Context';
 
 const GetProductName = () => {
   const value = useContext(ProductIdContext);
-  let productName;
   axios.get(`/products/${value}`)
-    .then((res) => {
-      productName = res.data.name;
-    })
+    .then((res) => res.data.name)
     .catch((err) => console.log(err));
-  return productName;
 };
 
 export default GetProductName;
