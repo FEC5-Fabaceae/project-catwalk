@@ -54,8 +54,13 @@ const QuestionsList = (props) => {
           Add a Question
         </button>
         {modalVisible
-          ? <Modal component={<AddQuestionForm setQuestions={setQuestions} />} />
-          : null}
+          ? (
+            <Modal
+              setModalVisible={setModalVisible}
+              component={<AddQuestionForm setQuestions={setQuestions} />}
+            />
+          )
+          : <></>}
       </div>
     </>
   );

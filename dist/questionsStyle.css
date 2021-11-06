@@ -60,14 +60,30 @@
 
 
 .modal-container {
-  background-color: cornsilk;
+  background-color: lavenderblush;
+  border: 1px solid black;
   position: fixed;
-  top: 15em;
-  left: 15em;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: fit-content;
+  width: fit-content;
   z-index: 1;
 }
 
+.modal-close-button {
+  background-color: lavenderblush;
+  position: relative;
+  z-index: 1;
+  border: none;
+}
+
+.modal-close-button:hover {
+  background-color: lightsalmon;
+  border-radius: 50%;
+}
+
 .modal-component {
-  padding: 5em;
-  border: thick, solid, black;
+  padding: 2em;
 }
