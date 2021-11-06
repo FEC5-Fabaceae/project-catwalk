@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import TextInput from './TextInput';
 import ProductIdContext from '../Context';
-import GetProductName from './getProductName';
+// import GetProductName from './getProductName';
 
 const AddQuestionForm = (props) => {
   const {setQuestions} = props;
@@ -14,8 +14,7 @@ const AddQuestionForm = (props) => {
     <>
       <h1>Ask Your Question</h1>
       <h3>
-        About the
-        {GetProductName}
+        About the [Product Name]
       </h3>
       <Formik
         initialValues={{
@@ -40,7 +39,7 @@ const AddQuestionForm = (props) => {
             body: values.question,
             name: values.nickName,
             email: values.email,
-            product_id: productID,
+            product_id: Number(productID),
           };
 
           axios.post('/qa/questions', newValues)
