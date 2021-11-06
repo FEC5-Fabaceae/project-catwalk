@@ -45,7 +45,7 @@ const QuestionItem = (props) => {
         )
         <button type="button">
           Add Answer
-          <AddAnswerForm setQuestions={setQuestions} />
+          <AddAnswerForm questionID={question_id} setQuestions={setQuestions} />
           </button>
       </aside>
       <section className="questions-list-item-answer">

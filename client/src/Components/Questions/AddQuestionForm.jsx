@@ -44,7 +44,7 @@ const AddQuestionForm = (props) => {
 
           axios.post('/qa/questions', newValues)
             .then(() => {
-              axios.get(`/qa/questions/?product_id=${productID}&count=10`)
+              axios.get(`/qa/questions/?product_id=${productID}&count=100`)
                 .then((res) => {
                   setQuestions(res.data.results);
                 });
