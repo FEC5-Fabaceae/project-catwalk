@@ -1,5 +1,6 @@
 
 
+
 .navbar-wrapper{
   margin-left: 40px;
   margin-right: 40px;
@@ -8,6 +9,131 @@
   height: 60px;
 background-color:black
 }
+
+body {
+  background-color: cornsilk;
+}
+
+#rating-breakdown {
+  background-color: #CFEAFF;
+  color: #29335C;
+}
+
+#review-list {
+  background-color: #FFFDF5;
+}
+
+#review-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.rating-bar-00 {
+  display: grid;
+  overflow: hidden;
+  border: 2px solid white;
+  border-radius: 1px;
+  grid-template-columns: 0fr 10fr;
+}
+
+.rating-bar-10 {
+  display: grid;
+  overflow: hidden;
+  border: 2px solid white;
+  border-radius: 1px;
+  grid-template-columns: 1fr 9fr;
+}
+
+.rating-bar-20 {
+  display: grid;
+  overflow: hidden;
+  border: 2px solid white;
+  border-radius: 1px;
+  grid-template-columns: 2fr 8fr;
+}
+
+.rating-bar-30 {
+  display: grid;
+  overflow: hidden;
+  border: 2px solid white;
+  border-radius: 1px;
+  grid-template-columns: 3fr 7fr;
+}
+
+.rating-bar-40 {
+  display: grid;
+  overflow: hidden;
+  border: 2px solid white;
+  border-radius: 1px;
+  grid-template-columns: 4fr 6fr;
+}
+
+.rating-bar-50 {
+  display: grid;
+  overflow: hidden;
+  border: 2px solid white;
+  border-radius: 1px;
+  grid-template-columns: 5fr 5fr;
+}
+
+.rating-bar-60 {
+  display: grid;
+  overflow: hidden;
+  border: 2px solid white;
+  border-radius: 1px;
+  grid-template-columns: 6fr 4fr;
+}
+
+.rating-bar-70 {
+  display: grid;
+  overflow: hidden;
+  border: 2px solid white;
+  border-radius: 1px;
+  grid-template-columns: 7fr 3fr;
+}
+
+.rating-bar-80 {
+  display: grid;
+  overflow: hidden;
+  border: 2px solid white;
+  border-radius: 1px;
+  grid-template-columns: 8fr 2fr;
+}
+
+.rating-bar-90 {
+  display: grid;
+  overflow: hidden;
+  border: 2px solid white;
+  border-radius: 1px;
+  grid-template-columns: 9fr 1fr;
+}
+
+.rating-bar-100 {
+  display: grid;
+  overflow: hidden;
+  border: 2px solid white;
+  border-radius: 1px;
+  grid-template-columns: 10fr 0fr;
+}
+
+.filled-rating-bar {
+  background: green;
+}
+
+.empty-rating-bar {
+  background: lightgray;
+  color: lightgray;
+}
+
+.individual-rating-total {
+  text-align: end;
+}
+
+/*# sourceMappingURL=styles.css.map */
+
+
 .gallery{
   margin-left: 30px;
 
@@ -177,6 +303,5 @@ background-color:black
   width: 100%;
   height:100%;
   object-fit: cover;
-
-
 }
+

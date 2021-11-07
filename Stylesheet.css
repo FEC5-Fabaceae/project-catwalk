@@ -1,0 +1,13 @@
+body {
+  background-color: brown;
+}
+
+#rating-breakdown {
+  float: left;
+}
+
+#review-list {
+  float: right;
+}
+
+/*# sourceMappingURL=Stylesheet.css.map */

@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import ProductIdContext from '../Context';
 import AnswersList from './AnswersList';
+import AddAnswerForm from './AddAnswerForm';
 
 const QuestionItem = (props) => {
-  const { question, productID, setQuestions } = props;
+  const { question, setQuestions } = props;
   const { question_id, question_body, question_helpfulness, answers } = question;
+  const value = useContext(ProductIdContext);
   const [disableHelpful, setDisableHelpful] = useState(false);
 
   const updateCount = () => {
     axios.put(`qa/questions/${question_id}/helpful`)
       .then(() => {
-        axios.get(`qa/questions/?product_id=${productID}`)
+        axios.get(`qa/questions/?product_id=${value}`)
           .then((res) => {
             setQuestions(res.data.results);
           });
@@ -31,26 +34,26 @@ const QuestionItem = (props) => {
   return (
     <div className="questions-list-item">
       <section className="questions-list-item-questionbody">
-        <span className="Q">Q:</span>
-        <p>{question_body}</p>
+        <span className="question-responses">Q:</span>
+        <p className="questionbody">{question_body}</p>
       </section>
-      <aside>
+      <aside className="question-interaction">
         <span>Helpful?</span>
         <button type="button" onClick={(e) => { handleClick(e, disableHelpful); }} value="Yes">Yes</button>
         (
         {question_helpfulness}
         )
-        <button type="button">Add Answer</button>
+        <button type="button">
+          Add Answer
+          <AddAnswerForm questionID={question_id} setQuestions={setQuestions} />
+          </button>
       </aside>
       <section className="questions-list-item-answer">
-        <span className="A">A:</span>
-        <ul>
-          <AnswersList
-            answerlist={answers}
-            productID={productID}
-            setQuestions={setQuestions}
-          />
-        </ul>
+        <span className="question-responses">A:</span>
+        <AnswersList
+          answerlist={answers}
+          setQuestions={setQuestions}
+        />
       </section>
     </div>
   );
