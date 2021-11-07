@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Gallery from './Gallery';
 import ProductInfo from './ProductInfo';
+import ProductOverview from './ProductOverview';
+import GalleryHooks from './GalleryHooks';
+import ProductInfoHooks from './ProductInfoHooks';
 
-const Overview = () => (
+// import ProviderIdContext from '../Context.jsx';
+import ProviderContext from '../Context/provider/ProviderContext';
+
+
+const Overview = () => {
   // const []
+  // const providerIdContext = useContext(ProviderIdContext);
+  const providerContext = useContext(ProviderContext);
+
+  return (
   <div>
     <div>
-      <p style={{ display: 'flex', flexDirection: 'row' }}>
+      <p style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
         <em>SITE-WIDE ANNOUNCEMENT MESSAGE! </em>
         — SALE/DISCOUNT
         <b> OFFER</b>
@@ -17,17 +28,19 @@ const Overview = () => (
     <div className="product-overview-container">
       <div className="product-overview-container-left">
         <div className=".gallery-wrapper">
-          <Gallery />
+          {/* <Gallery /> */}
+          <GalleryHooks />
         </div>
       </div>
       <div className="spacer" />
       <div className="product-overview-container-right">
-        <ProductInfo />
+        {/* <ProductInfo /> */}
+        <ProductInfoHooks />
       </div>
-
+      <div className="product-overview-container" />
     </div>
   </div>
-
-);
+  )
+};
 
 export default Overview;

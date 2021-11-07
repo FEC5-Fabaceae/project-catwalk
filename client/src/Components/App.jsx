@@ -5,13 +5,18 @@ import OutfitProductsList from './Related Products/OutfitList';
 import Reviews from './Review/Reviews';
 import QuestionAndAnswer from './Questions/QuestionAndAnswer';
 import ProductIdContext from './Context';
+import Navbar from './Navbar';
 
+import ProviderState from './Context/provider/ProviderState';
 // please add your components here in the order they appear
-const App = (props) => (
+const App = () => (
   <>
     <ProductIdContext.Provider value="40345">
       console.log(ProductIdContext);
-      <div><Overview /></div>
+      <div><Navbar /></div>
+      <ProviderState>
+        <div><Overview /></div>
+      </ProviderState>
       <div><RelatedProductsList /></div>
       <div><OutfitProductsList /></div>
       <div><QuestionAndAnswer /></div>
