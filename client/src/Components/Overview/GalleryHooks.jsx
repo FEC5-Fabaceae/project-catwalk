@@ -40,27 +40,36 @@ const GalleryHooks = () => {
   return (
     <>
       <div className="gallery-wrapper">
-        <div className="viewer-wrap">
-          <p name="back" onClick={handlePageChange}>
-            <b>
+        <p className="left" name="back" onClick={handlePageChange}>
+          <b>
 
-              {'<'}
-            </b>
-          </p>
+            {'>'}
+          </b>
+        </p>
+        <div className="viewer-wrap">
+
           {currentStyle.photos && currentStyle.photos.map((photo, i) => {
             if (page === i) {
               return (
-                <img src={photo.url} alt="clothing" className="gallery-image" />
+                <img
+                  src={photo.url}
+                  alt="clothing"
+                  loading="lazy"
+                  width={732}
+                  height={567}
+                  className="gallery-image"
+                />
               );
             }
           })}
-          <p name="forward" onClick={handlePageChange}>
-            <b>
-              {'>'}
-            </b>
-          </p>
+
           {/* { currentStyle.photos && <img src={currentStyle.photos[0].url} /> } */}
         </div>
+        <p className="right" name="forward" onClick={handlePageChange}>
+          <b>
+            {'<'}
+          </b>
+        </p>
         <div className="thumbnail-gallery">
           <div className="thumbnail-images">
             {currentStyle.photos && currentStyle.photos.map((photo, i) => (
@@ -70,7 +79,9 @@ const GalleryHooks = () => {
                   src={photo.thumbnail_url}
                   onClick={handleClick}
                   id={photo.url}
-                  style={{ height: '49px', width: '49px' }}
+                  loading="lazy"
+                  width={49}
+                  height={49}
                   alt="clothing"
                 />
               </>

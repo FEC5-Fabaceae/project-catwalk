@@ -1,14 +1,12 @@
 
-*{
-  background-color:cornsilk
-}
+
 .navbar-wrapper{
   margin-left: 40px;
   margin-right: 40px;
 }
 .navbar{
   height: 60px;
-background-color:chocolate
+background-color:black
 }
 .gallery{
   margin-left: 30px;
@@ -20,6 +18,7 @@ background-color:chocolate
   height: 567px;
   margin-left: 40px;
   margin-left: 40px;
+  background-color: floralwhite;
 
 }
 /* .view-wrapper img{
@@ -52,8 +51,8 @@ background-color:chocolate
   position: relative;
   overflow: hidden;
   flex-direction: column;
-  width: 64px;
-  height: 100%;
+  /* width: 64px;
+  height: 100%; */
 }
 
 .thumbnail-images{
@@ -63,9 +62,23 @@ background-color:chocolate
   position: relative;
   overflow: hidden;
   flex-direction: column;
-  width: 64px;
+  width: 100%;
   height: 100%;
   object-fit: contain;
+
+}
+.thumbnail-images img{
+  /* display:flex;
+  justify-content: flex-start;
+  -webkit-box-pack:center;
+  position: relative;
+  overflow: hidden;
+  flex-direction: column; */
+  width: 49px;
+  height: 49px;
+  object-fit: fill;
+  padding: 6px;
+  border-color: solid black;
 
 }
 .style-icon{
@@ -82,6 +95,7 @@ background-color:chocolate
   display: flex;
   flex-direction: column;
   width: 64px;
+  background-color: black;
 }
 
 .product-overview-container {
@@ -92,12 +106,18 @@ background-color:chocolate
   display: flex;
   flex-direction: row;
   flex-wrap:wrap;
+  margin-top: 30px;
+  justify-content: flex-start;
 }
 
-.gallery-image {
-  max-width: 100%;
-  max-height: 100%;
+/* .gallery-image {
+  max-width: 739px;
+  max-height: 567px;
   object-fit: fill;
+} */
+.product-overview-container{
+  background-color: black;
+  border-style: groove;
 }
 
 .product-overview-container-left {
@@ -109,8 +129,9 @@ background-color:chocolate
 .product-overview-container-right {
   display: flex;
   flex-direction: column;
-<<<<<<< HEAD
   width: 30%;
+  padding: 10px;
+  background-color: rgb(182, 162, 162);
 }
 .star-rating-row{
   display: flex;
@@ -119,7 +140,8 @@ background-color:chocolate
 
 }
 .select-style-drop-list{
-  width: 64px
+  width: 64px;
+  border-style: solid;
 }
 
 .arrow {
@@ -130,15 +152,31 @@ background-color:chocolate
 }
 
 .right {
-  transform: rotate(-45deg);
+  /* transform: rotate(-45deg); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .left {
-  transform: rotate(135deg);
+  /* transform: rotate(135deg); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .viewer-wrap {
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-shrink: zero;
+  width:732.11px;
+  height:567px;
+}
+.viewer-wrap img {
+  width: 100%;
+  height:100%;
+  object-fit: cover;
+
+
 }
