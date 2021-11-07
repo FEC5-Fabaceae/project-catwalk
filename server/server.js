@@ -19,7 +19,28 @@ app.listen(3000, () => {
   console.log(`App listening on port ${3000}!`);
 });
 
-// TODO: When ready for development, remove all // console.log requests and non-div comments
+// TODO: When ready for development, remove all console.log requests and non-div comments
+// --OUTFITS API--
+// When a get request is sent to this URL, get any cookies with the name outfits, and parse them
+// then send it back inside of data
+app.get('/outfits', (req, res) => {
+  const data = req.cookies.outfits;
+  if (req.cookies.outfits === undefined) {
+    res.status(200).end();
+  } else {
+    // console.log(data);
+    // console.log(req.cookies);
+    res.status(200).send(data);
+  }
+});
+// When a post request is sent to this URL, take the body of the request, parse it and send it back
+// as a cookie to the client with the name outfits
+app.post('/outfits', (req, res) => {
+  const data = req.body;
+  res.cookie('outfits', data, { expires: new Date(253402300799999), path: '/outfits' });
+  // console.log(res.cookie);
+  res.status(200).send('Outfit Saved!');
+});
 // --PRODUCTS API--
 // https://bit.ly/3jY8GXr
 /*
