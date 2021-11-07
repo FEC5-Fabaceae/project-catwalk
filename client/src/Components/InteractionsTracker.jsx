@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+
+const axios = require('axios');
 
 const withInteractionsTracker = (Component) => class extends React.Component {
   constructor(props) {
@@ -6,14 +8,28 @@ const withInteractionsTracker = (Component) => class extends React.Component {
     this.handleMouseClick = this.handleMouseClick.bind(this);
   }
 
-  handleMouseClick(event) {
-    event.preventDefault();
-    console.log(event);
+  // eslint-disable-next-line class-methods-use-this
+  handleMouseClick(e) {
+    e.preventDefault();
+    const element = e.target.outerHTML;
+    const widget = Component.name;
+    const time = new Date();
+    axios({
+      url: 'http://localhost:3000/interactions',
+      method: 'post',
+      data: {
+        element,
+        widget,
+        time,
+      },
+    });
   }
 
   render() {
     return (
-      <Component onClick={this.handleMouseClick} />
+      <div onClick={this.handleMouseClick}>
+        <Component />
+      </div>
     );
   }
 };

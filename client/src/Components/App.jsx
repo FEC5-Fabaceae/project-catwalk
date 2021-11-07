@@ -1,4 +1,5 @@
 import React from 'react';
+import withInteractionsTracker from './InteractionsTracker';
 import Overview from './Overview/Overview';
 import RelatedProductsList from './Related Products/RelatedProductsList';
 import OutfitProductsList from './Related Products/OutfitList';
@@ -7,16 +8,15 @@ import QuestionAndAnswer from './Questions/QuestionAndAnswer';
 import ProductIdContext from './Context';
 
 // please add your components here in the order they appear
-
 const App = (props) => (
   <>
-    <ProductIdContext.Provider value="40345">
+    <ProductIdContext.Provider value="40344">
       console.log(ProductIdContext);
-      <div><Overview /></div>
-      <div><RelatedProductsList /></div>
-      <div><OutfitProductsList /></div>
-      <div><QuestionAndAnswer /></div>
-      <div><Reviews /></div>
+      <div>{React.createElement(withInteractionsTracker(Overview))}</div>
+      <div>{React.createElement(withInteractionsTracker(RelatedProductsList))}</div>
+      <div>{React.createElement(withInteractionsTracker(OutfitProductsList))}</div>
+      <div>{React.createElement(withInteractionsTracker(QuestionAndAnswer))}</div>
+      <div>{React.createElement(withInteractionsTracker(Reviews))}</div>
     </ProductIdContext.Provider>
   </>
 );
