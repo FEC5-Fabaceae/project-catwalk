@@ -30,6 +30,32 @@ const getProducts = (id = 4038) => {
     });
 };
 
+const getProducts = (id = 4038) => {
+  axios.get(`/products/${id}/styles`)
+    .then((res) => {
+      console.log('current', res);
+      this.setState({
+        currentStyle: res.data.results[0],
+        text: res.data.results[0].name,
+        styleid: id,
+
+      });
+    })
+    .catch((err) => {
+      throw (err);
+    });
+  axios.get('/products')
+    .then((res) => {
+      console.log('PRODUCTS', res);
+      this.setState({
+        product: res.data,
+      });
+    })
+    .catch((err) => {
+      throw (err);
+    });
+};
+
 class ProductInfo extends React.Component {
   constructor() {
     super();

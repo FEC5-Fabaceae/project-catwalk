@@ -18,7 +18,6 @@ const ProductInfoHooks = () => {
   }
 
   const handleClick = (e) => {
-    console.log(e.target.id);
     providerContext.getCurrentStyle(e.target.name);
     providerContext.getProduct(e.target.id);
   };
@@ -28,20 +27,14 @@ const ProductInfoHooks = () => {
   }
   return (
     <>
-      <div><h1>{presentStyle.name}</h1></div>
       <div className="star-rating-row">
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <b>
-            STYLE
-          </b>
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center' }}>
-          <b>
-            {'>'}
-          </b>
-        </div>
+        <b>
+          STYLE
+          {'>'}
+        </b>
         <div>{category}</div>
       </div>
+
       <div className="style-select-icon-container">
         {stylesArray[0].results && stylesArray[0].results.map((photo) => (
           <>

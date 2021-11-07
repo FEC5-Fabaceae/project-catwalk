@@ -11,11 +11,11 @@ const GalleryHooks = () => {
   const productContext = useContext(ProviderContext);
   const { currentStyle } = productContext;
   const [page, setPage] = useState(0);
-  // const [display, setDisplay] = useState([]);
+  const [display, setDisplay] = useState([]);
 
   const handleClick = (e) => {
     // setDisplay(e.target.id);
-    // console.log(e.target.name);
+    console.log(e.target.name);
     setPage(Number(e.target.name));
   };
 
@@ -40,36 +40,27 @@ const GalleryHooks = () => {
   return (
     <>
       <div className="gallery-wrapper">
-        <p className="left" name="back" onClick={handlePageChange}>
-          <b>
-
-            {'>'}
-          </b>
-        </p>
         <div className="viewer-wrap">
+          <p name="back" onClick={handlePageChange}>
+            <b>
 
+              {'<'}
+            </b>
+          </p>
           {currentStyle.photos && currentStyle.photos.map((photo, i) => {
             if (page === i) {
               return (
-                <img
-                  src={photo.url}
-                  alt="clothing"
-                  loading="lazy"
-                  width={732}
-                  height={567}
-                  className="gallery-image"
-                />
+                <img src={photo.url} alt="clothing" className="gallery-image" />
               );
             }
           })}
-
+          <p name="forward" onClick={handlePageChange}>
+            <b>
+              {'>'}
+            </b>
+          </p>
           {/* { currentStyle.photos && <img src={currentStyle.photos[0].url} /> } */}
         </div>
-        <p className="right" name="forward" onClick={handlePageChange}>
-          <b>
-            {'<'}
-          </b>
-        </p>
         <div className="thumbnail-gallery">
           <div className="thumbnail-images">
             {currentStyle.photos && currentStyle.photos.map((photo, i) => (
@@ -79,9 +70,7 @@ const GalleryHooks = () => {
                   src={photo.thumbnail_url}
                   onClick={handleClick}
                   id={photo.url}
-                  loading="lazy"
-                  width={49}
-                  height={49}
+                  style={{ height: '49px', width: '49px' }}
                   alt="clothing"
                 />
               </>
