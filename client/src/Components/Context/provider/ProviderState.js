@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-use-before-define */
 import React, { useReducer, useEffect } from 'react';
 
+import axios from 'axios';
 import ProviderReducer from './ProviderReducer';
 import ProviderContext from './ProviderContext';
-
-import axios from 'axios';
 
 import {
   GET_PRODUCT,
@@ -24,37 +25,35 @@ const ProviderState = (props) => {
   useEffect(() => {
     getProduct('40348');
     getProductStyles('40348');
-
   }, []);
 
   const getProduct = (id) => {
-     axios.get(`/products/${id}`).then((res) => {
+    axios.get(`/products/${id}`).then((res) => {
       dispatch({
         type: GET_PRODUCT,
-        payload: res.data
-      })
+        payload: res.data,
+      });
     });
+  };
 
-  }
-
-  const getProductStyles =  (id) => {
+  const getProductStyles = (id) => {
     axios.get(`/products/${id}/styles`).then((res) => {
       dispatch({
         type: GET_PRODUCT_STYLES,
-        payload: res.data
-      })
+        payload: res.data,
+      });
     });
-  }
+  };
 
   const getCurrentStyle = (id) => {
-    const currentStyle = state.styles[0].results.find((style) => style.style_id == id);
+    const currentStyle = state.styles[0].results.find((style) => style.style_id === id);
 
     dispatch({
       type: GET_CURRENT_STYLE,
-      payload: currentStyle
-    })
-  }
-
+      payload: currentStyle,
+    });
+  };
+  const { children } = props;
   return (
     <ProviderContext.Provider value={{
       product: state.product,
@@ -63,11 +62,12 @@ const ProviderState = (props) => {
       text: state.text,
       getProduct,
       getProductStyles,
-      getCurrentStyle
-      }}>
-      {props.children}
+      getCurrentStyle,
+    }}
+    >
+      {children}
     </ProviderContext.Provider>
-  )
-}
+  );
+};
 
 export default ProviderState;

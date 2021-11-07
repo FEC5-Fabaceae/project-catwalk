@@ -1,8 +1,9 @@
+/* eslint-disable consistent-return */
+/* eslint-disable array-callback-return */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/no-unused-state */
-import React, { useEffect, useContext, useState } from 'react';
-import axios from 'axios';
+import React, { useContext, useState } from 'react';
 // import ProductIdContext from '../Context';
 import ProviderContext from '../Context/provider/ProviderContext';
 
@@ -10,11 +11,11 @@ const GalleryHooks = () => {
   const productContext = useContext(ProviderContext);
   const { currentStyle } = productContext;
   const [page, setPage] = useState(0);
-  const [display, setDisplay] = useState([]);
+  // const [display, setDisplay] = useState([]);
 
   const handleClick = (e) => {
     // setDisplay(e.target.id);
-    console.log(e.target.name);
+    // console.log(e.target.name);
     setPage(Number(e.target.name));
   };
 
