@@ -56,7 +56,13 @@ const QuestionItem = (props) => {
           ? (
             <Modal
               setModalVisible={setModalVisible}
-              component={<AddAnswerForm questionID={question_id} setQuestions={setQuestions} />}
+              component={(
+                <AddAnswerForm
+                  questionID={question_id}
+                  questionBody={question_body}
+                  setQuestions={setQuestions}
+                />
+              )}
             />
           )
           : <></>}
