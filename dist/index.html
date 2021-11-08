@@ -7,9 +7,11 @@
   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
   <script src="https://kit.fontawesome.com/7274b136be.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./Stylesheet.css">
+
   <link rel="stylesheet" href="./Related-Product.css">
   <link rel="stylesheet" type="text/css" href="styles.css">
   <link rel="stylesheet" type="text/css" href="questionsStyle.css">
+
   <title>Project Catwalk!</title>
 </head>
 
@@ -19,3 +21,57 @@
 </body>
 
 </html>
+
+
+.product-image-gallery-container {
+  width: 100%;
+  height: 80vh;
+  position: relative;
+}
+
+.product-image-gallery-main {
+    width: 100%;
+    height: 100%;
+}
+
+
+.product-image-gallery-thumbnail-container {
+  position: absolute;
+  top: 10px;
+  left: 30px;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.image-gallery-main {
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+  &:hover {
+    cursor: zoom-in
+  }
+}
+
+.product-image-gallery-thumbnail-display {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  .product-image-gallery-thumbnail-display::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.image-gallery-thumbnail {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 10px;
+  // border: 2px solid black;
+  position: relative;
+}
+
+.image-gallery-thumbnail.active {
+  border: 2px solid black;
+}

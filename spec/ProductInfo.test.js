@@ -3,7 +3,7 @@ import React from 'react';
 import { unmountComponentAtNode } from 'react-dom';
 import { render, screen } from '@testing-library/react';
 // import { toBeInTheDocument } from '@testing-library/jest-dom'
-import Overview from '../client/src/Components/Overview/Overview';
+import ProductInfo from '../client/src/Components/Overview/ProductInfo';
 
 let container = null;
 beforeEach(() => {
@@ -19,9 +19,9 @@ afterEach(() => {
   container = null;
 });
 
-describe('Overview component', () => {
-  test('renders Overview component', () => {
-    render(<Overview />, container);
-    expect(screen.getByText('SITE-WIDE ANNOUNCEMENT MESSAGE!')).toBeInTheDocument;
+describe('ProductInfo component', () => {
+  test('renders ProductInfo component', () => {
+    render(<ProductInfo />, container);
+    expect(screen.getByText('☆☆☆☆☆')).toBeInTheDocument;
   });
 });

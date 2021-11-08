@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import AnswerItem from './AnswerItem';
 
 const AnswersList = (props) => {
-  const { answerlist, productID, setQuestions } = props;
+  const { answerlist, setQuestions } = props;
   const answers = Object.values(answerlist);
   const [visible, setVisible] = useState(2);
+
+  answers.sort((a, b) => b.helpfulness - a.helpfulness);
 
   const clickButtonMore = () => {
     setVisible(answers.length);
@@ -24,24 +26,19 @@ const AnswersList = (props) => {
   }
 
   return (
-    <div>
-      <ul className="answer-list">
-        {answers.filter(
-          (answer, index) => (index < visible),
-        )
-          .map(
-            (answer) => (
-              <AnswerItem
-                key={answer.id}
-                answer={answer}
-                productID={productID}
-                setQuestions={setQuestions}
-              />
-            ),
-          )}
+    <>
+      <ul className="scrollable-answer-list">
+        {answers.filter((answer, index) => (index < visible))
+          .map((answer) => (
+            <AnswerItem
+              key={answer.id}
+              answer={answer}
+              setQuestions={setQuestions}
+            />
+          ))}
       </ul>
       <div className="answer-list-button">{AddCollapseButton}</div>
-    </div>
+    </>
   );
 };
 

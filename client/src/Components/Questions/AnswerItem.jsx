@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import axios from 'axios';
+import ProductIdContext from '../Context';
 
 const AnswerItem = (props) => {
   const {
     answer,
-    productID,
     setQuestions,
   } = props;
   const {
@@ -17,6 +17,7 @@ const AnswerItem = (props) => {
     helpfulness,
     photos,
   } = answer;
+  const value = useContext(ProductIdContext);
   const [disableHelpful, setDisableHelpful] = useState(false);
   const [disableReport, setDisableReport] = useState(false);
 
@@ -39,9 +40,9 @@ const AnswerItem = (props) => {
   }
 
   const updateCount = () => {
-    axios.put(`qa/answers/${id}/helpful`)
+    axios.put(`/qa/answers/${id}/helpful`)
       .then(() => {
-        axios.get(`qa/questions/?product_id=${productID}`)
+        axios.get(`/qa/questions/?product_id=${value}`)
           .then((res) => {
             setQuestions(res.data.results);
           });
