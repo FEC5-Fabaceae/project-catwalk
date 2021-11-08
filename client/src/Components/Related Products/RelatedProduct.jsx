@@ -4,6 +4,7 @@ const axios = require('axios');
 
 const RelatedProduct = (props) => {
   const { product } = props;
+  const { value } = props;
   // eslint-disable-next-line prefer-const
   const [relatedProductInfo, setProduct] = useState({ name: '', category: '' });
   const [onSale, setSaleStatus] = useState(false);
@@ -66,16 +67,18 @@ const RelatedProduct = (props) => {
 
     <li className="carousel-card">
       <i className="far fa-star" type="button" />
-      <h5>{relatedProductInfo.category}</h5>
-      <h3>{relatedProductInfo.name}</h3>
-      <img src={stylesInfo.photo} alt={relatedProductInfo.name} className="carousel-card carousel-image" />
-      <div>
-        $
-        {stylesInfo.salePrice}
-      </div>
-      <div>
-        Star Rating:
-        {ratings}
+      <div onClick={value.setProductID(product)} >
+        <h5>{relatedProductInfo.category}</h5>
+        <h3>{relatedProductInfo.name}</h3>
+        <img src={stylesInfo.photo} alt={relatedProductInfo.name} className="carousel-card carousel-image" />
+        <div>
+          $
+          {stylesInfo.salePrice}
+        </div>
+        <div>
+          Star Rating:
+          {ratings}
+        </div>
       </div>
     </li>
   );
