@@ -9,14 +9,10 @@ import ProductIdContext from './Context';
 // please add your components here in the order they appear
 const App = (props) => {
   const [productID, setProductID] = useState('40344');
-  const value = useMemo(
-    () => ({ productID, setProductID }),
-    [productID],
-  );
+  const value = ({ productID, setProductID });
   return (
     <>
       <ProductIdContext.Provider value={value}>
-        console.log(ProductIdContext);
         <div><Overview /></div>
         <div><RelatedProductsList /></div>
         <div><OutfitProductsList /></div>
