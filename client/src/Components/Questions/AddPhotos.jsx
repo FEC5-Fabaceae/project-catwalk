@@ -11,8 +11,10 @@ const AddPhotos = (props) => {
   };
 
   const AddImages = () => {
-    imagesState.push(imageURL);
-    setImages(imagesState);
+    if (imagesState.length < 5) {
+      imagesState.push(imageURL);
+      setImages(imagesState);
+    }
   };
 
   return (
