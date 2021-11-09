@@ -1,19 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import Stars from '../Star';
 
 const ReviewTile = (props) => {
   const { review } = props;
   const {
     rating, summary, body, date, reviewer_name, helpfulness,
   } = review;
-  const star = '★';
-  const emptyStar = '☆';
-  const filledStars = star.repeat(Math.floor(rating));
-  const emptyStars = emptyStar.repeat(5 - Math.floor(rating));
   return (
     <article>
-      <h1>{filledStars + emptyStars}</h1>
+      <h1><Stars score={rating} /></h1>
       <h3>
         {reviewer_name}
         {'\t'}

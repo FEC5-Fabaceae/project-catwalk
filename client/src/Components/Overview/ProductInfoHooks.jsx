@@ -27,6 +27,8 @@ const ProductInfoHooks = () => {
   }
   return (
     <>
+      <div><h1>{presentStyle.name}</h1></div>
+      <div>{presentStyle.sale_price? presentStyle.sale_price: presentStyle.original_price}</div>
       <div className="star-rating-row">
         <b>
           STYLE
@@ -51,8 +53,9 @@ const ProductInfoHooks = () => {
         ))}
       </div>
       <div style={{ padding: '10px' }}>
-        <select className="select-style-drop-list">
-
+        {/* <label for="sizes">SELECT SIZE</label> */}
+        <select name="sizes" className="select-style-drop-list">
+          <option>SELECT SIZE</option>
           {presentStyle.skus && Object.keys(presentStyle.skus).map((sku) => (
             <option
               id={presentStyle.skus[sku].quantity}

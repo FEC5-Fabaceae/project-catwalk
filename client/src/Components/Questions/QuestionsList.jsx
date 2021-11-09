@@ -25,7 +25,7 @@ const QuestionsList = (props) => {
 
   let AddButton;
   if (visible < questions.length) {
-    AddButton = <button type="button" onClick={clickAddButton}>More answered questions</button>;
+    AddButton = <button className="question-button" type="button" onClick={clickAddButton}>More answered questions</button>;
   }
 
   const clickAddQuestionButton = () => {
@@ -48,19 +48,21 @@ const QuestionsList = (props) => {
             ),
           )}
       </ul>
-      <div className="question-list-more-button">{AddButton}</div>
-      <div className="questions-add">
-        <button type="button" onClick={clickAddQuestionButton}>
-          Add a Question
-        </button>
-        {modalVisible
-          ? (
-            <Modal
-              setModalVisible={setModalVisible}
-              component={<AddQuestionForm setQuestions={setQuestions} />}
-            />
-          )
-          : <></>}
+      <div className="question-main-buttons">
+        <div className="question-list-more-button">{AddButton}</div>
+        <div className="questions-add">
+          <button className="question-button" type="button" onClick={clickAddQuestionButton}>
+            Add a Question
+          </button>
+          {modalVisible
+            ? (
+              <Modal
+                setModalVisible={setModalVisible}
+                component={<AddQuestionForm setQuestions={setQuestions} />}
+              />
+            )
+            : <></>}
+        </div>
       </div>
     </>
   );
