@@ -16,12 +16,12 @@ const App = () => (
       console.log(ProductIdContext);
       <div><Navbar /></div>
       <ProviderState>
-        <div><Overview /></div>
+        <div>{React.createElement(withInteractionsTracker(Overview))}</div>
       </ProviderState>
-      <div><RelatedProductsList /></div>
-      <div><OutfitProductsList /></div>
-      <div><QuestionAndAnswer /></div>
-      <div><Reviews /></div>
+      <div>{React.createElement(withInteractionsTracker(RelatedProductsList))}</div>
+      <div>{React.createElement(withInteractionsTracker(OutfitProductsList))}</div>
+      <div>{React.createElement(withInteractionsTracker(QuestionAndAnswer))}</div>
+      <div>{React.createElement(withInteractionsTracker(Reviews))}</div>
     </ProductIdContext.Provider>
   </>
 );

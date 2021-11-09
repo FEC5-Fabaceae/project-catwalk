@@ -10,7 +10,6 @@ const withInteractionsTracker = (Component) => class extends React.Component {
 
   // eslint-disable-next-line class-methods-use-this
   handleMouseClick(e) {
-    e.preventDefault();
     const element = e.target.outerHTML;
     const widget = Component.name;
     const time = new Date();
