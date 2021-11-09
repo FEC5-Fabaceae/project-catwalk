@@ -6,17 +6,22 @@ import OutfitProductsList from './Related Products/OutfitList';
 import Reviews from './Review/Reviews';
 import QuestionAndAnswer from './Questions/QuestionAndAnswer';
 import ProductIdContext from './Context';
+import Navbar from './Navbar';
 
+import ProviderState from './Context/provider/ProviderState';
 // please add your components here in the order they appear
-const App = (props) => (
+const App = () => (
   <>
     <ProductIdContext.Provider value="40344">
       console.log(ProductIdContext);
-      <div>{React.createElement(withInteractionsTracker(Overview))}</div>
-      <div>{React.createElement(withInteractionsTracker(RelatedProductsList))}</div>
-      <div>{React.createElement(withInteractionsTracker(OutfitProductsList))}</div>
-      <div>{React.createElement(withInteractionsTracker(QuestionAndAnswer))}</div>
-      <div>{React.createElement(withInteractionsTracker(Reviews))}</div>
+      <div><Navbar /></div>
+      <ProviderState>
+        <div><Overview /></div>
+      </ProviderState>
+      <div><RelatedProductsList /></div>
+      <div><OutfitProductsList /></div>
+      <div><QuestionAndAnswer /></div>
+      <div><Reviews /></div>
     </ProductIdContext.Provider>
   </>
 );
