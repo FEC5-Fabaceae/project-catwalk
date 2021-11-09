@@ -4,16 +4,14 @@ const AddPhotos = (props) => {
   const { imagesState, setImages } = props;
   const [imageURL, setImageURL] = useState('');
 
-  console.log(imagesState);
-
   const inputChange = (e) => {
     setImageURL(e.target.value);
   };
 
-  const AddImages = () => {
+  const AddImages = (e) => {
+    e.preventDefault();
     if (imagesState.length < 5) {
       imagesState.push(imageURL);
-      setImages(imagesState);
     }
   };
 

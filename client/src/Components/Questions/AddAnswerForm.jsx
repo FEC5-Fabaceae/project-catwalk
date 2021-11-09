@@ -14,8 +14,6 @@ const AddAnswerForm = (props) => {
   const [images, setImages] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
 
-  // console.log(images);
-
   const thumbnails = images.map((image, index) => (
     <img className="answers-form-thumbnails" src={image} alt="" key={index} />
   ));
@@ -65,14 +63,13 @@ const AddAnswerForm = (props) => {
 
           axios.post(`qa/questions/${questionID}/answers`, newValues)
             .then(() => {
+              setSubmitting(true);
               axios.get(`/qa/questions/?product_id=${productID}&count=100`)
                 .then((res) => {
                   setQuestions(res.data.results);
                 });
             })
             .catch((err) => console.log(err));
-
-          setSubmitting(false);
         }}
       >
         {({ isSubmitting }) => (

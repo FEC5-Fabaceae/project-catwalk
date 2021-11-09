@@ -50,7 +50,7 @@ const AddQuestionForm = (props) => {
                 });
             })
             .catch((err) => console.log(err));
-          setSubmitting(false);
+          setSubmitting(true);
         }}
       >
         {({ isSubmitting }) => (
