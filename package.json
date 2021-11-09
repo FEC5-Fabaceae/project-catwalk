@@ -4,7 +4,7 @@
     "server-dev": "nodemon server/server.js",
     "watch": "webpack --mode='development' --watch",
     "test": "jest",
-    "sass": "sass --watch input.scss './dist/styles.css'"
+    "sass-review": "sass --watch input.scss './dist/reviewStyles.css'"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
