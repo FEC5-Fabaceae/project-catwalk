@@ -1,26 +1,43 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import TextInput from './TextInput';
 import ProductIdContext from '../Context';
-// import GetProductName from './getProductName';
+import AddPhotos from './AddPhotos';
+import Modal from './Modal';
 
 const AddAnswerForm = (props) => {
-  const { questionID, setQuestions } = props;
+  const { questionID, questionBody, setQuestions } = props;
   const productID = useContext(ProductIdContext);
+  const [images, setImages] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const thumbnails = images.map((image, index) => (
+    <img className="answers-form-thumbnails" src={image} alt="" key={index} />
+  ));
+
+  const clickAddPhotosButton = () => {
+    setModalVisible(true);
+  };
 
   return (
     <>
       <h1>Submit Your Answer</h1>
-      <h3>[Product Name]: [Question Body]</h3>
+      <h3>
+        [Product Name]:
+        {' '}
+        {questionBody}
+      </h3>
       <Formik
         initialValues={{
           answer: '',
           nickName: '',
           email: '',
+          photos: [],
         }}
-        validationSchema={Yup.object({
+        validationSchema={Yup.object().shape({
           answer: Yup.string()
             .max(1000, 'Must be 1000 characters or less')
             .required('You must enter the following: \nanswer'),
@@ -31,24 +48,28 @@ const AddAnswerForm = (props) => {
             .email('Invalid email')
             .max(60, 'Must be 60 characters or less')
             .required('You must enter the following: \nemail address'),
+          photos: Yup.array()
+            .of(Yup.string())
+            .max(5, 'Must have 5 images or less'),
         })}
         onSubmit={(values, { setSubmitting }) => {
           const newValues = {
             body: values.answer,
             name: values.nickName,
             email: values.email,
-            photos: [], // how I am going to retrieve this from the files uploaded
+            photos: images,
           };
+          console.log(newValues);
 
           axios.post(`qa/questions/${questionID}/answers`, newValues)
             .then(() => {
+              setSubmitting(true);
               axios.get(`/qa/questions/?product_id=${productID}&count=100`)
                 .then((res) => {
                   setQuestions(res.data.results);
                 });
             })
             .catch((err) => console.log(err));
-          setSubmitting(false);
         }}
       >
         {({ isSubmitting }) => (
@@ -73,13 +94,40 @@ const AddAnswerForm = (props) => {
               placeholder="Example: jack@email.com"
             />
             <div>For authentication reasons, you will not be emailed</div>
-            <button type="button">Upload Photos</button>
+            <div className="photo-input">
+              {images.length < 5 && (
+                <button type="button" onClick={clickAddPhotosButton}>
+                  Add Photo URL
+                </button>
+              )}
+              {modalVisible
+                ? (
+                  <Modal
+                    setModalVisible={setModalVisible}
+                    component={(
+                      <AddPhotos
+                        imagesState={images}
+                        setImages={setImages}
+                      />
+                    )}
+                  />
+                )
+                : <></>}
+              <div className="thumbnail-container">
+                {thumbnails}
+              </div>
+            </div>
             <button type="submit" disabled={isSubmitting}>Submit</button>
           </Form>
         )}
       </Formik>
     </>
   );
+};
+
+AddAnswerForm.propTypes = {
+  questionID: PropTypes.number.isRequired,
+  questionBody: PropTypes.string.isRequired,
 };
 
 export default AddAnswerForm;

@@ -81,12 +81,14 @@ const AnswerItem = (props) => {
       <div className="answer-list-item-inline">
         {sellerName}
         <span>{moment(date).format('MMMM D, YYYY')}</span>
-        <span>Helpful?</span>
-        <button type="button" onClick={(e) => { handleClick(e, disableHelpful); }} value="Yes">Yes</button>
-        (
-        {helpfulness}
-        )
-        <button type="button" onClick={(e) => { handleClick(e, disableReport); }} value="Report">Report</button>
+        <span className="question-helpful">Helpful?</span>
+        <button className="question-button" type="button" onClick={(e) => { handleClick(e, disableHelpful); }} value="Yes">Yes</button>
+        <span className="question-helpful-number">
+          (
+          {helpfulness}
+          )
+        </span>
+        <button className="question-button" type="button" onClick={(e) => { handleClick(e, disableReport); }} value="Report">Report</button>
       </div>
     </div>
   );

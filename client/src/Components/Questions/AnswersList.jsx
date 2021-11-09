@@ -19,10 +19,10 @@ const AnswersList = (props) => {
 
   let AddCollapseButton;
   if (answers.length > 2 && answers.length !== visible) {
-    AddCollapseButton = <button type="button" onClick={clickButtonMore}>See more answers</button>;
+    AddCollapseButton = <button className="question-button" type="button" onClick={clickButtonMore}>See more answers</button>;
   }
   if (answers.length === visible && answers.length !== 2) {
-    AddCollapseButton = <button type="button" onClick={clickButtonCollapse}>Collapse answers</button>;
+    AddCollapseButton = <button className="question-button" type="button" onClick={clickButtonCollapse}>Collapse answers</button>;
   }
 
   return (
