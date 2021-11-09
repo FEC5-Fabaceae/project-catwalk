@@ -1,11 +1,14 @@
-import React, { useContext, useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
+import withInteractionsTracker from './InteractionsTracker';
 import Overview from './Overview/Overview';
 import RelatedProductsList from './Related Products/RelatedProductsList';
 import OutfitProductsList from './Related Products/OutfitList';
 import Reviews from './Review/Reviews';
 import QuestionAndAnswer from './Questions/QuestionAndAnswer';
 import ProductIdContext from './Context';
+import Navbar from './Navbar';
 
+import ProviderState from './Context/provider/ProviderState';
 // please add your components here in the order they appear
 const App = (props) => {
   const [productID, setProductID] = useState('40344');
@@ -16,11 +19,14 @@ const App = (props) => {
   return (
     <>
       <ProductIdContext.Provider value={value}>
-        <div><Overview /></div>
-        <div><RelatedProductsList /></div>
-        <div><OutfitProductsList /></div>
-        <div><QuestionAndAnswer /></div>
-        <div><Reviews /></div>
+        <div><Navbar /></div>
+        <ProviderState>
+          <div>{React.createElement(withInteractionsTracker(Overview))}</div>
+        </ProviderState>
+        <div>{React.createElement(withInteractionsTracker(RelatedProductsList))}</div>
+        <div>{React.createElement(withInteractionsTracker(OutfitProductsList))}</div>
+        <div>{React.createElement(withInteractionsTracker(QuestionAndAnswer))}</div>
+        <div>{React.createElement(withInteractionsTracker(Reviews))}</div>
       </ProductIdContext.Provider>
     </>
   );
