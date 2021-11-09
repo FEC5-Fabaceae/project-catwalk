@@ -85,3 +85,10 @@
 .modal-component {
   padding: 2em;
 }
+
+.answers-form-thumbnails {
+  height: 100px;
+  width: auto;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+}

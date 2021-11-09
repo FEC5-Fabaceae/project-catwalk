@@ -1,20 +1,37 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import TextInput from './TextInput';
-import PhotosInput from './PhotosInput';
 import ProductIdContext from '../Context';
-// import GetProductName from './getProductName';
+import AddPhotos from './AddPhotos';
+import Modal from './Modal';
 
 const AddAnswerForm = (props) => {
-  const { questionID, setQuestions } = props;
+  const { questionID, questionBody, setQuestions } = props;
   const productID = useContext(ProductIdContext);
+  const [images, setImages] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  // console.log(images);
+
+  const thumbnails = images.map((image, index) => (
+    <img className="answers-form-thumbnails" src={image} alt="" key={index} />
+  ));
+
+  const clickAddPhotosButton = () => {
+    setModalVisible(true);
+  };
 
   return (
     <>
       <h1>Submit Your Answer</h1>
-      <h3>[Product Name]: [Question Body]</h3>
+      <h3>
+        [Product Name]:
+        {' '}
+        {questionBody}
+      </h3>
       <Formik
         initialValues={{
           answer: '',
@@ -34,17 +51,17 @@ const AddAnswerForm = (props) => {
             .max(60, 'Must be 60 characters or less')
             .required('You must enter the following: \nemail address'),
           photos: Yup.array()
-            .of(Yup.mixed())
-            .nullable(true),
+            .of(Yup.string())
+            .max(5, 'Must have 5 images or less'),
         })}
         onSubmit={(values, { setSubmitting }) => {
-          console.log(values.photos);
           const newValues = {
             body: values.answer,
             name: values.nickName,
             email: values.email,
-            photos: [], // how I am going to retrieve this from the files uploaded
+            photos: images,
           };
+          console.log(newValues);
 
           axios.post(`qa/questions/${questionID}/answers`, newValues)
             .then(() => {
@@ -54,6 +71,7 @@ const AddAnswerForm = (props) => {
                 });
             })
             .catch((err) => console.log(err));
+
           setSubmitting(false);
         }}
       >
@@ -79,13 +97,28 @@ const AddAnswerForm = (props) => {
               placeholder="Example: jack@email.com"
             />
             <div>For authentication reasons, you will not be emailed</div>
-            <div>
-              <PhotosInput
-                label="Photo Upload"
-                name="photos"
-                type="file"
-                mulitple="true"
-              />
+            <div className="photo-input">
+              {images.length < 5 && (
+                <button type="button" onClick={clickAddPhotosButton}>
+                  Add Photo URL
+                </button>
+              )}
+              {modalVisible
+                ? (
+                  <Modal
+                    setModalVisible={setModalVisible}
+                    component={(
+                      <AddPhotos
+                        imagesState={images}
+                        setImages={setImages}
+                      />
+                    )}
+                  />
+                )
+                : <></>}
+              <div className="thumbnail-container">
+                {thumbnails}
+              </div>
             </div>
             <button type="submit" disabled={isSubmitting}>Submit</button>
           </Form>
@@ -93,6 +126,11 @@ const AddAnswerForm = (props) => {
       </Formik>
     </>
   );
+};
+
+AddAnswerForm.propTypes = {
+  questionID: PropTypes.number.isRequired,
+  questionBody: PropTypes.string.isRequired,
 };
 
 export default AddAnswerForm;
