@@ -18,7 +18,21 @@ const OutfitProductsList = (props) => {
   const [arrayOfOutfits, setArray] = useState([]);
   const [visibleProducts, setVisible] = useState([arrayOfOutfits.slice(0, 2)]);
   useEffect(() => {
+    axios.get('http://localhost:3000/outfits')
+      .then((data) => {
+        const oldOutfitList = data.data.outfits;
+        setArray(oldOutfitList);
+      });
+  }, []);
+  useEffect(() => {
     setVisible(arrayOfOutfits.slice(start, end));
+    axios({
+      method: 'post',
+      url: 'http://localhost:3000/outfits',
+      data: {
+        outfits: arrayOfOutfits,
+      },
+    });
   }, [arrayOfOutfits]);
   const previousSlide = (e) => {
     if (end === arrayOfOutfits.length) {
@@ -34,7 +48,6 @@ const OutfitProductsList = (props) => {
     }
   };
   const nextSlide = (e) => {
-    console.log(arrayOfOutfits);
     if (start === 0 && arrayOfOutfits.length > 3) {
       setLeftVisible('visible');
     }
