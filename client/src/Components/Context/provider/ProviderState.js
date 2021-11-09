@@ -48,7 +48,7 @@ const ProviderState = (props) => {
   const getCurrentStyle = (id) => {
     const currentStyle = state.styles[0].results.find(
       // eslint-disable-next-line radix
-      (style) => style.style_id == id,
+      (style) => style.style_id === parseInt(id),
     );
 
     dispatch({
