@@ -23,8 +23,8 @@ const ProviderState = (props) => {
   const [state, dispatch] = useReducer(ProviderReducer, initialState);
 
   useEffect(() => {
-    getProduct('40348');
-    getProductStyles('40348');
+    getProduct('40344');
+    getProductStyles('40344');
   }, []);
 
   const getProduct = (id) => {
