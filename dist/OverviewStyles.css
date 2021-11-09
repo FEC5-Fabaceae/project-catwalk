@@ -71,7 +71,6 @@ background-color:black;
   flex-direction: row;
 }
 
-
 .gallery-image {
   max-width: 100%;
   max-height: 100%;
@@ -97,6 +96,7 @@ background-color:black;
   justify-content: flex-start;
 
 }
+
 .style-select-icon-container{
   display: flex;
   flex-direction: row;
@@ -116,6 +116,7 @@ background-color:black;
   object-fit: cover;
 
 }
+
 .select-style-drop-list{
   width: 120px;
   border-style: solid;
