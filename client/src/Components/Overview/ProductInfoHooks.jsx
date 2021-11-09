@@ -27,6 +27,7 @@ const ProductInfoHooks = () => {
   }
   return (
     <>
+    <div><h1>{presentStyle.name}</h1></div>
       <div className="star-rating-row">
         <b>
           STYLE
