@@ -82,7 +82,12 @@ const ReviewList = () => {
       </section>
     );
   }
-  return <section>Loading...</section>;
+  return (
+    <section>
+      <h1>RATINGS AND REVIEWS</h1>
+      Loading...
+    </section>
+  );
 };
 
 export default ReviewList;
