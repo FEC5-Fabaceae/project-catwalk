@@ -67,10 +67,7 @@ const RelatedProduct = (props) => {
 
     <li className="carousel-card">
       <i className="far fa-star" type="button" />
-      <div onClick={() => {
-        console.log(value);
-        return value.setProductID(() => product.toString());
-        }}>
+      <div onClick={() => value.setProductID(() => product.toString())}>
         <h5>{relatedProductInfo.category}</h5>
         <h3>{relatedProductInfo.name}</h3>
         <img src={stylesInfo.photo} alt={relatedProductInfo.name} className="carousel-card carousel-image" />
