@@ -1,3 +1,6 @@
+/* body {
+  background-color: cornsilk;
+} */
 .navbar-wrapper{
   margin-left: 40px;
   margin-right: 40px;
@@ -18,7 +21,6 @@ background-color:black;
   margin-left: 40px;
 
 }
-
 .thumbnail-gallery{
   display: flex;
   -webkit-box-align: center;
