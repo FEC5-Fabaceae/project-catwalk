@@ -3,6 +3,7 @@
 /* eslint-disable react/sort-comp */
 /* eslint-disable react/no-unused-state */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+// import { reduce } from 'core-js/core/array';
 import React, { useContext } from 'react';
 import ProviderContext from '../Context/provider/ProviderContext';
 
@@ -28,7 +29,13 @@ const ProductInfoHooks = () => {
   return (
     <>
       <div><h1>{presentStyle.name}</h1></div>
-      <div>{presentStyle.sale_price? presentStyle.sale_price: presentStyle.original_price}</div>
+      {presentStyle.sale_price ? (
+        <>
+          <div style={{ color: 'red', textDecorationLine: 'line-through' }}>{presentStyle.original_price}</div>
+          <div>{presentStyle.sale_price}</div>
+        </>
+      )
+        : <div>{presentStyle.original_price}</div>}
       <div className="star-rating-row">
         <b>
           STYLE
@@ -66,7 +73,7 @@ const ProductInfoHooks = () => {
             </option>
           ))}
         </select>
-        <select name="sizes">
+        <select name="qty">
           <option>QTY</option>
         </select>
       </div>
