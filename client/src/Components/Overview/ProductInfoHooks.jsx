@@ -66,6 +66,9 @@ const ProductInfoHooks = () => {
             </option>
           ))}
         </select>
+        <select name="sizes">
+          <option>QTY</option>
+        </select>
       </div>
     </>
   );
