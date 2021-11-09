@@ -1,6 +1,5 @@
 .questions-answers-section {
   display: block;
-  flex-direction: column;
 }
 
 .questions-search {
@@ -19,6 +18,24 @@
   flex-direction: column;
 }
 
+.question-main-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.question-button {
+  padding: 0.25em;
+  background-color: white;
+}
+
+.question-button:hover {
+  background-color: lightsteelblue;
+}
+
+.question-list-more-button {
+  margin-right: 0.50em;
+}
+
 .questions-list-item-questionbody {
   display: inline-block;
 }
@@ -33,7 +50,17 @@
 }
 
 .question-interaction{
-  display: inline-block;
+  float:right;
+  margin: 1.5em;
+}
+
+.question-helpful {
+  padding: 0.5em;
+}
+
+.question-helpful-number {
+  padding-left: 0.33em;
+  padding-right: 1.5em;
 }
 
 /* .questions-list-item-answer {
@@ -44,7 +71,6 @@
 .scrollable-answer-list {
   overflow-y: auto;
   max-height: 50vh;
-  display: inline-block;
 }
 
 /* .answer-list {
@@ -60,7 +86,7 @@
 
 
 .modal-container {
-  background-color: lavenderblush;
+  background-color: lightsteelblue;
   border: 1px solid black;
   position: fixed;
   top: 33%;
@@ -71,14 +97,14 @@
 }
 
 .modal-close-button {
-  background-color: lavenderblush;
+  background-color: lightsteelblue;
   position: relative;
   z-index: 1;
   border: none;
 }
 
 .modal-close-button:hover {
-  background-color: lightsalmon;
+  background-color: lightslategray;
   border-radius: 50%;
 }
 

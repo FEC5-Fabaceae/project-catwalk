@@ -44,12 +44,14 @@ const QuestionItem = (props) => {
         <p className="questionbody">{question_body}</p>
       </section>
       <aside className="question-interaction">
-        <span>Helpful?</span>
-        <button type="button" onClick={(e) => { handleClick(e, disableHelpful); }} value="Yes">Yes</button>
-        (
-        {question_helpfulness}
-        )
-        <button type="button" onClick={clickAddAnswerButton}>
+        <span className="question-helpful">Helpful?</span>
+        <button className="question-button" type="button" onClick={(e) => { handleClick(e, disableHelpful); }} value="Yes">Yes</button>
+        <span className="question-helpful-number">
+          (
+          {question_helpfulness}
+          )
+        </span>
+        <button className="question-button" type="button" onClick={clickAddAnswerButton}>
           Add Answer
         </button>
         {modalVisible
