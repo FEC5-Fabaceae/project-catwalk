@@ -2,7 +2,9 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable react/no-unused-state */
 import React, { useContext, useState } from 'react';
+// import ProductIdContext from '../Context';
 import ProviderContext from '../Context/provider/ProviderContext';
 
 const GalleryHooks = () => {

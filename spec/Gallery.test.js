@@ -2,7 +2,6 @@
 import React from 'react';
 import { unmountComponentAtNode } from 'react-dom';
 import { render, screen } from '@testing-library/react';
-// import { toBeInTheDocument } from '@testing-library/jest-dom'
 import Gallery from '../client/src/Components/Overview/Gallery';
 
 let container = null;
