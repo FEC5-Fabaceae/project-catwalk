@@ -140,7 +140,7 @@ body {
 }
 .navbar{
   height: 60px;
-background-color:chocolate
+background-color:black;
 }
 .gallery{
   margin-left: 30px;
@@ -211,6 +211,11 @@ background-color:chocolate
   margin-top: 30px;
   justify-content: flex-start;
 }
+.style-icon{
+  border-radius: 50%;
+  border:black;
+  padding: 6px;
+}
 
 .gallery-image {
   max-width: 100%;
@@ -238,7 +243,7 @@ background-color:chocolate
 
 }
 .select-style-drop-list{
-  width: 64px;
+  width: 150px;
   border-style: solid;
 }
 
