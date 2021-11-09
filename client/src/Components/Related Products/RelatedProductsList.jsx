@@ -22,7 +22,10 @@ const RelatedProductsList = (props) => {
         setArray(data.data);
         setVisible(data.data.slice(start, end));
       });
-  }, [value.ProductIDContext, productID]);
+  }, [productID]);
+  useEffect(() => {
+    setProductID(value.productID);
+  }, [value]);
   const previousSlide = (e) => {
     if (end === arrayOfRelatedProducts.length) {
       setRightVisible('visible');
