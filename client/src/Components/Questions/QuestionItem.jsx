@@ -10,13 +10,14 @@ const QuestionItem = (props) => {
   const { question, setQuestions } = props;
   const { question_id, question_body, question_helpfulness, answers } = question;
   const value = useContext(ProductIdContext);
+  const { productID } = value;
   const [disableHelpful, setDisableHelpful] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
 
   const updateCount = () => {
     axios.put(`qa/questions/${question_id}/helpful`)
       .then(() => {
-        axios.get(`qa/questions/?product_id=${value}`)
+        axios.get(`qa/questions/?product_id=${productID}&count=50`)
           .then((res) => {
             setQuestions(res.data.results);
           });

@@ -18,6 +18,7 @@ const AnswerItem = (props) => {
     photos,
   } = answer;
   const value = useContext(ProductIdContext);
+  const { productID } = value;
   const [disableHelpful, setDisableHelpful] = useState(false);
   const [disableReport, setDisableReport] = useState(false);
 
@@ -42,7 +43,7 @@ const AnswerItem = (props) => {
   const updateCount = () => {
     axios.put(`/qa/answers/${id}/helpful`)
       .then(() => {
-        axios.get(`/qa/questions/?product_id=${value}`)
+        axios.get(`/qa/questions/?product_id=${productID}&count=50`)
           .then((res) => {
             setQuestions(res.data.results);
           });

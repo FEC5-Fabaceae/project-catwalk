@@ -6,12 +6,12 @@ import ProductIdContext from '../Context';
 
 const QuestionAndAnswer = () => {
   const value = useContext(ProductIdContext);
+  const { productID } = value;
   const [questionsState, setQuestionsState] = useState({});
   const [changedState, setChangedState] = useState(questionsState);
 
   const retrieveQuestions = () => {
-    // to get better data for now, switch back to ${value}
-    axios.get(`/qa/questions/?product_id=${value}&count=100`)
+    axios.get(`/qa/questions/?product_id=${productID}&count=50`)
       .then((res) => {
         setQuestionsState(res.data);
       })

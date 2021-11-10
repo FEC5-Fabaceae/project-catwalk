@@ -22,11 +22,11 @@ const App = (props) => {
         <div><Navbar /></div>
         <ProviderState>
           <div>{React.createElement(withInteractionsTracker(Overview))}</div>
+          <div>{React.createElement(withInteractionsTracker(RelatedProductsList))}</div>
+          <div>{React.createElement(withInteractionsTracker(OutfitProductsList))}</div>
+          <div>{React.createElement(withInteractionsTracker(QuestionAndAnswer))}</div>
+          <div>{React.createElement(withInteractionsTracker(Reviews))}</div>
         </ProviderState>
-        <div>{React.createElement(withInteractionsTracker(RelatedProductsList))}</div>
-        <div>{React.createElement(withInteractionsTracker(OutfitProductsList))}</div>
-        <div>{React.createElement(withInteractionsTracker(QuestionAndAnswer))}</div>
-        <div>{React.createElement(withInteractionsTracker(Reviews))}</div>
       </ProductIdContext.Provider>
     </>
   );
