@@ -71,19 +71,25 @@ const ReviewList = () => {
           type="button"
           className="load-more-reviews"
           disabled={loadedAll}
-          onClick={loadMoreReviews}>
+          onClick={loadMoreReviews}
+        >
           Load more reviews
         </button>
         <button
           type="button"
           className="submit-review"
-          >
+        >
           Submit a review
         </button>
       </section>
     );
   }
-  return <section>Loading...</section>;
+  return (
+    <section>
+      <h1>RATINGS AND REVIEWS</h1>
+      Loading...
+    </section>
+  );
 };
 
 export default ReviewList;
