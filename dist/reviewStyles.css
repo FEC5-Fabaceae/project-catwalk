@@ -152,4 +152,67 @@ body {
   grid-area: 1/1/2/2;
 }
 
+.star-00 {
+  display: inline-block;
+  position: relative;
+  color: #ddd;
+}
+
+.star-25 {
+  display: inline-block;
+  position: relative;
+  color: #ddd;
+}
+
+.star-25:after {
+  font-family: FontAwesome;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 25%;
+  overflow: hidden;
+  color: #ff9c3f;
+  content: "\f005";
+}
+
+.star-50 {
+  display: inline-block;
+  position: relative;
+  color: #ddd;
+}
+
+.star-50::after {
+  font-family: FontAwesome;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 25%;
+  overflow: hidden;
+  color: #ff9c3f;
+  content: "\f005";
+}
+
+.star-75 {
+  display: inline-block;
+  position: relative;
+  color: #ddd;
+}
+
+.star-75::after {
+  font-family: FontAwesome;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 25%;
+  overflow: hidden;
+  color: #ff9c3f;
+  content: "\f005";
+}
+
+.star-100 {
+  color: #f80;
+  display: inline-block;
+  position: relative;
+}
+
 /*# sourceMappingURL=reviewStyles.css.map */
