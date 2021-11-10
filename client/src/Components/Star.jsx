@@ -37,13 +37,17 @@ const Stars = (props) => {
   const { score } = props;
   const rounded = roundToNearestQuarter(score);
   const [base, percent] = String(rounded).split('.');
-  const extraEmptyStars = 5 - Number(base) - 1;
-  const stars = [...Array(Number(base))].map(() => <Star percent="100" />);
-  const emptyStars = [...Array(extraEmptyStars)].map(() => <Star percent="00" />);
+  const numEmptyStars = percent !== '00' ? 5 - Number(base) - 1
+    : 5 - Number(base);
+  const filledStars = [...Array(Number(base))].map(() => <Star percent="100" />);
+  const emptyStars = numEmptyStars > 0
+    ? [...Array(numEmptyStars)].map(() => <Star percent="00" />)
+    : '';
+  const fractionalStar = percent !== '00' ? <Star percent={percent} /> : '';
   return (
     <div className="stars">
-      {stars}
-      <Star percent={percent} />
+      {filledStars}
+      {fractionalStar}
       {emptyStars}
     </div>
   );
