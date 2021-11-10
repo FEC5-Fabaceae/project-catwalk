@@ -4,17 +4,22 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import TextInput from './TextInput';
 import ProductIdContext from '../Context';
-// import GetProductName from './getProductName';
+import ProviderContext from '../Context/provider/ProviderContext';
 
 const AddQuestionForm = (props) => {
-  const {setQuestions} = props;
+  const { setQuestions } = props;
   const productID = useContext(ProductIdContext);
+  const currentProduct = useContext(ProviderContext);
+  const { currentStyle } = currentProduct;
+  const { name } = currentStyle;
 
   return (
     <>
       <h1>Ask Your Question</h1>
       <h3>
-        About the [Product Name]
+        About the
+        {' '}
+        {name}
       </h3>
       <Formik
         initialValues={{

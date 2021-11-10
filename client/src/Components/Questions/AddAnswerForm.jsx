@@ -5,12 +5,16 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import TextInput from './TextInput';
 import ProductIdContext from '../Context';
+import ProviderContext from '../Context/provider/ProviderContext';
 import AddPhotos from './AddPhotos';
 import Modal from './Modal';
 
 const AddAnswerForm = (props) => {
   const { questionID, questionBody, setQuestions } = props;
   const productID = useContext(ProductIdContext);
+  const currentProduct = useContext(ProviderContext);
+  const { currentStyle } = currentProduct;
+  const { name } = currentStyle;
   const [images, setImages] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -26,7 +30,8 @@ const AddAnswerForm = (props) => {
     <>
       <h1>Submit Your Answer</h1>
       <h3>
-        [Product Name]:
+        {name}
+        :
         {' '}
         {questionBody}
       </h3>
