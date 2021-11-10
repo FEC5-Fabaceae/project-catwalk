@@ -12,6 +12,7 @@ const QuestionItem = (props) => {
   const value = useContext(ProductIdContext);
   const { productID } = value;
   const [disableHelpful, setDisableHelpful] = useState(false);
+  const [styleHelpful, setStyleHelpful] = useState({ color: 'black' });
   const [modalVisible, setModalVisible] = useState(false);
 
   const updateCount = () => {
@@ -25,10 +26,15 @@ const QuestionItem = (props) => {
       .catch((err) => console.log(err));
   };
 
+  const clickedYesStyle = {
+    color: 'rgb(182, 162, 162)',
+  };
+
   const handleClick = (e, state) => {
     if (e.target.value === 'Yes') {
       if (!state) {
         setDisableHelpful(true);
+        setStyleHelpful(clickedYesStyle);
         updateCount();
       }
     }
@@ -46,7 +52,7 @@ const QuestionItem = (props) => {
       </section>
       <aside className="question-interaction">
         <span className="question-helpful">Helpful?</span>
-        <button className="question-button" type="button" onClick={(e) => { handleClick(e, disableHelpful); }} value="Yes">Yes</button>
+        <button className="question-button" type="button" style={styleHelpful} onClick={(e) => { handleClick(e, disableHelpful); }} value="Yes">Yes</button>
         <span className="question-helpful-number">
           (
           {question_helpfulness}
