@@ -79,50 +79,60 @@ const AddAnswerForm = (props) => {
       >
         {({ isSubmitting }) => (
           <Form>
-            <TextInput
-              label="Your Answer *"
-              name="answer"
-              type="textarea"
-              placeholder="Your question..."
-            />
-            <TextInput
-              label="Nickname *"
-              name="nickName"
-              type="text"
-              placeholder="Example: jackson11!"
-            />
-            <div>For privacy reasons, do not use your full name or email address</div>
-            <TextInput
-              label="Email Address *"
-              name="email"
-              type="email"
-              placeholder="Example: jack@email.com"
-            />
-            <div>For authentication reasons, you will not be emailed</div>
-            <div className="photo-input">
-              {images.length < 5 && (
-                <button type="button" onClick={clickAddPhotosButton}>
-                  Add Photo URL
-                </button>
-              )}
-              {modalVisible
-                ? (
-                  <Modal
-                    setModalVisible={setModalVisible}
-                    component={(
-                      <AddPhotos
-                        imagesState={images}
-                        setImages={setImages}
-                      />
-                    )}
-                  />
-                )
-                : <></>}
-              <div className="thumbnail-container">
-                {thumbnails}
+            <div className="form-container">
+              <div className="form-input-container">
+                <TextInput
+                  label="Your Answer *"
+                  name="answer"
+                  type="textarea"
+                  placeholder="Your question..."
+                />
               </div>
+              <div className="form-input-container">
+                <TextInput
+                  label="Nickname *"
+                  name="nickName"
+                  type="text"
+                  placeholder="Example: jackson11!"
+                />
+                <div className="form-footnotes">For privacy reasons, do not use your full name or email address</div>
+              </div>
+              <div className="form-input-container">
+                <TextInput
+                  label="Email Address *"
+                  name="email"
+                  type="email"
+                  placeholder="Example: jack@email.com"
+                />
+                <div className="form-footnotes">For authentication reasons, you will not be emailed</div>
+              </div>
+              <div className="form-input-container">
+                <div className="photo-input">
+                  {images.length < 5 && (
+                    <button type="button" onClick={clickAddPhotosButton}>
+                      Add Photo URL
+                    </button>
+                  )}
+                  {modalVisible
+                    ? (
+                      <Modal
+                        setModalVisible={setModalVisible}
+                        component={(
+                          <AddPhotos
+                            imagesState={images}
+                            setImages={setImages}
+                          />
+                        )}
+                      />
+                    )
+                    : <></>}
+                  <div className="thumbnail-container">
+                    {thumbnails}
+                  </div>
+                </div>
+              </div>
+              <button type="submit" disabled={isSubmitting}>Submit</button>
             </div>
-            <button type="submit" disabled={isSubmitting}>Submit</button>
           </Form>
         )}
       </Formik>

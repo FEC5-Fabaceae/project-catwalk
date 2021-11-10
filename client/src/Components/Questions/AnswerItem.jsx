@@ -81,7 +81,7 @@ const AnswerItem = (props) => {
       </div>
       <div className="answer-list-item-inline">
         {sellerName}
-        <span>{moment(date).format('MMMM D, YYYY')}</span>
+        <span className="answer-date">{moment(date).format('MMMM D, YYYY')}</span>
         <span className="question-helpful">Helpful?</span>
         <button className="question-button" type="button" onClick={(e) => { handleClick(e, disableHelpful); }} value="Yes">Yes</button>
         <span className="question-helpful-number">
