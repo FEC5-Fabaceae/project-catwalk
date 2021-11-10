@@ -11,14 +11,16 @@ const ReviewList = () => {
   const [isLoaded, setLoaded] = useState(false);
   const [numDisplayed, setNumDisplayed] = useState(2);
   const [loadedAll, setLoadedAll] = useState(false);
-  const productId = useContext(ProductIdContext);
+  const context = useContext(ProductIdContext);
+  const { productID, setProductID } = context;
+  // const [productId, setProductId] = context;
 
   const getReviews = () => {
     const response = axios({
       method: 'get',
       url: '/reviews/',
       params: {
-        product_id: productId,
+        product_id: productID,
         sort,
       },
     });
@@ -48,7 +50,7 @@ const ReviewList = () => {
   };
 
   useEffect(() => {
-    getReviews('relevant').then((result) => {
+    getReviews().then((result) => {
       setCount(result.data.count);
       setReviews(result.data.results);
       console.log(reviews);

@@ -4,7 +4,8 @@ import ProductIdContext from '../Context';
 import RatingBreakdown from './RatingBreakdown';
 
 const Breakdown = () => {
-  const productId = useContext(ProductIdContext);
+  const context = useContext(ProductIdContext);
+  const { productID, setProductID } = context;
   const [metadata, setMetadata] = useState({});
   const [isLoaded, setLoaded] = useState(false);
   const getMetadata = () => {
@@ -12,7 +13,7 @@ const Breakdown = () => {
       method: 'get',
       url: '/reviews/meta',
       params: {
-        product_id: productId,
+        product_id: productID,
       },
     });
     return response;
