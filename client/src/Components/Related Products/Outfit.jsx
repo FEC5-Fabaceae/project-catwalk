@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const axios = require('axios');
 
 const Outfit = (props) => {
-  const { product } = props;
+  const { product, arrayOfOutfits, setArray } = props;
   const [OutfitProductInfo, setProduct] = useState({ name: '', category: '' });
   const [onSale, setSaleStatus] = useState(false);
   const [stylesInfo, setStylesInfo] = useState({});
@@ -60,10 +60,29 @@ const Outfit = (props) => {
     // also contains the photo we need
     // get the review metadata and calculate average
   }, [product]);
+  const removeProduct = () => {
+    // find where in the array of outfits the product is
+    let array = arrayOfOutfits.slice();
+    if (arrayOfOutfits.length > 0) {
+      let index = 0;
+      for (let i = 0; i < arrayOfOutfits.length; i += 1) {
+        if (arrayOfOutfits[i] === product) {
+          index = i;
+        }
+      }
+      if (arrayOfOutfits.length === 1) {
+        array = [];
+        setArray(() => array);
+      } else {
+        array.splice(index, 1);
+        setArray(() => array);
+      }
+      // splice starting at that point, going one element.
+    }
+  };
   return (
-
     <li className="carousel-card">
-      <i className="far fa-star" type="button" />
+      <i className="fas fa-times" type="Button" onClick={() => (removeProduct())} />
       <h5>{OutfitProductInfo.category}</h5>
       <h3>{OutfitProductInfo.name}</h3>
       <img src={stylesInfo.photo} alt={OutfitProductInfo.name} className="carousel-card carousel-image" />
