@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Stars from '../Star';
 
 const axios = require('axios');
 
@@ -54,7 +55,7 @@ const RelatedProduct = (props) => {
                 for (let key in rating) {
                   totalValues = totalValues + parseInt(rating[key], 10) * parseInt(key, 10);
                 }
-                const average = Math.floor(totalValues / totalRatings);
+                const average = (totalValues / totalRatings);
                 setRatings(average);
               });
           });
@@ -76,8 +77,7 @@ const RelatedProduct = (props) => {
           {stylesInfo.salePrice}
         </div>
         <div>
-          Star Rating:
-          {ratings}
+          <Stars score={ratings} />
         </div>
       </div>
     </li>

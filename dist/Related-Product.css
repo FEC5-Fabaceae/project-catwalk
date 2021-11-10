@@ -1,14 +1,15 @@
 .carousel-card {
   vertical-align: top;
-  text-align: left;
+  text-align: center;
   overflow: hidden;
-  min-height: 100%;
+  min-height: 99%;
   list-style-type: none;
   display: inline-block;
   white-space: normal;
   letter-spacing: normal;
   word-wrap: break-word;
   margin-left: 20px;
+  border: 1px solid black;
 }
 .carousel {
     margin: 0;
@@ -46,6 +47,7 @@
   max-height: 100px;
   min-width: 100px;
   max-width: 100px;
+  margin-right: 20px;
 }
 .fas.fa-step-backward {
   background-size: 10px 30px;
@@ -58,5 +60,5 @@
   visibility:visible;
 }
 .far.fa-star {
-  margin-right: 0px;
+  margin-top: 5px;
 }
