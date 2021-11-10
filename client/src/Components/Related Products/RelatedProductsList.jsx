@@ -13,7 +13,7 @@ const RelatedProductsList = (props) => {
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(3);
   const value = useContext(ProductIdContext);
-  const [productID, setProductID] = useState(value);
+  const [productID, setProductID] = useState(value.productID);
   const [arrayOfRelatedProducts, setArray] = useState([]);
   const [visibleProducts, setVisible] = useState([arrayOfRelatedProducts.slice(0, 2)]);
   useEffect(() => {
@@ -23,6 +23,9 @@ const RelatedProductsList = (props) => {
         setVisible(data.data.slice(start, end));
       });
   }, [productID]);
+  useEffect(() => {
+    setProductID(value.productID);
+  }, [value]);
   const previousSlide = (e) => {
     if (end === arrayOfRelatedProducts.length) {
       setRightVisible('visible');
@@ -60,7 +63,7 @@ const RelatedProductsList = (props) => {
           <div className="carousel-viewport">
             <ol className="carousel">
               {visibleProducts.map((relatedProductID) => (
-                <RelatedProduct product={relatedProductID} />
+                <RelatedProduct product={relatedProductID} value={value} />
               ))}
             </ol>
           </div>
