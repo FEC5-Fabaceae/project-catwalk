@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import RelatedProduct from './RelatedProduct';
 import ProductIdContext from '../Context';
+import Comparison from './Comparison';
 
 const axios = require('axios');
 
