@@ -60,27 +60,38 @@ const AddQuestionForm = (props) => {
       >
         {({ isSubmitting }) => (
           <Form>
-            <TextInput
-              label="Your Question *"
-              name="question"
-              type="textarea"
-              placeholder="Your question..."
-            />
-            <TextInput
-              label="Nickname *"
-              name="nickName"
-              type="text"
-              placeholder="Example: jackson11!"
-            />
-            <div>For privacy reasons, do not use your full name or email address</div>
-            <TextInput
-              label="Email Address *"
-              name="email"
-              type="email"
-              placeholder="Example: jack@email.com"
-            />
-            <div>For authentication reasons, you will not be emailed</div>
-            <button type="submit" disabled={isSubmitting}>Submit</button>
+            <div className="form-container">
+              <div className="form-input-container">
+                <TextInput
+                  label="Your Question *"
+                  name="question"
+                  type="textarea"
+                  placeholder="Your question..."
+                  className="input-box"
+                />
+              </div>
+              <div className="form-input-container">
+                <TextInput
+                  label="Nickname *"
+                  name="nickName"
+                  type="text"
+                  placeholder="Example: jackson11!"
+                  className="input-box"
+                />
+                <div className="form-footnotes">For privacy reasons, do not use your full name or email address</div>
+              </div>
+              <div className="form-input-container">
+                <TextInput
+                  label="Email Address *"
+                  name="email"
+                  type="email"
+                  placeholder="Example: jack@email.com"
+                  className="input-box"
+                />
+                <div className="form-footnotes">For authentication reasons, you will not be emailed</div>
+              </div>
+              <button type="submit" disabled={isSubmitting}>Submit</button>
+            </div>
           </Form>
         )}
       </Formik>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Comparison from './Comparison';
 import Stars from '../Star';
+import Modal from '../Questions/Modal';
 
 const axios = require('axios');
 
@@ -7,10 +9,11 @@ const RelatedProduct = (props) => {
   const { product } = props;
   const { value } = props;
   // eslint-disable-next-line prefer-const
-  const [relatedProductInfo, setProduct] = useState({ name: '', category: '' });
+  const [relatedProductInfo, setProduct] = useState({ name: '', category: '', features: '' });
   const [onSale, setSaleStatus] = useState(false);
   const [stylesInfo, setStylesInfo] = useState({});
   const [ratings, setRatings] = useState(1);
+  const [modalVisible, setModalVisible] = useState(false);
   useEffect(() => {
     // get the product name
     axios.get(`http://localhost:3000/products/${product}`)
@@ -18,7 +21,8 @@ const RelatedProduct = (props) => {
         const relatedProduct = data.data;
         const { name } = relatedProduct;
         const { category } = relatedProduct;
-        setProduct({ name, category });
+        const { features } = relatedProduct;
+        setProduct({ name, category, features });
         axios.get(`http://localhost:3000/products/${product}/styles`)
           .then((result) => {
             const styles = result.data.results;
@@ -64,10 +68,25 @@ const RelatedProduct = (props) => {
     // also contains the photo we need
     // get the review metadata and calculate average
   }, [product]);
+  const modalToggle = () => {
+    console.log('hi');
+    setModalVisible(true);
+  };
   return (
-
     <li className="carousel-card">
-      <i className="far fa-star" type="button" />
+      <i className="far fa-star" type="button" onClick={() => (modalToggle())} />
+      {
+          modalVisible
+            ? (
+              <Modal
+                setModalVisible={setModalVisible}
+                component={(
+                  <Comparison relatedProductInfo={relatedProductInfo} />
+                )}
+              />
+            )
+            : <></>
+        }
       <div onClick={() => value.setProductID(() => product.toString())}>
         <h5>{relatedProductInfo.category}</h5>
         <h3>{relatedProductInfo.name}</h3>

@@ -21,6 +21,8 @@ const AnswerItem = (props) => {
   const { productID } = value;
   const [disableHelpful, setDisableHelpful] = useState(false);
   const [disableReport, setDisableReport] = useState(false);
+  const [styleHelpful, setStyleHelpful] = useState({ color: 'black' });
+  const [styleReport, setStyleReport] = useState({ color: 'black' });
 
   let pictures;
   if (photos.length) {
@@ -39,6 +41,14 @@ const AnswerItem = (props) => {
   } else {
     sellerName = <span>{answerer_name}</span>;
   }
+
+  const clickedYesStyle = {
+    color: 'rgb(182, 162, 162)',
+  };
+
+  const clickedReportStyle = {
+    color: 'red',
+  };
 
   const updateCount = () => {
     axios.put(`/qa/answers/${id}/helpful`)
@@ -60,12 +70,14 @@ const AnswerItem = (props) => {
     if (e.target.value === 'Yes') {
       if (!state) {
         setDisableHelpful(true);
+        setStyleHelpful(clickedYesStyle);
         updateCount();
       }
     }
     if (e.target.value === 'Report') {
       if (!state) {
         setDisableReport(true);
+        setStyleReport(clickedReportStyle);
         reportAnswer();
       }
     }
@@ -80,16 +92,15 @@ const AnswerItem = (props) => {
         {pictures}
       </div>
       <div className="answer-list-item-inline">
-        {sellerName}
-        <span>{moment(date).format('MMMM D, YYYY')}</span>
+        <span>By {sellerName} on {moment(date).format('MMMM D, YYYY')}</span>
         <span className="question-helpful">Helpful?</span>
-        <button className="question-button" type="button" onClick={(e) => { handleClick(e, disableHelpful); }} value="Yes">Yes</button>
+        <button className="question-button" type="button" style={styleHelpful} onClick={(e) => { handleClick(e, disableHelpful); }} value="Yes">Yes</button>
         <span className="question-helpful-number">
           (
           {helpfulness}
           )
         </span>
-        <button className="question-button" type="button" onClick={(e) => { handleClick(e, disableReport); }} value="Report">Report</button>
+        <button className="question-button" type="button" style={styleReport} onClick={(e) => { handleClick(e, disableReport); }} value="Report">Report</button>
       </div>
     </div>
   );

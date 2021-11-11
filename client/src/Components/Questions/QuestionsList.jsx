@@ -34,7 +34,7 @@ const QuestionsList = (props) => {
 
   return (
     <>
-      <ul className="scrollable-question-list">
+      <ul className="question-list-container">
         {questions.filter(
           (question, index) => (index < visible),
         )
