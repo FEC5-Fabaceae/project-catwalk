@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-const axios = require('axios');
-
-const AddOutfit = (props) => {
-  const { product, arrayOfOutfits, setArray } = props;
+const AddOutfit = ({ product, arrayOfOutfits, setArray }) => {
   const updateArray = () => {
-    let isFound = false;
-    for (let i = 0; i < arrayOfOutfits.length; i += 1) {
-      if (product === arrayOfOutfits[i]) {
-        isFound = true;
-      }
-    }
+    let isFound = arrayOfOutfits.includes(product);
     if (!isFound) {
       setArray(() => [...arrayOfOutfits, product]);
     }
@@ -18,7 +10,7 @@ const AddOutfit = (props) => {
 
   return (
     <li className="carousel-card">
-      <i className="far fa-plus-square" type="button" onClick={(e) => {updateArray()}} />
+      <i className="far fa-plus-square" type="button" onClick={updateArray} />
       <p>Add Current Product To Outfit</p>
     </li>
   );
