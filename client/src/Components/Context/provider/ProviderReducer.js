@@ -1,7 +1,10 @@
+import { act } from 'react-test-renderer';
 import {
   GET_PRODUCT,
   GET_PRODUCT_STYLES,
   GET_CURRENT_STYLE,
+  GET_CART_ITEMS,
+  ADD_CART_ITEMS,
 } from '../types';
 
 export default (state, action) => {
@@ -23,6 +26,16 @@ export default (state, action) => {
       return {
         ...state,
         currentStyle: action.payload,
+      };
+    case GET_CART_ITEMS:
+      return {
+        ...state,
+        cart: action.payload,
+      };
+    case ADD_CART_ITEMS:
+      return {
+        ...state,
+        cart: [...state.cart, action.payload],
       };
     default:
       return state;

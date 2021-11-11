@@ -41,7 +41,7 @@ background-color:black;
   overflow: hidden;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 100%;wq
   object-fit: contain;
 
 }
@@ -101,18 +101,18 @@ background-color:black;
   display: flex;
   flex-direction: row;
   flex-wrap:wrap;
+  width:300px;
   margin-top: 30px;
   justify-content: flex-start;
 }
 .style-icon{
 
-  flex: 1 0 21%;
-  flex-grow: 0;
+  /* flex: 1 0 21%;
+  flex-grow: 0; */
   border-radius: 50%;
   border: solid black;
   padding: 3px;
-  width: inherit;
-  height: inherit;
+
   object-fit: cover;
 
 }

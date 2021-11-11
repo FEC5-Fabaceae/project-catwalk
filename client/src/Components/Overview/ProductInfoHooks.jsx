@@ -6,6 +6,7 @@
 // import { reduce } from 'core-js/core/array';
 import React, { useContext } from 'react';
 import ProviderContext from '../Context/provider/ProviderContext';
+import ProductSelector from './ProductSelector';
 
 const ProductInfoHooks = () => {
   const providerContext = useContext(ProviderContext);
@@ -22,6 +23,12 @@ const ProductInfoHooks = () => {
     providerContext.getCurrentStyle(e.target.name);
     providerContext.getProduct(e.target.id);
   };
+  // const handleChange = () => {
+  //   const select = document.getElementById('size');
+  //   const { text } = select.options[select.selected];
+  //   // console.log(e.target[e.target.selectedIndex].dataset.id);
+  //   console.log(text);
+  // };
 
   if (!stylesArray[0]) {
     return <p>Loading</p>;
@@ -59,24 +66,8 @@ const ProductInfoHooks = () => {
           </>
         ))}
       </div>
-      <div style={{ padding: '10px' }}>
-        {/* <label for="sizes">SELECT SIZE</label> */}
-        <select name="sizes" className="select-style-drop-list">
-          <option>SELECT SIZE</option>
-          {presentStyle.skus && Object.keys(presentStyle.skus).map((sku) => (
-            <option
-              id={presentStyle.skus[sku].quantity}
-              value={presentStyle.skus[sku].quantity}
-            >
-              {presentStyle.skus[sku].size}
+      <ProductSelector />
 
-            </option>
-          ))}
-        </select>
-        <select name="qty">
-          <option>QTY</option>
-        </select>
-      </div>
     </>
   );
 };
