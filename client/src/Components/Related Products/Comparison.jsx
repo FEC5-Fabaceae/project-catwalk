@@ -43,8 +43,8 @@ const Comparison = (props) => {
   return (
     <div>
       <h4>Comparing</h4>
-      <div>ProductName1</div>
-      <div>ProductName2</div>
+      <div>{currentProductInfo.name}</div>
+      <div>{relatedProductInfo.name}</div>
       {currentProductInfo.features.map((featureObj) => {
         // {feature: value:}
         // set relatedValue to null
