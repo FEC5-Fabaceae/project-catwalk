@@ -5,6 +5,7 @@ import ProductIdContext from '../Context';
 import ReviewForm from './ReviewForm';
 
 const ReviewList = (props) => {
+  const { characteristics } = props;
   const [reviews, setReviews] = useState([]);
   const [sort, setSort] = useState('relevant');
   const [count, setCount] = useState(0);
@@ -88,7 +89,7 @@ const ReviewList = (props) => {
         >
           Submit a review
         </button>
-        {viewForm ? <ReviewForm /> : ''}
+        {viewForm ? <ReviewForm characteristics={characteristics} /> : ''}
       </section>
       </>
     );
