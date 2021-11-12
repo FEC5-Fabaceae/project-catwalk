@@ -85,7 +85,7 @@ const Outfit = (props) => {
     <li className="carousel-card">
       <i className="fas fa-times" type="Button" onClick={() => (removeProduct())} />
       <h5>{OutfitProductInfo.category}</h5>
-      <h3>{OutfitProductInfo.name}</h3>
+      <h3 className="outfit-product-name">{OutfitProductInfo.name}</h3>
       <img src={stylesInfo.photo} alt={OutfitProductInfo.name} className="carousel-card carousel-image" />
       <div>
         $

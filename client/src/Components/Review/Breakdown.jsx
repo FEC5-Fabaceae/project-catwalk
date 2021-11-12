@@ -28,7 +28,6 @@ const Breakdown = () => {
   }, [isLoaded]);
 
   if (isLoaded) {
-    console.log(metadata);
     return (
       <aside>
         <RatingBreakdown ratings={metadata.ratings} />

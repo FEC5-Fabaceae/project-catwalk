@@ -16,7 +16,7 @@
 
 .modal-close-button {
   background-color: rgb(182, 162, 162);
-  position: relative;
+  position: absolute;
   z-index: 1;
   border: none;
 }

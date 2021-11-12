@@ -16,7 +16,8 @@ const RelatedProduct = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
   useEffect(() => {
     // get the product name
-    axios.get(`http://localhost:3000/products/${product}`)
+    if (typeof product === "number") {
+      axios.get(`http://localhost:3000/products/${product}`)
       .then((data) => {
         const relatedProduct = data.data;
         const { name } = relatedProduct;
@@ -64,12 +65,13 @@ const RelatedProduct = (props) => {
               });
           });
       });
+    }
+
     // get the product styles to find the default style and its associated price.
     // also contains the photo we need
     // get the review metadata and calculate average
   }, [product]);
   const modalToggle = () => {
-    console.log('hi');
     setModalVisible(true);
   };
   return (

@@ -11,7 +11,7 @@ const AddOutfit = ({ product, arrayOfOutfits, setArray }) => {
   return (
     <li className="carousel-card">
       <i className="far fa-plus-square" type="button" onClick={updateArray} />
-      <p>Add Current Product To Outfit</p>
+      <p className="add-product-card">Add Product To Outfit</p>
     </li>
   );
 };

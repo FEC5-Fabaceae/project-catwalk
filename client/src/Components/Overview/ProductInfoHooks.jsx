@@ -17,7 +17,6 @@ const ProductInfoHooks = () => {
   const presentStyle = providerContext.currentStyle;
 
   if (stylesArray[0]) {
-    console.log(stylesArray[0].results);
   }
 
   const handleClick = (e) => {

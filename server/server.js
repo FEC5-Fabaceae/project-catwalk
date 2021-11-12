@@ -14,10 +14,10 @@ const authorization = require('./.config');
 const app = express();
 app.use(compression());
 app.use(express.json());
-app.get('/', (req, res) => {
-  const app = ReactDOMServer.renderToString(<App />);
-  res.send(app);
-}
+// app.get('/', (req, res) => {
+//   const app = ReactDOMServer.renderToString(<App />);
+//   res.send(app);
+// }
 app.use('/', express.static(path.join(__dirname, '/../dist')));
 app.use(cookieParser());
 // other configuration...

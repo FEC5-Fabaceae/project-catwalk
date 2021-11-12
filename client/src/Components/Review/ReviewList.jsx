@@ -43,7 +43,6 @@ const ReviewList = () => {
 
   const generateReviewTiles = (filter) => {
     const filteredReviews = reviews.filter(filter).slice(0, numDisplayed);
-    console.log("reviews=", reviews, "filtered=", filteredReviews);
     setReviewTiles(filteredReviews.map(
       (review) => <ReviewTile key={review.review_id} review={review} />,
     ));
@@ -53,7 +52,6 @@ const ReviewList = () => {
     getReviews().then((result) => {
       setCount(result.data.count);
       setReviews(result.data.results);
-      console.log(reviews);
       setLoaded(true);
       generateReviewTiles(() => true);
     });
