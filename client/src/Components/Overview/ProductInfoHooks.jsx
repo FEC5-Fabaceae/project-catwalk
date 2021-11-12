@@ -5,6 +5,8 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 // import { reduce } from 'core-js/core/array';
 import React, { useContext } from 'react';
+import { FaFacebook, FaInstagramSquare, FaTwitterSquare } from 'react-icons/fa';
+import ProductSelector from './ProductSelector';
 import ProviderContext from '../Context/provider/ProviderContext';
 
 const ProductInfoHooks = () => {
@@ -28,22 +30,27 @@ const ProductInfoHooks = () => {
   }
   return (
     <>
-      <div><h1>{presentStyle.name}</h1></div>
-      {presentStyle.sale_price ? (
-        <>
-          <div style={{ color: 'red', textDecorationLine: 'line-through' }}>{presentStyle.original_price}</div>
-          <div>{presentStyle.sale_price}</div>
-        </>
-      )
-        : <div>{presentStyle.original_price}</div>}
-      <div className="star-rating-row">
-        <b>
-          STYLE
-          {'>'}
-        </b>
-        <div>{category}</div>
-      </div>
+      <div className="left-text">
+        <div><h1>{presentStyle.name}</h1></div>
+        {presentStyle.sale_price ? (
+          <>
+            <div style={{ color: 'red', textDecorationLine: 'line-through' }}>{presentStyle.original_price}</div>
+            <div>{presentStyle.sale_price}</div>
+          </>
+        )
+          : <div>{presentStyle.original_price}</div>}
+        <div className="star-rating-row">
+          <b>
+            STYLE
+            {'>'}
+          </b>
+          <div>
+            &nbsp;
+            {category}
 
+          </div>
+        </div>
+      </div>
       <div className="style-select-icon-container">
         {stylesArray[0].results && stylesArray[0].results.map((photo) => (
           <>
@@ -59,24 +66,30 @@ const ProductInfoHooks = () => {
           </>
         ))}
       </div>
-      <div style={{ padding: '10px' }}>
-        {/* <label for="sizes">SELECT SIZE</label> */}
-        <select name="sizes" className="select-style-drop-list">
-          <option>SELECT SIZE</option>
-          {presentStyle.skus && Object.keys(presentStyle.skus).map((sku) => (
-            <option
-              id={presentStyle.skus[sku].quantity}
-              value={presentStyle.skus[sku].quantity}
-            >
-              {presentStyle.skus[sku].size}
+      <ProductSelector />
+      <span>
+        <a href="https://www.facebook.com">
+          <FaFacebook style={{
+            margin: '20px', height: '40px', width: '40px', color: '#4267B2',
+          }}
+          />
+        </a>
+        <a href="https://www.instagram.com">
+          <FaInstagramSquare
+            className="instagram"
+            style={{
+              margin: '20px', height: '40px', width: '40px',
+            }}
+          />
+        </a>
+        <a href="https://www.twitter.com">
+          <FaTwitterSquare style={{
+            margin: '20px', height: '40px', width: '40px', color: '#00acee ',
+          }}
+          />
+        </a>
+      </span>
 
-            </option>
-          ))}
-        </select>
-        <select name="qty">
-          <option>QTY</option>
-        </select>
-      </div>
     </>
   );
 };
