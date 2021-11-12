@@ -11,22 +11,44 @@ body {
 }
 
 #breakdown {
-  background-color: #CFEAFF;
+  background-color: #b6a2a2;
   flex-basis: 25%;
+  margin: 10px;
+  border-radius: 5px;
 }
 
 #rating-breakdown {
-  color: #29335C;
+  color: #010203;
+  margin: 10px 10px;
 }
 
 #review-list {
   background-color: #FFFDF5;
   border: 1px;
   flex-basis: 75%;
+  padding: 10px 10px;
+  border-radius: 5px;
+}
+
+.review-tile {
+  background-color: #ebe5dd;
+  border-radius: 10px;
+  padding: 1%;
+  margin: 25px;
+}
+
+#averages {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
 }
 
 #average-score {
-  padding-left: 20px;
+  font-size: 200%;
+}
+
+#average-stars {
+  float: right;
 }
 
 .percentage {
@@ -40,100 +62,89 @@ body {
 .rating-bar-00 {
   display: grid;
   overflow: hidden;
-  border: 2px solid white;
-  border-radius: 1px;
   grid-template-columns: 0fr 10fr;
   grid-area: 1/2/2/3;
+  margin: 1px;
 }
 
 .rating-bar-10 {
   display: grid;
   overflow: hidden;
-  border: 2px solid white;
-  border-radius: 1px;
   grid-template-columns: 1fr 9fr;
   grid-area: 1/2/2/3;
+  margin: 1px;
 }
 
 .rating-bar-20 {
   display: grid;
   overflow: hidden;
-  border: 2px solid white;
-  border-radius: 1px;
   grid-template-columns: 2fr 8fr;
   grid-area: 1/2/2/3;
+  margin: 1px;
 }
 
 .rating-bar-30 {
   display: grid;
   overflow: hidden;
-  border: 2px solid white;
-  border-radius: 1px;
   grid-template-columns: 3fr 7fr;
   grid-area: 1/2/2/3;
+  margin: 1px;
 }
 
 .rating-bar-40 {
   display: grid;
   overflow: hidden;
-  border: 2px solid white;
-  border-radius: 1px;
   grid-template-columns: 4fr 6fr;
   grid-area: 1/2/2/3;
+  margin: 1px;
 }
 
 .rating-bar-50 {
   display: grid;
   overflow: hidden;
-  border: 2px solid white;
-  border-radius: 1px;
   grid-template-columns: 5fr 5fr;
   grid-area: 1/2/2/3;
+  margin: 1px;
 }
 
 .rating-bar-60 {
   display: grid;
   overflow: hidden;
-  border: 2px solid white;
-  border-radius: 1px;
   grid-template-columns: 6fr 4fr;
   grid-area: 1/2/2/3;
+  margin: 1px;
 }
 
 .rating-bar-70 {
   display: grid;
   overflow: hidden;
-  border: 2px solid white;
-  border-radius: 1px;
   grid-template-columns: 7fr 3fr;
   grid-area: 1/2/2/3;
+  margin: 1px;
 }
 
 .rating-bar-80 {
   display: grid;
   overflow: hidden;
-  border: 2px solid white;
-  border-radius: 1px;
   grid-template-columns: 8fr 2fr;
   grid-area: 1/2/2/3;
+  margin: 1px;
 }
 
 .rating-bar-90 {
   display: grid;
   overflow: hidden;
-  border: 2px solid white;
-  border-radius: 1px;
   grid-template-columns: 9fr 1fr;
   grid-area: 1/2/2/3;
+  margin: 1px;
 }
 
 .rating-bar-100 {
   display: grid;
   overflow: hidden;
-  border: 2px solid white;
-  border-radius: 1px;
   grid-template-columns: 10fr 0fr;
   grid-area: 1/2/2/3;
+  margin: 1px;
 }
 
 .filled-rating-bar {
@@ -157,12 +168,14 @@ body {
   display: inline-block;
   position: relative;
   color: #ddd;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 }
 
 .star-25 {
   display: inline-block;
   position: relative;
   color: #ddd;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 }
 
 .star-25:after {
@@ -180,6 +193,7 @@ body {
   display: inline-block;
   position: relative;
   color: #ddd;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 }
 
 .star-50::after {
@@ -197,6 +211,7 @@ body {
   display: inline-block;
   position: relative;
   color: #ddd;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
 }
 
 .star-75::after {
@@ -214,6 +229,35 @@ body {
   color: #FFCE0A;
   display: inline-block;
   position: relative;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+}
+
+fieldset {
+  border-color: #b6a2a2;
+  border-style: solid;
+  background-color: #ebe5dd;
+}
+
+fieldset fieldset {
+  background-color: #f7f5f2;
+}
+
+.checkmark {
+  color: #646F58;
+  flex-direction: row;
+  align-content: space-between;
+}
+
+.review-header {
+  background-color: #b6a2a2;
+  border-radius: 10px 10px 0px 0px;
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+time {
+  font-weight: lighter;
 }
 
 /*# sourceMappingURL=reviewStyles.css.map */

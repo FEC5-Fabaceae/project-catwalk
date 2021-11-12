@@ -68,29 +68,29 @@ const ReviewList = (props) => {
   if (isLoaded) {
     return (
       <>
-      <section id="review-list">
-        <h1>RATINGS AND REVIEWS</h1>
-        <h2>
-          {`${count} reviews, sorted by ${sortTypes[sort]}`}
-        </h2>
-        <>{reviewTiles}</>
-        <button
-          type="button"
-          className="load-more-reviews"
-          disabled={loadedAll}
-          onClick={loadMoreReviews}
-        >
-          Load more reviews
-        </button>
-        <button
-          type="button"
-          className="submit-review"
-          onClick={handleClickSubmitReview}
-        >
-          Submit a review
-        </button>
-        {viewForm ? <ReviewForm characteristics={characteristics} /> : ''}
-      </section>
+        <section id="review-list">
+          <h1 id="review-list-title">RATINGS AND REVIEWS</h1>
+          <h2>
+            {`${count} reviews, sorted by ${sortTypes[sort]}`}
+          </h2>
+          <>{reviewTiles}</>
+          <button
+            type="button"
+            className="load-more-reviews"
+            disabled={loadedAll}
+            onClick={loadMoreReviews}
+          >
+            Load more reviews
+          </button>
+          <button
+            type="button"
+            className="submit-review"
+            onClick={handleClickSubmitReview}
+          >
+            Submit a review
+          </button>
+          {viewForm ? <ReviewForm characteristics={characteristics} /> : ''}
+        </section>
       </>
     );
   }
