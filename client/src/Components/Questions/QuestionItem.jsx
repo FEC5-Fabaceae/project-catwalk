@@ -27,7 +27,7 @@ const QuestionItem = (props) => {
   };
 
   const clickedYesStyle = {
-    color: 'rgb(182, 162, 162)',
+    color: '#646F58',
   };
 
   const handleClick = (e, state) => {
