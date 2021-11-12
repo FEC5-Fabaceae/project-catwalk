@@ -21,6 +21,7 @@ body {
 
 #review-list {
   background-color: #FFFDF5;
+  border: 1px;
   flex-basis: 75%;
 }
 
@@ -136,7 +137,7 @@ body {
 }
 
 .filled-rating-bar {
-  background: green;
+  background: #646F58;
 }
 
 .empty-rating-bar {
@@ -171,7 +172,7 @@ body {
   top: 0;
   width: 25%;
   overflow: hidden;
-  color: #ff9c3f;
+  color: #FFCE0A;
   content: "\f005";
 }
 
@@ -188,7 +189,7 @@ body {
   top: 0;
   width: 25%;
   overflow: hidden;
-  color: #ff9c3f;
+  color: #FFCE0A;
   content: "\f005";
 }
 
@@ -205,12 +206,12 @@ body {
   top: 0;
   width: 25%;
   overflow: hidden;
-  color: #ff9c3f;
+  color: #FFCE0A;
   content: "\f005";
 }
 
 .star-100 {
-  color: #f80;
+  color: #FFCE0A;
   display: inline-block;
   position: relative;
 }

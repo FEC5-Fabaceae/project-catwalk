@@ -33,7 +33,7 @@ const Reviews = () => {
   return (
     <section id="review-section">
       <Breakdown isLoaded={isLoaded} metadata={metadata} />
-      <ReviewList />
+      <ReviewList characteristics={metadata.characteristics} />
     </section>
   );
 };
