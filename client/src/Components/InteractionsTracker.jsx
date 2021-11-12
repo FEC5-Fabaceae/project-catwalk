@@ -10,18 +10,33 @@ const withInteractionsTracker = (Component) => class extends React.Component {
 
   // eslint-disable-next-line class-methods-use-this
   handleMouseClick(e) {
-    const element = e.target.outerHTML;
-    const widget = Component.name;
-    const time = new Date();
-    axios({
-      url: 'http://localhost:3000/interactions',
-      method: 'post',
-      data: {
-        element,
-        widget,
-        time,
-      },
-    });
+    if (Component._payload !== undefined) {
+      const element = e.target.outerHTML;
+      const widget = Component._payload._result.name;
+      const time = new Date();
+      axios({
+        url: 'http://localhost:3000/interactions',
+        method: 'post',
+        data: {
+          element,
+          widget,
+          time,
+        },
+      });
+    } else {
+      const element = e.target.outerHTML;
+      const widget = Component.name;
+      const time = new Date();
+      axios({
+        url: 'http://localhost:3000/interactions',
+        method: 'post',
+        data: {
+          element,
+          widget,
+          time,
+        },
+      });
+    }
   }
 
   render() {

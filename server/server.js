@@ -1,15 +1,24 @@
 // eslint-disable-next-line import/extensions
+// import React from 'react';
+// import ReactDOMServer from 'react-dom/server';
+// import App from '../client/src/Components/App';
+
 const axios = require('axios');
 const path = require('path');
 const express = require('express'); // npm installed
+const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const url = require('url');
 const authorization = require('./.config');
 
 const app = express();
-
-app.use(express.static(path.join(__dirname, '/../dist')));
+app.use(compression());
 app.use(express.json());
+app.get('/', (req, res) => {
+  const app = ReactDOMServer.renderToString(<App />);
+  res.send(app);
+}
+app.use('/', express.static(path.join(__dirname, '/../dist')));
 app.use(cookieParser());
 // other configuration...
 axios.defaults.headers.common.Authorization = authorization;

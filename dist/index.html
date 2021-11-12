@@ -3,14 +3,442 @@
 
 <head>
   <meta charset="UTF-8">
-  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-  <script src="https://kit.fontawesome.com/7274b136be.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="./Stylesheet.css">
-  <link rel="stylesheet" href="./reviewStyles.css">
-  <link rel="stylesheet" href="./Related-Product.css">
-  <link rel="stylesheet" type="text/css" href="OverviewStyles.css">
-  <link rel="stylesheet" type="text/css" href="questionsStyle.css">
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js" defer></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" defer></script>
+  <script src="https://kit.fontawesome.com/7274b136be.js" crossorigin="anonymous" defer></script>
+  <link rel="stylesheet" rel="preload" href="./reviewStyles.css">
+  <link rel="stylesheet" rel="preload" type="text/css" href="OverviewStyles.css">
+  <link rel="stylesheet" rel="preload" type="text/css" href="questionsStyle.css">
+  <style>
+    .thumbnail-gallery {
+      display: flex;
+      -webkit-box-align: center;
+      justify-content: flex-start;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      flex-direction: column;
+      /* width: 64px;
+  height: 100%; */
+    }
+
+    .thumbnail-images {
+      display: flex;
+      justify-content: flex-start;
+      -webkit-box-pack: center;
+      position: relative;
+      overflow: hidden;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+
+    }
+
+    .thumbnail-images img {
+      /* display:flex;
+  justify-content: flex-start;
+  -webkit-box-pack:center;
+  position: relative;
+  overflow: hidden;
+  flex-direction: column; */
+      width: 49px;
+      height: 49px;
+      object-fit: fill;
+      padding: 6px;
+      border-color: solid black;
+
+    }
+
+    .spacer {
+      display: flex;
+      flex-direction: column;
+      width: 64px;
+      background-color: black;
+    }
+
+    .product-overview-container {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .gallery-image {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: fill;
+    }
+
+    .product-overview-container-left {
+      display: flex;
+      justify-content: center;
+      width: 60%
+    }
+
+    .product-overview-container-right {
+      display: flex;
+      flex-direction: column;
+      width: 30%;
+      padding: 10px;
+      background-color: rgb(182, 162, 162);
+    }
+
+    .star-rating-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+
+    }
+
+    .style-select-icon-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-top: 30px;
+      justify-content: flex-start;
+    }
+
+    .style-icon {
+
+      flex: 1 0 21%;
+      flex-grow: 0;
+      border-radius: 50%;
+      border: solid black;
+      padding: 3px;
+      width: inherit;
+      height: inherit;
+      object-fit: cover;
+
+    }
+
+    .select-style-drop-list {
+      width: 120px;
+      border-style: solid;
+    }
+
+    .right {
+      /* transform: rotate(-45deg); */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .left {
+      /* transform: rotate(135deg); */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .viewer-wrap {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-shrink: zero;
+      width: 732.11px;
+      height: 567px;
+    }
+
+    .viewer-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .viewer-wrap {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    body {
+      background-color: cornsilk;
+    }
+
+    #review-section {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      justify-content: flex-start;
+      align-items: stretch;
+    }
+
+    #rating-breakdown {
+      color: #29335C;
+    }
+
+    #review-list {
+      background-color: #FFFDF5;
+      flex-basis: 75%;
+    }
+
+    .percentage {
+      display: grid;
+      grid-template-columns: 1fr 3fr 1fr;
+      grid-template-rows: 1fr;
+      grid-column-gap: 0px;
+      grid-row-gap: 0px;
+    }
+
+    .rating-bar-10 {
+      display: grid;
+      overflow: hidden;
+      border: 2px solid white;
+      border-radius: 1px;
+      grid-template-columns: 1fr 9fr;
+      grid-area: 1/2/2/3;
+    }
+
+    .rating-bar-20 {
+      display: grid;
+      overflow: hidden;
+      border: 2px solid white;
+      border-radius: 1px;
+      grid-template-columns: 2fr 8fr;
+      grid-area: 1/2/2/3;
+    }
+
+    .rating-bar-50 {
+      display: grid;
+      overflow: hidden;
+      border: 2px solid white;
+      border-radius: 1px;
+      grid-template-columns: 5fr 5fr;
+      grid-area: 1/2/2/3;
+    }
+
+    .filled-rating-bar {
+      background: green;
+    }
+
+    .empty-rating-bar {
+      background: lightgray;
+      color: lightgray;
+    }
+
+    .individual-rating-total {
+      grid-area: 1/3/2/4;
+    }
+
+    .bar-label {
+      grid-area: 1/1/2/2;
+    }
+
+    .star-00 {
+      display: inline-block;
+      position: relative;
+      color: #ddd;
+    }
+
+    .star-25 {
+      display: inline-block;
+      position: relative;
+      color: #ddd;
+    }
+
+    .star-75 {
+      display: inline-block;
+      position: relative;
+      color: #ddd;
+    }
+
+    .star-75::after {
+      font-family: FontAwesome;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 25%;
+      overflow: hidden;
+      color: #ff9c3f;
+      content: "\f005";
+    }
+
+    .star-100 {
+      color: #f80;
+      display: inline-block;
+      position: relative;
+    }
+
+    .questions-answers-section {
+      display: block;
+    }
+
+    .questions-search {
+      padding: 0px 40px;
+    }
+
+    .search-questions {
+      width: 75vw;
+      padding: 0.50em;
+    }
+
+    .question-list-container {
+      overflow-y: auto;
+      max-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .question-main-buttons {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .question-button {
+      padding: 0.25em;
+      background-color: cornsilk;
+      border: none;
+      font-size: 1em;
+    }
+
+    .question-list-more-button {
+      margin-right: 0.50em;
+    }
+
+    .questions-list-item-questionbody {
+      display: inline-block;
+    }
+
+    .question-responses {
+      display: inline-block;
+      margin-right: 1em;
+    }
+
+    .questionbody {
+      display: inline-block;
+    }
+
+    .question-interaction {
+      float: right;
+      margin: 1.5em;
+    }
+
+    .question-helpful {
+      padding-left: 1.5em;
+    }
+
+    .question-helpful-number {
+      padding-right: 1.5em;
+    }
+
+    .answer-list-container {
+      overflow-y: auto;
+      max-height: 50vh;
+      margin-bottom: 1em;
+    }
+
+    .answer-list-item-photos img {
+      height: 100px;
+      width: auto;
+      padding-left: 0.2em;
+      padding-right: 0.2em;
+
+    }
+
+    .navbar-wrapper {
+      margin-left: 40px;
+      margin-right: 40px;
+    }
+
+    .navbar {
+      height: 60px;
+      background-color: black;
+    }
+
+    .carousel-card {
+      vertical-align: top;
+      text-align: center;
+      overflow: hidden;
+      min-height: 99%;
+      list-style-type: none;
+      display: inline-block;
+      white-space: normal;
+      letter-spacing: normal;
+      word-wrap: break-word;
+      margin-left: 20px;
+      border: 1px solid black;
+    }
+
+    .carousel {
+      margin: 0;
+      list-style-type: none;
+      height: 100%;
+      white-space: nowrap;
+      overflow-x: visible;
+      color: #0F1111;
+      letter-spacing: -4px;
+    }
+
+    .carousel-viewport {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .carousel-viewport {
+      width: 100%;
+      overflow: hidden;
+      height: 300px;
+    }
+
+    .carousel-col {
+      margin: 0px 40px 0px 0px;
+      min-height: 1px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .carousel-col.carousel-center {
+      overflow: hidden;
+    }
+
+    .carousel-inner-content {
+      position: relative;
+      height: 100%;
+    }
+
+    .carousel-card.carousel-image {
+      min-height: 100px;
+      max-height: 100px;
+      min-width: 100px;
+      max-width: 100px;
+      margin-right: 20px;
+    }
+
+    .fas.fa-step-backward {
+      background-size: 10px 30px;
+      background-repeat: no-repeat;
+      visibility: visible;
+    }
+
+    .fas.fa-step-forward {
+      background-size: 10px 30px;
+      background-repeat: no-repeat;
+      visibility: visible;
+    }
+
+    .far.fa-star {
+      margin-top: 5px;
+    }
+
+    .related-category {
+      display: block;
+      font-size: 0.83em;
+      margin-block-start: 1.67em;
+      margin-block-end: 1.67em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+      font-weight: bold;
+    }
+
+    .related-name {
+      display: block;
+      font-size: 1.17em;
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+      font-weight: bold;
+    }
+  </style>
 
   <title>Project Catwalk!</title>
 </head>

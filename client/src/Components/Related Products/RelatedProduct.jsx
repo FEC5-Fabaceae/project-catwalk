@@ -88,8 +88,8 @@ const RelatedProduct = (props) => {
             : <></>
         }
       <div onClick={() => value.setProductID(() => product.toString())}>
-        <h5>{relatedProductInfo.category}</h5>
-        <h3>{relatedProductInfo.name}</h3>
+        <div className="related-category">{relatedProductInfo.category}</div>
+        <div className="related-name">{relatedProductInfo.name}</div>
         <img src={stylesInfo.photo} alt={relatedProductInfo.name} className="carousel-card carousel-image" />
         <div>
           $
