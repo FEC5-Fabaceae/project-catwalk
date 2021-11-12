@@ -1,6 +1,5 @@
 body {
-  background-color: black;
-  color: white;
+  background-color: cornsilk
 }
 .navbar-wrapper{
   display: flex;
@@ -119,7 +118,7 @@ body {
   justify-content: center;
   width: 30%;
   padding: 10px;
-  background-color: #d3d3d3;
+  background-color:rgb(182, 162, 162);
   color: black;
 }
 .star-rating-row{
@@ -185,7 +184,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 15px;
+  padding: 10px;
 }
 
 .viewer-wrap {

@@ -7,7 +7,7 @@ const Breakdown = (props) => {
 
   if (isLoaded) {
     return (
-      <aside>
+      <aside id="breakdown">
         <RatingBreakdown ratings={metadata.ratings} />
       </aside>
     );

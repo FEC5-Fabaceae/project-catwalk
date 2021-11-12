@@ -3,11 +3,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Formik, Form, Field, useField,
+  Formik, Form, useField,
 } from 'formik';
 import * as Yup from 'yup';
 import ImageUploading from 'react-images-uploading';
-import { ClickableStars } from '../Star';
 
 const TextInput = ({ label, ...props }) => {
   const [field, meta, helpers] = useField(props);
@@ -48,9 +47,7 @@ const PhotoUpload = (props) => {
   const { setImages, images } = props;
   const max = 5;
   const onChange = (imageList, addUpdateIndex) => {
-    console.log(imageList, addUpdateIndex);
     setImages(imageList);
-    console.log(imageList);
   };
 
   return (
