@@ -5,8 +5,9 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 // import { reduce } from 'core-js/core/array';
 import React, { useContext } from 'react';
-import ProviderContext from '../Context/provider/ProviderContext';
+import { FaFacebook, FaInstagramSquare, FaTwitterSquare } from 'react-icons/fa';
 import ProductSelector from './ProductSelector';
+import ProviderContext from '../Context/provider/ProviderContext';
 
 const ProductInfoHooks = () => {
   const providerContext = useContext(ProviderContext);
@@ -23,34 +24,33 @@ const ProductInfoHooks = () => {
     providerContext.getCurrentStyle(e.target.name);
     providerContext.getProduct(e.target.id);
   };
-  // const handleChange = () => {
-  //   const select = document.getElementById('size');
-  //   const { text } = select.options[select.selected];
-  //   // console.log(e.target[e.target.selectedIndex].dataset.id);
-  //   console.log(text);
-  // };
 
   if (!stylesArray[0]) {
     return <p>Loading</p>;
   }
   return (
     <>
-      <div><h1>{presentStyle.name}</h1></div>
-      {presentStyle.sale_price ? (
-        <>
-          <div style={{ color: 'red', textDecorationLine: 'line-through' }}>{presentStyle.original_price}</div>
-          <div>{presentStyle.sale_price}</div>
-        </>
-      )
-        : <div>{presentStyle.original_price}</div>}
-      <div className="star-rating-row">
-        <b>
-          STYLE
-          {'>'}
-        </b>
-        <div>{category}</div>
-      </div>
+      <div className="left-text">
+        <div><h1>{presentStyle.name}</h1></div>
+        {presentStyle.sale_price ? (
+          <>
+            <div style={{ color: 'red', textDecorationLine: 'line-through' }}>{presentStyle.original_price}</div>
+            <div>{presentStyle.sale_price}</div>
+          </>
+        )
+          : <div>{presentStyle.original_price}</div>}
+        <div className="star-rating-row">
+          <b>
+            STYLE
+            {'>'}
+          </b>
+          <div>
+            &nbsp;
+            {category}
 
+          </div>
+        </div>
+      </div>
       <div className="style-select-icon-container">
         {stylesArray[0].results && stylesArray[0].results.map((photo) => (
           <>
@@ -67,6 +67,28 @@ const ProductInfoHooks = () => {
         ))}
       </div>
       <ProductSelector />
+      <span>
+        <a href="https://www.facebook.com">
+          <FaFacebook style={{
+            margin: '20px', height: '40px', width: '40px', color: '#4267B2',
+          }}
+          />
+        </a>
+        <a href="https://www.instagram.com">
+          <FaInstagramSquare
+            className="instagram"
+            style={{
+              margin: '20px', height: '40px', width: '40px',
+            }}
+          />
+        </a>
+        <a href="https://www.twitter.com">
+          <FaTwitterSquare style={{
+            margin: '20px', height: '40px', width: '40px', color: '#00acee ',
+          }}
+          />
+        </a>
+      </span>
 
     </>
   );

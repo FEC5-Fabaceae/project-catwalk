@@ -1,4 +1,4 @@
-import { act } from 'react-test-renderer';
+// import { act } from 'react-test-renderer';
 import {
   GET_PRODUCT,
   GET_PRODUCT_STYLES,
