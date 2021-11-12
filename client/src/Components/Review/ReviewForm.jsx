@@ -7,6 +7,7 @@ import {
 } from 'formik';
 import * as Yup from 'yup';
 import ImageUploading from 'react-images-uploading';
+import { ClickableStars } from '../Star';
 
 const TextInput = ({ label, ...props }) => {
   const [field, meta, helpers] = useField(props);
@@ -94,11 +95,31 @@ const PhotoUpload = (props) => {
 const CharacteristicRadio = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
-    <>
-      <label htmlFor={props.id || props.name}>
-        <Field type="radio" name=""></Field>
-      </label>
-    </>
+    <fieldset id="score-fieldset">
+      <legend>{label}</legend>
+      <p>
+        <label className="radio-choice">
+          <input name="score" type="radio" value="1" />
+          1
+        </label>
+        <label className="radio-choice">
+          <input name="score" type="radio" value="2" />
+          2
+        </label>
+        <label className="radio-choice">
+          <input name="score" type="radio" value="3" />
+          3
+        </label>
+        <label className="radio-choice">
+          <input name="score" type="radio" value="4" />
+          4
+        </label>
+        <label className="radio-choice">
+          <input name="score" type="radio" value="5" />
+          5
+        </label>
+      </p>
+    </fieldset>
   );
 };
 
@@ -111,9 +132,11 @@ const getCharacteristicInitialValues = (characteristicsObject) => {
 };
 const ReviewForm = (props) => {
   const { characteristics } = props;
-  const characteristicsValues = getCharacteristicInitialValues(characteristics);
+  const characteristicsInitialValues = getCharacteristicInitialValues(characteristics);
   const [images, setImages] = useState([]);
-
+  const characteristicsNames = Object.keys(characteristics);
+  const characteristicsQuestions = characteristicsNames
+    .map((name) => <CharacteristicRadio label={name} name={name} />);
   return (
     <>
       <h1>Submit a review</h1>
@@ -125,7 +148,7 @@ const ReviewForm = (props) => {
           body: '',
           nickname: '',
           email: '',
-          characteristics: characteristicsValues,
+          characteristics: characteristicsInitialValues,
         }}
         validationSchema={Yup.object({
           nickname: Yup.string()
@@ -146,12 +169,43 @@ const ReviewForm = (props) => {
         <Form>
           <fieldset id="score-fieldset">
             <legend>Score *</legend>
+            <p>
+              <label className="score-radio">
+                <input name="score" type="radio" value="1" />
+                1
+              </label>
+              <label className="score-radio">
+                <input name="score" type="radio" value="2" />
+                2
+              </label>
+              <label className="score-radio">
+                <input name="score" type="radio" value="3" />
+                3
+              </label>
+              <label className="score-radio">
+                <input name="score" type="radio" value="4" />
+                4
+              </label>
+              <label className="score-radio">
+                <input name="score" type="radio" value="5" />
+                5
+              </label>
+            </p>
           </fieldset>
           <fieldset id="recommend-fieldset">
             <legend>Do you recommend this product?</legend>
+            <label className="radio-array">
+              <input name="recommend" type="radio" value="yes" />
+              Yes
+            </label>
+            <label className="score-radio">
+              <input name="recommend" type="radio" value="no" />
+              2
+            </label>
           </fieldset>
           <fieldset id="characteristics-fieldset">
             <legend>Characteristics</legend>
+            {characteristicsQuestions}
           </fieldset>
           <fieldset className="main-review-fieldset">
             <legend>Write your review</legend>
@@ -162,111 +216,17 @@ const ReviewForm = (props) => {
             />
           </fieldset>
           <PhotoUpload setImages={setImages} images={images} />
+          <fieldset>
+          <legend>Name and Email</legend>
           <TextInput name="nickname" type="text" label="Nickname" />
           <TextInput name="email" type="email" label="Email" />
+          <button type="submit">Submit</button>
+          </fieldset>
         </Form>
       </Formik>
     </>
   );
 };
-
-const OldReviewForm = () => (
-  <div>
-    <h1>Submit a review</h1>
-    <form onSubmit={formik.handleSubmit}>
-      Fields with an asterisk (*) are required.
-      <br />
-      <fieldset>
-        <legend>Score *</legend>
-        <p>
-          <input name="score" type="radio" value="1" />
-          <label htmlFor="1">1</label>
-          <input name="score" type="radio" value="2" />
-          <label htmlFor="2">2</label>
-          <input name="score" type="radio" value="3" />
-          <label htmlFor="3">3</label>
-          <input name="score" type="radio" value="4" />
-          <label htmlFor="4">4</label>
-          <input name="score" type="radio" value="5" />
-          <label htmlFor="5">5</label>
-        </p>
-      </fieldset>
-      <fieldset>
-        <legend>Do you recommend this product?</legend>
-        <h3><label htmlFor="recommend"></label></h3>
-        <input name="recommend" type="radio" id="yes" value="yes" />
-        <label htmlFor="yes">Yes</label>
-        <input name="recommend" type="radio" id="no" />
-        <label htmlFor="no">No</label>
-      </fieldset>
-      <fieldset>
-        <legend>Characteristics</legend>
-      </fieldset>
-      {/* We need to decide which descriptors are relevant to the given item */}
-      <fieldset>
-        <legend>Review Body</legend>
-        <h3><label htmlFor="summary">Summary</label></h3>
-        <input
-          type="text"
-          id="summary"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          name="summary"
-          value={formik.values.summary}
-          placeholder="Example: Best purchase ever!"
-        />
-        <h3><label htmlFor="body">Body*</label></h3>
-        <textarea
-          id="body"
-          name="body"
-          onBlur={formik.handleBlur}
-          onChange={handleBodyChange}
-          value={formik.values.body}
-        >
-          Why did you like the product or not?
-        </textarea>
-        { }
-        <p>
-          {`Minimum required characters left: ${50 - bodyLength}`}
-        </p>
-      </fieldset>
-      <fieldset>
-        <legend>Upload Photos</legend>
-        <input type="file" />
-      </fieldset>
-      <fieldset>
-        <legend>Name and Email*</legend>
-        <h3><label htmlFor="nickname">Your name*</label></h3>
-        <input
-          type="text"
-          id="nickname"
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-          value={formik.values.nickname}
-          placeholder="Example: jackson11"
-        />
-        {formik.touched.nickname
-          && formik.errors.nickname
-          ? <div>{formik.errors.nickname}</div>
-          : null}
-        <h3><label htmlFor="email">Your email*</label></h3>
-        <input
-          id="email"
-          type="email"
-          name="email"
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-          placeholder="Example: jackson11@email.com"
-          value={formik.values.email}
-        />
-        {formik.touched.email && formik.errors.email
-          ? <div>{formik.errors.email}</div> : null}
-        <p>For authentication reasons, you will not be emailed.</p>
-      </fieldset>
-      <button type="submit">Submit</button>
-    </form>
-  </div>
-);
 
 ReviewForm.propTypes = {
   characteristics: PropTypes.shape({
