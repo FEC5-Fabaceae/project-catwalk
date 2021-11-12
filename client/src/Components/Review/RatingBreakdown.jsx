@@ -39,6 +39,7 @@ const RatingBreakdown = (props) => {
   const { ratings } = props;
   const percentages = getPercentages(ratings);
   const bars = Object.keys(ratings)
+    .reverse()
     .map(([key, value]) => (
       <StackedBar
         score={key}
@@ -51,9 +52,12 @@ const RatingBreakdown = (props) => {
   return (
     <dl id="rating-breakdown">
       <dt><h2>Rating Breakdown</h2></dt>
-      <span className="average-score">{average}</span>
-      <Stars score={Number(average)} />
-      <>{bars}</>
+      <section id="averages">
+        <span id="average-score">{average}</span>
+        <Stars score={Number(average)} id="average-stars" />
+      </section>
+
+      <p>{bars}</p>
     </dl>
   );
 };
