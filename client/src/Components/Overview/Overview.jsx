@@ -10,7 +10,7 @@ const Overview = () => (
         — SALE/DISCOUNT
         <b> OFFER</b>
         —
-        <a href>NEW PRODUCT HIGHLIGHT</a>
+        <a href="/">NEW PRODUCT HIGHLIGHT</a>
       </p>
     </div>
     <div className="product-overview-container">

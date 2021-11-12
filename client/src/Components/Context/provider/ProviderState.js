@@ -10,6 +10,8 @@ import {
   GET_PRODUCT,
   GET_PRODUCT_STYLES,
   GET_CURRENT_STYLE,
+  GET_CART_ITEMS,
+  ADD_CART_ITEMS,
 } from '../types';
 
 const ProviderState = (props) => {
@@ -18,6 +20,8 @@ const ProviderState = (props) => {
     styles: [],
     currentStyle: {},
     text: [],
+    cart: [],
+    cartDetails: [],
   };
 
   const [state, dispatch] = useReducer(ProviderReducer, initialState);
@@ -56,17 +60,48 @@ const ProviderState = (props) => {
       payload: currentStyle,
     });
   };
+
+  const getCartItems = () => {
+    const res = axios.get('/cart');
+    dispatch({
+      type: GET_CART_ITEMS,
+      payload: res.data,
+    });
+  };
+  const addCartItems = (sku, quantity) => {
+    console.log(sku, 'sku', quantity, 'quantity');
+    const cartInfo = {
+      sku_id: sku,
+      quantity,
+    };
+    const res = axios.post('/cart', { sku_id: sku });
+    console.log('res', res);
+
+    const itemExists = state.cart.filter((item) => item.sku === sku);
+
+    if (itemExists.length > 0) {
+      return;
+    }
+    dispatch({
+      type: ADD_CART_ITEMS,
+      payload: cartInfo,
+    });
+  };
   const { children } = props;
   return (
-    <ProviderContext.Provider value={{
-      product: state.product,
-      styles: state.styles,
-      currentStyle: state.currentStyle,
-      text: state.text,
-      getProduct,
-      getProductStyles,
-      getCurrentStyle,
-    }}
+    <ProviderContext.Provider
+      value={{
+        product: state.product,
+        styles: state.styles,
+        currentStyle: state.currentStyle,
+        text: state.text,
+        getProduct,
+
+        getProductStyles,
+        getCurrentStyle,
+        getCartItems,
+        addCartItems,
+      }}
     >
       {children}
     </ProviderContext.Provider>
