@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-use-before-define */
-import React, { useReducer, useEffect } from 'react';
+import React, { useContext, useReducer, useEffect } from 'react';
 
 import axios from 'axios';
 import ProviderReducer from './ProviderReducer';
 import ProviderContext from './ProviderContext';
+import ProductIdContext from '../../Context';
 
 import {
   GET_PRODUCT,
@@ -15,6 +16,9 @@ import {
 } from '../types';
 
 const ProviderState = (props) => {
+  const context = useContext(ProductIdContext);
+  let { productID } = context;
+
   const initialState = {
     product: {},
     styles: [],
@@ -27,9 +31,15 @@ const ProviderState = (props) => {
   const [state, dispatch] = useReducer(ProviderReducer, initialState);
 
   useEffect(() => {
-    getProduct('40344');
-    getProductStyles('40344');
+    console.log(productID);
+    getProduct(productID);
+    getProductStyles(productID);
   }, []);
+  useEffect(() => {
+    productID = context.productID;
+    getProduct(productID);
+    getProductStyles(productID);
+  }, [context]);
 
   const getProduct = (id) => {
     axios.get(`/products/${id}`).then((res) => {
