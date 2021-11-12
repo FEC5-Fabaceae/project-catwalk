@@ -6,6 +6,7 @@ import {
   Formik, Form, Field, useField,
 } from 'formik';
 import * as Yup from 'yup';
+import ImageUploading from 'react-images-uploading';
 
 const TextInput = ({ label, ...props }) => {
   const [field, meta, helpers] = useField(props);
@@ -24,17 +25,69 @@ const TextInput = ({ label, ...props }) => {
 
 const ReviewBody = ({ label, ...props }) => {
   const [field, meta] = useField(props);
+  const [bodyLength, setBodyLength] = useState(0);
+  const handleBodyChange = (e) => {
+    setBodyLength(e.target.value.length);
+  };
   return (
     <>
       <label htmlFor={props.id || props.name}>
         <h4>{label}</h4>
-        <textarea className="textarea" {...field} {...props} onChange={props.handleChange} />
+        <textarea className="textarea" {...field} {...props} onKeyPress={handleBodyChange} />
       </label>
-      {`Minimum required characters left: ${50 - props.bodyLength}`}
+      {bodyLength >= 50 ? null : <p>{`Minimum required characters left: ${50 - bodyLength}`}</p>}
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
     </>
+  );
+};
+
+const PhotoUpload = (props) => {
+  const { setImages, images } = props;
+  const max = 5;
+  const onChange = (imageList, addUpdateIndex) => {
+    console.log(imageList, addUpdateIndex);
+    setImages(imageList);
+    console.log(imageList);
+  };
+
+  return (
+    <fieldset>
+      <legend>Upload images</legend>
+      <ImageUploading
+        multiple
+        value={images}
+        onChange={onChange}
+        maxNumber={max}
+        dataURLKey="dataURL"
+      >
+        {({
+          imageList,
+          onImageUpload,
+          onImageRemoveAll,
+          onImageUpdate,
+          onImageRemove,
+
+        }) => (
+          <div className="upload_image-wrapper">
+            <button onClick={onImageUpload} type="button">Upload image</button>
+            <button onClick={onImageRemoveAll} type="button">Remove all images</button>
+            <ul>
+              {imageList.map((image, index) => (
+                <li key={image} className="image-item">
+                  <img src={image.dataURL} alt="" width="100" />
+                  <section className="image-item-btn-wrapper">
+                    <button onClick={() => onImageUpdate(index)} type="button"> Update</button>
+                    <button onClick={() => onImageRemove(index)} type="button"> Remove</button>
+                  </section>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </ImageUploading>
+    </fieldset>
   );
 };
 
@@ -59,11 +112,8 @@ const getCharacteristicInitialValues = (characteristicsObject) => {
 const ReviewForm = (props) => {
   const { characteristics } = props;
   const characteristicsValues = getCharacteristicInitialValues(characteristics);
-  const [bodyLength, setBodyLength] = useState(0);
+  const [images, setImages] = useState([]);
 
-  const handleBodyChange = (e) => {
-
-  };
   return (
     <>
       <h1>Submit a review</h1>
@@ -107,17 +157,11 @@ const ReviewForm = (props) => {
             <legend>Write your review</legend>
             <TextInput name="summary" type="text" label="Summary" />
             <ReviewBody
-              handleChange={(e) => {
-                setBodyLength(e.target.value.length);
-                props.handleChange(e);
-              }}
               name="body"
               label="Body"
-              value={props.body}
-              bodyLength={bodyLength}
             />
           </fieldset>
-
+          <PhotoUpload setImages={setImages} images={images} />
           <TextInput name="nickname" type="text" label="Nickname" />
           <TextInput name="email" type="email" label="Email" />
         </Form>
