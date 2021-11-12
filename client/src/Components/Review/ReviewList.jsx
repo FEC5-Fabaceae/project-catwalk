@@ -2,8 +2,9 @@ import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import ReviewTile from './ReviewTile';
 import ProductIdContext from '../Context';
+import ReviewForm from './ReviewForm';
 
-const ReviewList = () => {
+const ReviewList = (props) => {
   const [reviews, setReviews] = useState([]);
   const [sort, setSort] = useState('relevant');
   const [count, setCount] = useState(0);
@@ -13,7 +14,7 @@ const ReviewList = () => {
   const [loadedAll, setLoadedAll] = useState(false);
   const context = useContext(ProductIdContext);
   const { productID, setProductID } = context;
-  // const [productId, setProductId] = context;
+  const [viewForm, setViewForm] = useState(false);
 
   const getReviews = () => {
     const response = axios({
@@ -49,6 +50,10 @@ const ReviewList = () => {
     ));
   };
 
+  const handleClickSubmitReview = () => {
+    setViewForm(true);
+  };
+
   useEffect(() => {
     getReviews().then((result) => {
       setCount(result.data.count);
@@ -61,6 +66,7 @@ const ReviewList = () => {
 
   if (isLoaded) {
     return (
+      <>
       <section id="review-list">
         <h1>RATINGS AND REVIEWS</h1>
         <h2>
@@ -78,10 +84,13 @@ const ReviewList = () => {
         <button
           type="button"
           className="submit-review"
+          onClick={handleClickSubmitReview}
         >
           Submit a review
         </button>
+        {viewForm ? <ReviewForm /> : ''}
       </section>
+      </>
     );
   }
   return (

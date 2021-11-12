@@ -39,11 +39,11 @@ const Stars = (props) => {
   const [base, percent] = String(rounded).split('.');
   const numEmptyStars = percent !== '00' ? 5 - Number(base) - 1
     : 5 - Number(base);
-  const filledStars = [...Array(Number(base))].map(() => <Star percent="100" />);
+  const filledStars = [...Array(Number(base)).keys()].map((num) => <Star percent="100" key={num + 1} />);
+  const fractionalStar = percent !== '00' ? <Star percent={percent} key={Number(base) + 2} /> : '';
   const emptyStars = numEmptyStars > 0
-    ? [...Array(numEmptyStars)].map(() => <Star percent="00" />)
+    ? [...Array(numEmptyStars).keys()].map((num) => <Star percent="00" key={percent === '00' ? (Number(base) + num + 1) : Number(base) + 2 + num} />)
     : '';
-  const fractionalStar = percent !== '00' ? <Star percent={percent} /> : '';
   return (
     <div className="stars">
       {filledStars}
