@@ -1,39 +1,30 @@
-import React, { useContext, useState, useEffect } from 'react';
-import axios from 'axios';
-import ProductIdContext from '../Context';
+import React from 'react';
+import PropTypes from 'prop-types';
 import RatingBreakdown from './RatingBreakdown';
 
-const Breakdown = () => {
-  const context = useContext(ProductIdContext);
-  const { productID, setProductID } = context;
-  const [metadata, setMetadata] = useState({});
-  const [isLoaded, setLoaded] = useState(false);
-  const getMetadata = () => {
-    const response = axios({
-      method: 'get',
-      url: '/reviews/meta',
-      params: {
-        product_id: productID,
-      },
-    });
-    return response;
-  };
-
-  useEffect(() => {
-    getMetadata()
-      .then((response) => {
-        setMetadata(response.data);
-        setLoaded(true);
-      });
-  }, [isLoaded]);
+const Breakdown = (props) => {
+  const { isLoaded, metadata } = props;
 
   if (isLoaded) {
     return (
-      <aside>
+      <aside id="breakdown">
         <RatingBreakdown ratings={metadata.ratings} />
       </aside>
     );
   } return (<aside>Loading...</aside>);
+};
+
+Breakdown.propTypes = {
+  isLoaded: PropTypes.bool.isRequired,
+  metadata: PropTypes.shape({
+    ratings: PropTypes.shape({
+      1: PropTypes.string,
+      2: PropTypes.string,
+      3: PropTypes.string,
+      4: PropTypes.string,
+      5: PropTypes.string,
+    }),
+  }).isRequired,
 };
 
 export default Breakdown;
