@@ -4,17 +4,21 @@ import axios from 'axios';
 import ProductIdContext from '../Context';
 import AnswersList from './AnswersList';
 import AddAnswerForm from './AddAnswerForm';
+import Modal from './Modal';
 
 const QuestionItem = (props) => {
   const { question, setQuestions } = props;
   const { question_id, question_body, question_helpfulness, answers } = question;
   const value = useContext(ProductIdContext);
+  const { productID } = value;
   const [disableHelpful, setDisableHelpful] = useState(false);
+  const [styleHelpful, setStyleHelpful] = useState({ color: 'black' });
+  const [modalVisible, setModalVisible] = useState(false);
 
   const updateCount = () => {
     axios.put(`qa/questions/${question_id}/helpful`)
       .then(() => {
-        axios.get(`qa/questions/?product_id=${value}`)
+        axios.get(`qa/questions/?product_id=${productID}&count=50`)
           .then((res) => {
             setQuestions(res.data.results);
           });
@@ -22,13 +26,22 @@ const QuestionItem = (props) => {
       .catch((err) => console.log(err));
   };
 
+  const clickedYesStyle = {
+    color: '#646F58',
+  };
+
   const handleClick = (e, state) => {
     if (e.target.value === 'Yes') {
       if (!state) {
         setDisableHelpful(true);
+        setStyleHelpful(clickedYesStyle);
         updateCount();
       }
     }
+  };
+
+  const clickAddAnswerButton = () => {
+    setModalVisible(true);
   };
 
   return (
@@ -38,15 +51,30 @@ const QuestionItem = (props) => {
         <p className="questionbody">{question_body}</p>
       </section>
       <aside className="question-interaction">
-        <span>Helpful?</span>
-        <button type="button" onClick={(e) => { handleClick(e, disableHelpful); }} value="Yes">Yes</button>
-        (
-        {question_helpfulness}
-        )
-        <button type="button">
+        <span className="question-helpful">Helpful?</span>
+        <button className="question-button" type="button" style={styleHelpful} onClick={(e) => { handleClick(e, disableHelpful); }} value="Yes">Yes</button>
+        <span className="question-helpful-number">
+          (
+          {question_helpfulness}
+          )
+        </span>
+        <button className="question-button" type="button" onClick={clickAddAnswerButton}>
           Add Answer
-          <AddAnswerForm questionID={question_id} setQuestions={setQuestions} />
-          </button>
+        </button>
+        {modalVisible
+          ? (
+            <Modal
+              setModalVisible={setModalVisible}
+              component={(
+                <AddAnswerForm
+                  questionID={question_id}
+                  questionBody={question_body}
+                  setQuestions={setQuestions}
+                />
+              )}
+            />
+          )
+          : <></>}
       </aside>
       <section className="questions-list-item-answer">
         <span className="question-responses">A:</span>

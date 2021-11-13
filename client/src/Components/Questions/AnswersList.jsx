@@ -19,24 +19,26 @@ const AnswersList = (props) => {
 
   let AddCollapseButton;
   if (answers.length > 2 && answers.length !== visible) {
-    AddCollapseButton = <button type="button" onClick={clickButtonMore}>See more answers</button>;
+    AddCollapseButton = <button className="question-button" type="button" onClick={clickButtonMore}>See more answers</button>;
   }
   if (answers.length === visible && answers.length !== 2) {
-    AddCollapseButton = <button type="button" onClick={clickButtonCollapse}>Collapse answers</button>;
+    AddCollapseButton = <button className="question-button" type="button" onClick={clickButtonCollapse}>Collapse answers</button>;
   }
 
   return (
     <>
-      <ul className="scrollable-answer-list">
-        {answers.filter((answer, index) => (index < visible))
-          .map((answer) => (
-            <AnswerItem
-              key={answer.id}
-              answer={answer}
-              setQuestions={setQuestions}
-            />
-          ))}
-      </ul>
+      <div>
+        <ul className="answer-list-container">
+          {answers.filter((answer, index) => (index < visible))
+            .map((answer) => (
+              <AnswerItem
+                key={answer.id}
+                answer={answer}
+                setQuestions={setQuestions}
+              />
+            ))}
+        </ul>
+      </div>
       <div className="answer-list-button">{AddCollapseButton}</div>
     </>
   );

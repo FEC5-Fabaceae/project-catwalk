@@ -18,8 +18,11 @@ const AnswerItem = (props) => {
     photos,
   } = answer;
   const value = useContext(ProductIdContext);
+  const { productID } = value;
   const [disableHelpful, setDisableHelpful] = useState(false);
   const [disableReport, setDisableReport] = useState(false);
+  const [styleHelpful, setStyleHelpful] = useState({ color: 'black' });
+  const [styleReport, setStyleReport] = useState({ color: 'black' });
 
   let pictures;
   if (photos.length) {
@@ -39,10 +42,18 @@ const AnswerItem = (props) => {
     sellerName = <span>{answerer_name}</span>;
   }
 
+  const clickedYesStyle = {
+    color: '#646F58',
+  };
+
+  const clickedReportStyle = {
+    color: 'red',
+  };
+
   const updateCount = () => {
     axios.put(`/qa/answers/${id}/helpful`)
       .then(() => {
-        axios.get(`/qa/questions/?product_id=${value}`)
+        axios.get(`/qa/questions/?product_id=${productID}&count=50`)
           .then((res) => {
             setQuestions(res.data.results);
           });
@@ -59,12 +70,14 @@ const AnswerItem = (props) => {
     if (e.target.value === 'Yes') {
       if (!state) {
         setDisableHelpful(true);
+        setStyleHelpful(clickedYesStyle);
         updateCount();
       }
     }
     if (e.target.value === 'Report') {
       if (!state) {
         setDisableReport(true);
+        setStyleReport(clickedReportStyle);
         reportAnswer();
       }
     }
@@ -79,14 +92,15 @@ const AnswerItem = (props) => {
         {pictures}
       </div>
       <div className="answer-list-item-inline">
-        {sellerName}
-        <span>{moment(date).format('MMMM D, YYYY')}</span>
-        <span>Helpful?</span>
-        <button type="button" onClick={(e) => { handleClick(e, disableHelpful); }} value="Yes">Yes</button>
-        (
-        {helpfulness}
-        )
-        <button type="button" onClick={(e) => { handleClick(e, disableReport); }} value="Report">Report</button>
+        <span>By {sellerName} on {moment(date).format('MMMM D, YYYY')}</span>
+        <span className="question-helpful">Helpful?</span>
+        <button className="question-button" type="button" style={styleHelpful} onClick={(e) => { handleClick(e, disableHelpful); }} value="Yes">Yes</button>
+        <span className="question-helpful-number">
+          (
+          {helpfulness}
+          )
+        </span>
+        <button className="question-button" type="button" style={styleReport} onClick={(e) => { handleClick(e, disableReport); }} value="Report">Report</button>
       </div>
     </div>
   );

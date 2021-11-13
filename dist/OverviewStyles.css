@@ -1,0 +1,221 @@
+body {
+  background-color: cornsilk
+}
+.navbar-wrapper{
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  margin-right: 40px;
+  width:100%;
+  height: 100%;
+}
+.navbar{
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  background-color:black;
+  width:100%;
+  height: 100%;
+
+}
+.navbar-cart{
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: flex-end;
+  width:100%;
+  height: 100%;
+  align-items: flex-end;
+}
+.navbar-search{
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: flex-start;
+  width:100%;
+  height: 100%;
+  align-items: flex-end;
+
+}
+.gallery{
+  margin-left: 30px;
+
+}
+.gallery-wrapper{
+  display:flex;
+  flex-direction: row-reverse;
+  height: 567px;
+  margin-left: 40px;
+  margin-left: 40px;
+
+}
+.thumbnail-gallery{
+  display: flex;
+  -webkit-box-align: center;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  flex-direction: column;
+  /* width: 64px;
+  height: 100%; */
+}
+
+.thumbnail-images{
+  display:flex;
+  justify-content: flex-start;
+  -webkit-box-pack:center;
+  position: relative;
+  overflow: hidden;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+
+}
+.thumbnail-images img{
+  /* display:flex;
+  justify-content: flex-start;
+  -webkit-box-pack:center;
+  position: relative;
+  overflow: hidden;
+  flex-direction: column; */
+  width: 49px;
+  height: 49px;
+  object-fit: fill;
+  padding: 6px;
+  border-color: solid black;
+
+}
+.spacer{
+  display: flex;
+  flex-direction: column;
+  width: 14px;
+  background-color: black;
+}
+
+.product-overview-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.gallery-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: fill;
+}
+
+.product-overview-container-left {
+  display: flex;
+  justify-content: center;
+  width: 60%
+}
+.left-text{
+  padding:10px
+}
+
+.product-overview-container-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+  padding: 10px;
+  background-color:rgb(182, 162, 162);
+  color: black;
+}
+.star-rating-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+}
+
+.style-select-icon-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+  width:350px;
+  margin-top: 30px;
+  justify-content: flex-start;
+}
+.style-icon{
+
+  /* flex: 1 0 21%;
+  flex-grow: 0; */
+  border-radius: 50%;
+  border: 2px solid black;
+  border-width: 2px;
+  margin: 12px;
+  padding: 3px;
+
+  object-fit: cover;
+
+}
+
+.product-dropdown{
+  border-style: solid;
+  padding:10px;
+  margin: 6px;
+}
+.cart-button-container{
+  padding:10px;
+  margin: 6px;
+}
+.cart-button{
+  padding:10px;
+
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.right {
+  /* transform: rotate(-45deg); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: -10px;
+}
+
+.left {
+  /* transform: rotate(135deg); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+}
+
+.viewer-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-shrink: zero;
+  width:732.11px;
+  height:567px;
+}
+.viewer-wrap img {
+  width: 100%;
+  height:100%;.instagram{ width:100px; height:100px;
+    background: #f09433;
+  background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+  background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+    }
+  object-fit: cover;
+}
+
+.viewer-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.instagram{ width:100px; height:100px;
+  background: #f09433;
+background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+  }

@@ -14,9 +14,12 @@ const OutfitProductsList = (props) => {
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(3);
   const value = useContext(ProductIdContext);
-  const [productID, setProductID] = useState(value);
+  const [productID, setProductID] = useState(value.productID);
   const [arrayOfOutfits, setArray] = useState([]);
   const [visibleProducts, setVisible] = useState([arrayOfOutfits.slice(0, 2)]);
+  useEffect(() => {
+    setProductID(value.productID);
+  }, [value]);
   useEffect(() => {
     axios.get('http://localhost:3000/outfits')
       .then((data) => {
@@ -73,7 +76,7 @@ const OutfitProductsList = (props) => {
               <ol className="carousel">
                 <AddOutfit product={productID} arrayOfOutfits={arrayOfOutfits} setArray={setArray} />
                 {visibleProducts.map((outfitProductID) => (
-                  <Outfit product={outfitProductID} />
+                  <Outfit product={outfitProductID} arrayOfOutfits={arrayOfOutfits} setArray={setArray}/>
                 ))}
               </ol>
             </div>
@@ -95,7 +98,7 @@ const OutfitProductsList = (props) => {
               <ol className="carousel">
                 <AddOutfit product={productID} arrayOfOutfits={arrayOfOutfits} setArray={setArray} />
                 {visibleProducts.map((outfitProductID) => (
-                  <Outfit product={outfitProductID} />
+                  <Outfit product={outfitProductID} arrayOfOutfits={arrayOfOutfits} setArray={setArray} />
                 ))}
               </ol>
             </div>
