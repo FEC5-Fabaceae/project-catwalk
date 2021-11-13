@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import ReviewTile from './ReviewTile';
 import ProductIdContext from '../Context';
@@ -74,9 +75,9 @@ const ReviewList = (props) => {
               id="sort-select"
               onInput={handleSort}
             >
-              <option value="helpful">helpfulness</option>
-              <option value="relevant">relevance</option>
-              <option value="newest">date</option>
+              <option value="helpful">Helpfulness</option>
+              <option value="relevant">Relevance</option>
+              <option value="newest">Date</option>
             </select>
           </h2>
           <>{reviewTiles}</>
