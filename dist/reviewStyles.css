@@ -1,0 +1,281 @@
+body {
+  background-color: cornsilk;
+}
+
+#review-section {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+#breakdown {
+  background-color: #b6a2a2;
+  flex-basis: 25%;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+#rating-breakdown {
+  color: #010203;
+  margin: 10px 10px;
+}
+
+#review-list {
+  background-color: #FFFDF5;
+  border: 1px;
+  flex-basis: 75%;
+  padding: 10px 10px;
+  border-radius: 5px;
+}
+
+.review-tile {
+  background-color: #ebe5dd;
+  border-radius: 10px;
+  padding: 1%;
+  margin: 25px;
+}
+
+#averages {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+#average-score {
+  font-size: 200%;
+}
+
+#average-stars {
+  float: right;
+}
+
+.percentage {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.rating-bar-00 {
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: 0fr 10fr;
+  grid-area: 1/2/2/3;
+  margin: 1px;
+}
+
+.rating-bar-10 {
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: 1fr 9fr;
+  grid-area: 1/2/2/3;
+  margin: 1px;
+}
+
+.rating-bar-20 {
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: 2fr 8fr;
+  grid-area: 1/2/2/3;
+  margin: 1px;
+}
+
+.rating-bar-30 {
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: 3fr 7fr;
+  grid-area: 1/2/2/3;
+  margin: 1px;
+}
+
+.rating-bar-40 {
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: 4fr 6fr;
+  grid-area: 1/2/2/3;
+  margin: 1px;
+}
+
+.rating-bar-50 {
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: 5fr 5fr;
+  grid-area: 1/2/2/3;
+  margin: 1px;
+}
+
+.rating-bar-60 {
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: 6fr 4fr;
+  grid-area: 1/2/2/3;
+  margin: 1px;
+}
+
+.rating-bar-70 {
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: 7fr 3fr;
+  grid-area: 1/2/2/3;
+  margin: 1px;
+}
+
+.rating-bar-80 {
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: 8fr 2fr;
+  grid-area: 1/2/2/3;
+  margin: 1px;
+}
+
+.rating-bar-90 {
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: 9fr 1fr;
+  grid-area: 1/2/2/3;
+  margin: 1px;
+}
+
+.rating-bar-100 {
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: 10fr 0fr;
+  grid-area: 1/2/2/3;
+  margin: 1px;
+}
+
+.filled-rating-bar {
+  background: #646F58;
+}
+
+.empty-rating-bar {
+  background: lightgray;
+  color: lightgray;
+}
+
+.individual-rating-total {
+  grid-area: 1/3/2/4;
+}
+
+.bar-label {
+  grid-area: 1/1/2/2;
+}
+
+.star-00 {
+  display: inline-block;
+  position: relative;
+  color: #ddd;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+}
+
+.star-25 {
+  display: inline-block;
+  position: relative;
+  color: #ddd;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+}
+
+.star-25:after {
+  font-family: FontAwesome;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 25%;
+  overflow: hidden;
+  color: #FFCE0A;
+  content: "\f005";
+}
+
+.star-50 {
+  display: inline-block;
+  position: relative;
+  color: #ddd;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+}
+
+.star-50::after {
+  font-family: FontAwesome;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 25%;
+  overflow: hidden;
+  color: #FFCE0A;
+  content: "\f005";
+}
+
+.star-75 {
+  display: inline-block;
+  position: relative;
+  color: #ddd;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+}
+
+.star-75::after {
+  font-family: FontAwesome;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 25%;
+  overflow: hidden;
+  color: #FFCE0A;
+  content: "\f005";
+}
+
+.star-100 {
+  color: #FFCE0A;
+  display: inline-block;
+  position: relative;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+}
+
+fieldset {
+  border-color: #b6a2a2;
+  border-style: solid;
+  background-color: #ebe5dd;
+}
+
+fieldset fieldset {
+  background-color: #f7f5f2;
+}
+
+.checkmark {
+  color: #646F58;
+  flex-direction: row;
+  align-content: space-between;
+}
+
+.review-header {
+  background-color: #b6a2a2;
+  border-radius: 10px 10px 0px 0px;
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+time {
+  font-weight: lighter;
+}
+
+#sort-select {
+  background-color: transparent;
+  border: none;
+  border-bottom: solid 1px black;
+  font-weight: bolder;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 100%;
+  text-align: justify;
+}
+
+#sort-select::after {
+  content: "";
+  width: 0.8em;
+  height: 0.5em;
+  background-color: black;
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+}
+
+/*# sourceMappingURL=reviewStyles.css.map */
