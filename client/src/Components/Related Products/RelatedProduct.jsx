@@ -69,7 +69,6 @@ const RelatedProduct = (props) => {
     // get the review metadata and calculate average
   }, [product]);
   const modalToggle = () => {
-    console.log('hi');
     setModalVisible(true);
   };
   return (
