@@ -32,6 +32,7 @@ SearchBar.propTypes = {
     product_id: PropTypes.string,
     results: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
+  changeList: PropTypes.func.isRequired,
 };
 
 export default SearchBar;

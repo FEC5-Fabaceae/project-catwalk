@@ -18,8 +18,8 @@ const AddAnswerForm = (props) => {
   const [images, setImages] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
 
-  const thumbnails = images.map((image, index) => (
-    <img className="answers-form-thumbnails" src={image} alt="" key={index} />
+  const thumbnails = images.map((image, i) => (
+    <img className="answers-form-thumbnails" src={image} alt="" key={i} />
   ));
 
   const clickAddPhotosButton = () => {
@@ -143,6 +143,7 @@ const AddAnswerForm = (props) => {
 AddAnswerForm.propTypes = {
   questionID: PropTypes.number.isRequired,
   questionBody: PropTypes.string.isRequired,
+  setQuestions: PropTypes.func.isRequired,
 };
 
 export default AddAnswerForm;

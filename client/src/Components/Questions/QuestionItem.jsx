@@ -97,6 +97,7 @@ QuestionItem.propTypes = {
     reported: PropTypes.bool,
     answers: PropTypes.objectOf(PropTypes.object),
   }).isRequired,
+  setQuestions: PropTypes.func.isRequired,
 };
 
 export default QuestionItem;

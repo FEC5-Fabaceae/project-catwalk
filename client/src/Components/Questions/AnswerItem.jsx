@@ -92,7 +92,14 @@ const AnswerItem = (props) => {
         {pictures}
       </div>
       <div className="answer-list-item-inline">
-        <span>By {sellerName} on {moment(date).format('MMMM D, YYYY')}</span>
+        <span>
+          By
+          {' '}
+          {sellerName}
+          {' '}
+          on
+          {moment(date).format('MMMM D, YYYY')}
+        </span>
         <span className="question-helpful">Helpful?</span>
         <button className="question-button" type="button" style={styleHelpful} onClick={(e) => { handleClick(e, disableHelpful); }} value="Yes">Yes</button>
         <span className="question-helpful-number">
@@ -115,6 +122,7 @@ AnswerItem.propTypes = {
     helpfulness: PropTypes.number.isRequired,
     photos: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
+  setQuestions: PropTypes.func.isRequired,
 };
 
 export default AnswerItem;

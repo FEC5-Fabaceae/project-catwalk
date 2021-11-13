@@ -46,6 +46,7 @@ const AnswersList = (props) => {
 
 AnswersList.propTypes = {
   answerlist: PropTypes.objectOf(PropTypes.object).isRequired,
+  setQuestions: PropTypes.func.isRequired,
 };
 
 export default AnswersList;

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const AddPhotos = (props) => {
-  const { imagesState, setImages } = props;
+  const { imagesState } = props;
   const [imageURL, setImageURL] = useState('');
 
   const inputChange = (e) => {
@@ -27,6 +28,10 @@ const AddPhotos = (props) => {
       <button className="photo-input-button" type="submit" onClick={AddImages}>Add</button>
     </>
   );
+};
+
+AddPhotos.propTypes = {
+  imagesState: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default AddPhotos;

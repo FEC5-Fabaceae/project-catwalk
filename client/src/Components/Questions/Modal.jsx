@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Modal = (props) => {
   const { setModalVisible, component } = props;
@@ -22,6 +23,11 @@ const Modal = (props) => {
       </div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  setModalVisible: PropTypes.func.isRequired,
+  component: PropTypes.elementType.isRequired,
 };
 
 export default Modal;
