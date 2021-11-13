@@ -64,7 +64,6 @@ const AddAnswerForm = (props) => {
             email: values.email,
             photos: images,
           };
-          console.log(newValues);
 
           axios.post(`qa/questions/${questionID}/answers`, newValues)
             .then(() => {

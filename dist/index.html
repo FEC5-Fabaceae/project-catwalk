@@ -3,14 +3,449 @@
 
 <head>
   <meta charset="UTF-8">
-  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-  <script src="https://kit.fontawesome.com/7274b136be.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="./Stylesheet.css">
-  <link rel="stylesheet" href="./reviewStyles.css">
-  <link rel="stylesheet" href="./Related-Product.css">
-  <link rel="stylesheet" type="text/css" href="OverviewStyles.css">
-  <link rel="stylesheet" type="text/css" href="questionsStyle.css">
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js" defer></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" defer></script>
+  <script src="https://kit.fontawesome.com/7274b136be.js" crossorigin="anonymous" defer></script>
+  <link rel="stylesheet" rel="preload" type="text/css" href="OverviewStyles.css">
+  <style>
+    .thumbnail-gallery {
+      display: flex;
+      -webkit-box-align: center;
+      justify-content: flex-start;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      flex-direction: column;
+      /* width: 64px;
+  height: 100%; */
+    }
+
+    .thumbnail-images {
+      display: flex;
+      justify-content: flex-start;
+      -webkit-box-pack: center;
+      position: relative;
+      overflow: hidden;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    fieldset {
+      border-color: #b6a2a2;
+      border-style: solid;
+      background-color: #ebe5dd;
+    }
+
+    fieldset fieldset {
+      background-color: #f7f5f2;
+    }
+
+
+    .thumbnail-images img {
+      /* display:flex;
+  justify-content: flex-start;
+  -webkit-box-pack:center;
+  position: relative;
+  overflow: hidden;
+  flex-direction: column; */
+      width: 49px;
+      height: 49px;
+      object-fit: fill;
+      padding: 6px;
+      border-color: solid black;
+
+    }
+
+    .spacer {
+      display: flex;
+      flex-direction: column;
+      width: 14px;
+      background-color: black;
+    }
+
+    .product-overview-container {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .gallery-image {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: fill;
+    }
+
+    .left-text {
+      padding: 10px
+    }
+
+    .product-overview-container-left {
+      display: flex;
+      justify-content: center;
+      width: 60%
+    }
+
+    .product-overview-container-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 30%;
+      padding: 10px;
+      background-color: #d3d3d3;
+      color: black;
+    }
+
+    .star-rating-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+
+    }
+
+    .style-select-icon-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-top: 30px;
+      justify-content: flex-start;
+    }
+
+    .style-icon {
+
+      /* flex: 1 0 21%;
+flex-grow: 0; */
+      border-radius: 50%;
+      border: 2px solid black;
+      border-width: 2px;
+      margin: 12px;
+      padding: 3px;
+
+      object-fit: cover;
+    }
+
+    .product-dropdown {
+      border-style: solid;
+      padding: 10px;
+      margin: 6px;
+    }
+
+    .cart-button-container {
+      padding: 10px;
+      margin: 6px;
+    }
+
+    .cart-button {
+      padding: 10px;
+
+    }
+
+    .select-style-drop-list {
+      width: 120px;
+      border-style: solid;
+    }
+
+    .right {
+      /* transform: rotate(-45deg); */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: -10px;
+    }
+
+    .left {
+      /* transform: rotate(135deg); */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 15px;
+    }
+
+    .viewer-wrap {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-shrink: zero;
+      width: 732.11px;
+      height: 567px;
+    }
+
+    .viewer-wrap img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .viewer-wrap {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .instagram {
+      width: 100px;
+      height: 100px;
+      background: #f09433;
+      background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f09433', endColorstr='#bc1888', GradientType=1);
+    }
+
+    body {
+      background-color: cornsilk;
+    }
+
+    #review-section {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      justify-content: flex-start;
+      align-items: stretch;
+    }
+
+    #rating-breakdown {
+      color: #010203;
+      margin: 10px 10px;
+    }
+
+    #review-list {
+      background-color: #FFFDF5;
+      border: 1px;
+      flex-basis: 75%;
+      padding: 10px 10px;
+      border-radius: 5px;
+    }
+
+    .checkmark {
+      color: #646F58;
+      flex-direction: row;
+      align-content: space-between;
+    }
+
+    .review-header {
+      background-color: #b6a2a2;
+      border-radius: 10px 10px 0px 0px;
+      display: flex;
+      justify-content: space-between;
+      gap: 50px;
+    }
+
+    time {
+      font-weight: lighter;
+    }
+
+    .review-tile {
+      background-color: #ebe5dd;
+      border-radius: 10px;
+      padding: 1%;
+      margin: 25px;
+    }
+
+    .percentage {
+      display: grid;
+      grid-template-columns: 1fr 3fr 1fr;
+      grid-template-rows: 1fr;
+      grid-column-gap: 0px;
+      grid-row-gap: 0px;
+    }
+
+    .rating-bar-10 {
+      display: grid;
+      overflow: hidden;
+      grid-template-columns: 1fr 9fr;
+      grid-area: 1/2/2/3;
+      margin: 1px;
+    }
+
+    .rating-bar-20 {
+      display: grid;
+      overflow: hidden;
+      grid-template-columns: 2fr 8fr;
+      grid-area: 1/2/2/3;
+      margin: 1px;
+    }
+
+    .rating-bar-50 {
+      display: grid;
+      overflow: hidden;
+      grid-template-columns: 5fr 5fr;
+      grid-area: 1/2/2/3;
+      margin: 1px;
+    }
+
+    .filled-rating-bar {
+      background: #646F58;
+    }
+
+    .empty-rating-bar {
+      background: lightgray;
+      color: lightgray;
+    }
+
+    .individual-rating-total {
+      grid-area: 1/3/2/4;
+    }
+
+    .bar-label {
+      grid-area: 1/1/2/2;
+    }
+
+    .star-00 {
+      display: inline-block;
+      position: relative;
+      color: #ddd;
+      text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+    }
+
+    .star-25 {
+      display: inline-block;
+      position: relative;
+      color: #ddd;
+      text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+    }
+
+    .star-75 {
+      display: inline-block;
+      position: relative;
+      color: #ddd;
+      text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+    }
+
+    .star-75::after {
+      font-family: FontAwesome;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 25%;
+      overflow: hidden;
+      color: #FFCE0A;
+      content: "\f005";
+    }
+
+    .star-100 {
+      color: #FFCE0A;
+      display: inline-block;
+      position: relative;
+      text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+    }
+
+    .questions-answers-section {
+      display: block;
+    }
+
+    .questions-search {
+      padding: 0px 40px;
+    }
+
+    .search-questions {
+      width: 75vw;
+      padding: 0.50em;
+    }
+
+    .question-list-container {
+      overflow-y: auto;
+      max-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .question-main-buttons {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .question-button {
+      padding: 0.25em;
+      background-color: cornsilk;
+      border: none;
+      font-size: 1em;
+    }
+
+
+    .question-list-more-button {
+      margin-right: 0.50em;
+    }
+
+    .questions-list-item-questionbody {
+      display: inline-block;
+    }
+
+    .question-responses {
+      display: inline-block;
+      margin-right: 1em;
+    }
+
+    .questionbody {
+      display: inline-block;
+      color: #646F58;
+      font-weight: bold;
+    }
+
+    .question-interaction {
+      float: right;
+      margin-top: 0.75em;
+      margin-right: 1.5em;
+    }
+
+    .question-helpful {
+      padding-left: 1.5em;
+    }
+
+    .question-helpful-number {
+      padding-right: 1.5em;
+    }
+
+    .answer-list-container {
+      overflow-y: auto;
+      max-height: 50vh;
+      margin-bottom: 1em;
+    }
+
+    .answer-list-item-photos img {
+      height: 100px;
+      width: auto;
+      padding-left: 0.2em;
+      padding-right: 0.2em;
+
+    }
+
+    .navbar-wrapper {
+      display: flex;
+      flex-direction: column;
+      margin-left: 40px;
+      margin-right: 40px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .navbar {
+      display: flex;
+      flex-direction: row;
+      height: 60px;
+      background-color: black;
+      width: 100%;
+      height: 100%;
+    }
+
+    .navbar-cart {
+      display: flex;
+      /* flex-direction: column; */
+      justify-content: flex-end;
+      width: 100%;
+      height: 100%;
+      align-items: flex-end;
+    }
+
+    .navbar-search {
+      display: flex;
+      /* flex-direction: column; */
+      justify-content: flex-start;
+      width: 100%;
+      height: 100%;
+      align-items: flex-end;
+
+    }
+  </style>
 
   <title>Project Catwalk!</title>
 </head>

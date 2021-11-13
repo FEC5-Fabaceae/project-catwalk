@@ -39,7 +39,6 @@ const ReviewList = (props) => {
 
   const generateReviewTiles = (filter) => {
     const filteredReviews = reviews.filter(filter).slice(0, numDisplayed);
-
     setReviewTiles(filteredReviews.map(
       (review) => <ReviewTile key={review.review_id} review={review} />,
     ));
@@ -57,7 +56,6 @@ const ReviewList = (props) => {
     getReviews().then((result) => {
       setCount(result.data.count);
       setReviews(result.data.results);
-
       setLoaded(true);
       generateReviewTiles(() => true);
     });

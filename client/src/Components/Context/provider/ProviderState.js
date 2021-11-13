@@ -79,13 +79,11 @@ const ProviderState = (props) => {
     });
   };
   const addCartItems = (sku, quantity) => {
-    console.log(sku, 'sku', quantity, 'quantity');
     const cartInfo = {
       sku_id: sku,
       quantity,
     };
     const res = axios.post('/cart', { sku_id: sku });
-    console.log('res', res);
 
     const itemExists = state.cart.filter((item) => item.sku === sku);
 

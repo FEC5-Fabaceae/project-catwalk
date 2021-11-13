@@ -13,9 +13,9 @@ const Feature = (props) => {
 
   return (
     <div className="feature-comparison">
-      <p>{feature}</p>
-      <p>{currentProductValue}</p>
-      <p>{relatedProductValue}</p>
+      <p className="compared-feature">{feature}</p>
+      <p className="first-product-feature">{currentProductValue}</p>
+      <p className="second-product-feature">{relatedProductValue}</p>
     </div>
   );
 };
