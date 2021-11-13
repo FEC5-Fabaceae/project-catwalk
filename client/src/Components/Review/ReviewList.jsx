@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import ReviewTile from './ReviewTile';
 import ProductIdContext from '../Context';
@@ -7,7 +8,7 @@ import ReviewForm from './ReviewForm';
 const ReviewList = (props) => {
   const { characteristics } = props;
   const [reviews, setReviews] = useState([]);
-  const [sort, setSort] = useState('relevant');
+  const [sort, setSort] = useState('helpful');
   const [count, setCount] = useState(0);
   const [reviewTiles, setReviewTiles] = useState([]);
   const [isLoaded, setLoaded] = useState(false);
@@ -29,13 +30,6 @@ const ReviewList = (props) => {
     return response;
   };
 
-  const sortTypes = {
-    // api settings mapped to nouns
-    relevant: 'relevance',
-    newest: 'date',
-    helpful: 'helpfulness',
-  };
-
   const loadMoreReviews = () => {
     setNumDisplayed(numDisplayed + 2);
     if (numDisplayed >= count) {
@@ -45,10 +39,14 @@ const ReviewList = (props) => {
 
   const generateReviewTiles = (filter) => {
     const filteredReviews = reviews.filter(filter).slice(0, numDisplayed);
-    console.log("reviews=", reviews, "filtered=", filteredReviews);
+
     setReviewTiles(filteredReviews.map(
       (review) => <ReviewTile key={review.review_id} review={review} />,
     ));
+  };
+
+  const handleSort = (e) => {
+    setSort(e.target.value);
   };
 
   const handleClickSubmitReview = () => {
@@ -59,11 +57,11 @@ const ReviewList = (props) => {
     getReviews().then((result) => {
       setCount(result.data.count);
       setReviews(result.data.results);
-      console.log(reviews);
+
       setLoaded(true);
       generateReviewTiles(() => true);
     });
-  }, [isLoaded, numDisplayed]);
+  }, [isLoaded, numDisplayed, sort]);
 
   if (isLoaded) {
     return (
@@ -71,7 +69,16 @@ const ReviewList = (props) => {
         <section id="review-list">
           <h1 id="review-list-title">RATINGS AND REVIEWS</h1>
           <h2>
-            {`${count} reviews, sorted by ${sortTypes[sort]}`}
+            {`${count} reviews, sorted by `}
+            <select
+              name="sort"
+              id="sort-select"
+              onInput={handleSort}
+            >
+              <option value="helpful">Helpfulness</option>
+              <option value="relevant">Relevance</option>
+              <option value="newest">Date</option>
+            </select>
           </h2>
           <>{reviewTiles}</>
           <button
@@ -100,6 +107,35 @@ const ReviewList = (props) => {
       Loading...
     </section>
   );
+};
+
+ReviewList.propTypes = {
+  characteristics: PropTypes.shape({
+    Size: PropTypes.exact({
+      id: PropTypes.number,
+      value: PropTypes.string,
+    }),
+    Width: PropTypes.exact({
+      id: PropTypes.number,
+      value: PropTypes.string,
+    }),
+    Comfort: PropTypes.exact({
+      id: PropTypes.number,
+      value: PropTypes.string,
+    }),
+    Quality: PropTypes.exact({
+      id: PropTypes.number,
+      value: PropTypes.string,
+    }),
+    Length: PropTypes.exact({
+      id: PropTypes.number,
+      value: PropTypes.string,
+    }),
+    Fit: PropTypes.exact({
+      id: PropTypes.number,
+      value: PropTypes.string,
+    }),
+  }).isRequired,
 };
 
 export default ReviewList;

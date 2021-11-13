@@ -260,4 +260,22 @@ time {
   font-weight: lighter;
 }
 
+#sort-select {
+  background-color: transparent;
+  border: none;
+  border-bottom: solid 1px black;
+  font-weight: bolder;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 100%;
+  text-align: justify;
+}
+
+#sort-select::after {
+  content: "";
+  width: 0.8em;
+  height: 0.5em;
+  background-color: black;
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+}
+
 /*# sourceMappingURL=reviewStyles.css.map */
