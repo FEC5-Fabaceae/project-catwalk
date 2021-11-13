@@ -10,7 +10,7 @@ import Navbar from './Navbar';
 
 import ProviderState from './Context/provider/ProviderState';
 // please add your components here in the order they appear
-const App = (props) => {
+const App = () => {
   const [productID, setProductID] = useState('40344');
   const value = useMemo(
     () => ({ productID, setProductID }),

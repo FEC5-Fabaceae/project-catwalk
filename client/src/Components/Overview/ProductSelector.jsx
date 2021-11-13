@@ -1,7 +1,5 @@
-/* eslint-disable no-nested-ternary */
 import React, { useState, useContext } from 'react';
 import ProviderContext from '../Context/provider/ProviderContext';
-// import Cart from './Cart';
 
 const ProductSelector = () => {
   const productContext = useContext(ProviderContext);
@@ -10,6 +8,7 @@ const ProductSelector = () => {
   const [quantitySize, setQuantitySize] = useState(null);
   const [quantity, setQuantity] = useState(null);
   const [sku, setSku] = useState(null);
+  const [modal, setModal] = useState(null);
 
   const handleChange = (e) => {
     const incomingSku = e.target[e.target.selectedIndex].dataset.id;

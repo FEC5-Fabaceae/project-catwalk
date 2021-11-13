@@ -1,8 +1,3 @@
-/* eslint-disable consistent-return */
-/* eslint-disable array-callback-return */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable react/no-unused-state */
 import React, { useContext, useState } from 'react';
 // import ProductIdContext from '../Context';
 import ProviderContext from '../Context/provider/ProviderContext';
@@ -36,11 +31,11 @@ const GalleryHooks = () => {
   return (
     <>
       <div className="gallery-wrapper">
-        <p className="left" name="back" onClick={handlePageChange}>
+        <button type="button" className="left" name="back" onClick={handlePageChange} onKeyPress={handlePageChange}>
           <b>
             {'>'}
           </b>
-        </p>
+        </button>
         <div className="viewer-wrap">
           {currentStyle.photos && currentStyle.photos.map((photo, i) => {
             if (page === i) {
@@ -57,11 +52,11 @@ const GalleryHooks = () => {
             }
           })}
         </div>
-        <p className="right" name="forward" onClick={handlePageChange}>
+        <button type="button" className="right" name="forward" onClick={handlePageChange} onKeyPress={handlePageChange}>
           <b>
             {'<'}
           </b>
-        </p>
+        </button>
         <div className="thumbnail-gallery">
           <div className="thumbnail-images">
             {currentStyle.photos && currentStyle.photos.map((photo, i) => (

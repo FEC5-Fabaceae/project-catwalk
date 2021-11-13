@@ -16,10 +16,6 @@ const ProductInfoHooks = () => {
   const category = providerContext.text;
   const presentStyle = providerContext.currentStyle;
 
-  if (stylesArray[0]) {
-    console.log(stylesArray[0].results);
-  }
-
   const handleClick = (e) => {
     providerContext.getCurrentStyle(e.target.name);
     providerContext.getProduct(e.target.id);
