@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-use-before-define */
 import React, { useContext, useReducer, useEffect } from 'react';
 
 import axios from 'axios';
@@ -29,18 +27,6 @@ const ProviderState = (props) => {
   };
 
   const [state, dispatch] = useReducer(ProviderReducer, initialState);
-
-  useEffect(() => {
-    console.log(productID);
-    getProduct(productID);
-    getProductStyles(productID);
-  }, []);
-  useEffect(() => {
-    productID = context.productID;
-    getProduct(productID);
-    getProductStyles(productID);
-  }, [context]);
-
   const getProduct = (id) => {
     axios.get(`/products/${id}`).then((res) => {
       dispatch({
@@ -58,6 +44,17 @@ const ProviderState = (props) => {
       });
     });
   };
+
+  useEffect(() => {
+    console.log(productID);
+    getProduct(productID);
+    getProductStyles(productID);
+  }, []);
+  useEffect(() => {
+    productID = context.productID;
+    getProduct(productID);
+    getProductStyles(productID);
+  }, [context]);
 
   const getCurrentStyle = (id) => {
     const currentStyle = state.styles[0].results.find(
@@ -79,13 +76,11 @@ const ProviderState = (props) => {
     });
   };
   const addCartItems = (sku, quantity) => {
-    console.log(sku, 'sku', quantity, 'quantity');
     const cartInfo = {
       sku_id: sku,
       quantity,
     };
-    const res = axios.post('/cart', { sku_id: sku });
-    console.log('res', res);
+    axios.post('/cart', { sku_id: sku });
 
     const itemExists = state.cart.filter((item) => item.sku === sku);
 

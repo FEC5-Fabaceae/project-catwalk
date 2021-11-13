@@ -43,6 +43,7 @@ body {
   display:flex;
   flex-direction: row-reverse;
   height: 567px;
+  width:732px;
   margin-left: 40px;
   margin-left: 40px;
 
@@ -88,7 +89,7 @@ body {
 .spacer{
   display: flex;
   flex-direction: column;
-  width: 14px;
+  width: 12px;
   background-color: black;
 }
 
@@ -176,7 +177,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: -10px;
+  padding: -12px;
 }
 
 .left {
