@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from 'react';
 
 const AddOutfit = ({ product, arrayOfOutfits, setArray }) => {
@@ -10,7 +11,7 @@ const AddOutfit = ({ product, arrayOfOutfits, setArray }) => {
 
   return (
     <li className="carousel-card">
-      <i className="far fa-plus-square" type="button" onClick={updateArray} />
+      <button className="far fa-plus-square" type="button" onClick={updateArray} />
       <p className="add-product-card">Add Product To Outfit</p>
     </li>
   );

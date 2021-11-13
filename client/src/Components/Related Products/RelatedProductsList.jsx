@@ -1,14 +1,14 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState, useEffect, useContext } from 'react';
 import RelatedProduct from './RelatedProduct';
 import ProductIdContext from '../Context';
-import Comparison from './Comparison';
 
 const axios = require('axios');
 
 // send a get request for each related product from the given product id
 // render the default style for each related product
 
-const RelatedProductsList = (props) => {
+const RelatedProductsList = () => {
   const [leftVisible, setLeftVisible] = useState('hidden');
   const [rightVisible, setRightVisible] = useState('visible');
   const [start, setStart] = useState(0);
@@ -27,7 +27,7 @@ const RelatedProductsList = (props) => {
   useEffect(() => {
     setProductID(value.productID);
   }, [value]);
-  const previousSlide = (e) => {
+  const previousSlide = () => {
     if (end === arrayOfRelatedProducts.length) {
       setRightVisible('visible');
     }
@@ -40,7 +40,7 @@ const RelatedProductsList = (props) => {
       setVisible(arrayOfRelatedProducts.slice(start - 1, end - 1));
     }
   };
-  const nextSlide = (e) => {
+  const nextSlide = () => {
     if (start === 0) {
       setLeftVisible('visible');
     }
@@ -58,7 +58,7 @@ const RelatedProductsList = (props) => {
       <h2 className="carousel-title"> Related Products </h2>
       <div className="carousel-inner-content">
         <div className="carousel-col carousel-left">
-          <i className="fas fa-step-backward" role="button" onClick={previousSlide} style={{ visibility: leftVisible}}/>
+          <button className="fas fa-step-backward" type="button" onClick={previousSlide} style={{ visibility: leftVisible }} />
         </div>
         <div className="carousel-col carousel-center">
           <div className="carousel-viewport">
@@ -70,10 +70,11 @@ const RelatedProductsList = (props) => {
           </div>
         </div>
         <div className="carousel-col carousel-goto-right">
-          <i className="fas fa-step-forward" role="button" onClick={nextSlide} style={{ visibility: rightVisible }} />
+          <button className="fas fa-step-forward" type="button" onClick={nextSlide} style={{ visibility: rightVisible }} />
         </div>
       </div>
     </div>
   );
 };
+
 export default RelatedProductsList;
